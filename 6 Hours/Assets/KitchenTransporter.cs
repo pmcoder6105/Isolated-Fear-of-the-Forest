@@ -2,19 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KitchenTransporter : MonoBehaviour
+public class Transporter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -25,10 +14,20 @@ public class KitchenTransporter : MonoBehaviour
             transform.position = new Vector3(-10.14f, -1.595f, 9.618f);
         }
 
-        if (other.gameObject.tag == "LivingRoomDoor")
+        if (other.gameObject.tag == "KitchenLivingRoomDoor")
         {
             Debug.Log("Joe mama");
             transform.position = new Vector3(-5.453f, -1.595f, 9.618f);
+        }
+        if (other.gameObject.tag == "BedRoomDoor")
+        {
+            Debug.Log("Joe mama's mama");
+            transform.position = new Vector3(2.718f, -1.769f, 20.08f);
+        }
+        if (other.gameObject.tag == "BedLivingRoomDoor")
+        {
+            Debug.Log("Joe mama's mama's mama");
+            transform.position = new Vector3(2.981f, -1.769f, 17.17f);
         }
     }
 }

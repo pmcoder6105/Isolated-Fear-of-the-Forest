@@ -7,6 +7,9 @@ TagManager:
   - Fire
   - KitchenDoor
   - LivingRoomDoor
+  - BedRoomDoor
+  - KitchenLivingRoomDoor
+  - BedLivingRoomDoor
   layers:
   - Default
   - TransparentFX
