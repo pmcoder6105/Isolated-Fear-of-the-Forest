@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Transporter : MonoBehaviour
 {
+    [SerializeField] GameObject LRLight;
+    [SerializeField] GameObject LRLightGoingIntoRoom;
+
+    void Start()
+    {
+
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -11,7 +18,10 @@ public class Transporter : MonoBehaviour
         if (other.gameObject.tag == "KitchenDoor")
         {
             Debug.Log("Joe mama");
-            transform.position = new Vector3(-10.14f, -1.595f, 9.618f);
+            Invoke(nameof(GoIntoKitchen), 2);
+            LRLightGoingIntoRoom.SetActive(true);
+            LRLight.SetActive(false);
+            Invoke(nameof(TurnLightBacknormal), 2);
         }
 
         if (other.gameObject.tag == "KitchenLivingRoomDoor")
@@ -39,5 +49,15 @@ public class Transporter : MonoBehaviour
             Debug.Log("Joe mama's mama's mama");
             transform.position = new Vector3(-0.12f, -1.61f, -0.4f);
         }
+    }
+
+    private void TurnLightBacknormal()
+    {
+        LRLight.SetActive(true);
+    }
+
+    private void GoIntoKitchen()
+    {
+        transform.position = new Vector3(-10.14f, -1.595f, 9.618f);
     }
 }
