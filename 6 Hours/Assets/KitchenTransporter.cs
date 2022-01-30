@@ -27,7 +27,7 @@ public class Transporter : MonoBehaviour
         if (other.gameObject.tag == "BedLivingRoomDoor")
         {
             Debug.Log("Joe mama's mama's mama");
-            transform.position = new Vector3(2.981f, -1.769f, 17.17f);
+            transform.position = new Vector3(3.119f, -1.769f, 16.702f);
         }
     }
 }
