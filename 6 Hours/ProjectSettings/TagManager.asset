@@ -12,6 +12,7 @@ TagManager:
   - BedLivingRoomDoor
   - BackInsideDoor
   - GoOutsideDoor
+  - Box
   layers:
   - Default
   - TransparentFX
