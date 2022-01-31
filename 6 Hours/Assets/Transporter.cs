@@ -60,8 +60,16 @@ public class Transporter : MonoBehaviour
         if (other.gameObject.tag == "GoOutsideDoor")
         {
             Debug.Log("Joe mama's mama's mama");
-            transform.position = new Vector3(-0.12f, -1.61f, -0.4f);
+            Invoke(nameof(GoOutside), 2);
+            LRLightGoingIntoRoom.SetActive(true);
+            LRLight.SetActive(false);
+            Invoke(nameof(TurnLightBackNormal), 2);
         }
+    }
+
+    private void GoOutside()
+    {
+        transform.position = new Vector3(-0.12f, -1.61f, -0.71f);
     }
 
     private void GoIntoLivingRoomFromBedRoom()
