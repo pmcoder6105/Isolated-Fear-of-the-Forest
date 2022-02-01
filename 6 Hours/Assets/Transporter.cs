@@ -18,10 +18,10 @@ public class Transporter : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("sd");
+        Debug.Log("Collision");
         if (other.gameObject.tag == "KitchenDoor")
         {
-            Debug.Log("Joe mama");
+            Debug.Log("Went Into Kitchen");
             Invoke(nameof(GoIntoKitchen), 2);
             LRLightGoingIntoRoom.SetActive(true);
             LRLight.SetActive(false);
@@ -30,7 +30,7 @@ public class Transporter : MonoBehaviour
 
         if (other.gameObject.tag == "KitchenLivingRoomDoor")
         {
-            Debug.Log("Joe mama");
+            Debug.Log("Went into Living Room");
             Invoke(nameof(GoIntoLivingRoomFromKitchen), 2);
             KRLightGoingIntoRoom.SetActive(true);
             KRLight.SetActive(false);
@@ -38,7 +38,7 @@ public class Transporter : MonoBehaviour
         }
         if (other.gameObject.tag == "BedRoomDoor")
         {
-            Debug.Log("Joe mama's mama");
+            Debug.Log("Went into Bedroom");
             Invoke(nameof(GoIntoBedRoomFromLivingRoom), 2);
             LRLightGoingIntoRoom.SetActive(true);
             LRLight.SetActive(false);
@@ -46,7 +46,7 @@ public class Transporter : MonoBehaviour
         }
         if (other.gameObject.tag == "BedLivingRoomDoor")
         {
-            Debug.Log("Joe mama's mama's mama");
+            Debug.Log("Went into Living ROom");
             Invoke(nameof(GoIntoLivingRoomFromBedRoom), 2);
             BRLightGoingIntoRoom.SetActive(true);
             BRLight.SetActive(false);
@@ -54,12 +54,12 @@ public class Transporter : MonoBehaviour
         }
         if (other.gameObject.tag == "BackInsideDoor")
         {
-            Debug.Log("Joe mama's mama's mama");
+            Debug.Log("Went Inside");
             transform.position = new Vector3(-0.348f, -1.473f, 2.35f);
         }
         if (other.gameObject.tag == "GoOutsideDoor")
         {
-            Debug.Log("Joe mama's mama's mama");
+            Debug.Log("Went outside");
             Invoke(nameof(GoOutside), 2);
             LRLightGoingIntoRoom.SetActive(true);
             LRLight.SetActive(false);

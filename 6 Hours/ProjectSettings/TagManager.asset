@@ -13,6 +13,9 @@ TagManager:
   - BackInsideDoor
   - GoOutsideDoor
   - Box
+  - Box1
+  - Box2
+  - Box3
   layers:
   - Default
   - TransparentFX
