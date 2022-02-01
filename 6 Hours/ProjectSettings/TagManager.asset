@@ -16,6 +16,7 @@ TagManager:
   - Box1
   - Box2
   - Box3
+  - Floor
   layers:
   - Default
   - TransparentFX
