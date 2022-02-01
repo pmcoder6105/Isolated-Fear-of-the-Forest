@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Day1Task : MonoBehaviour
 {
-    bool isHoldingBox = false;
-    
+
+    [SerializeField] GameObject boxAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,10 @@ public class Day1Task : MonoBehaviour
     {
         if (other.gameObject.tag == "Box")
         {
-            isHoldingBox = true;
+            Debug.Log("Picked Up Box");
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            boxAnim.SetActive(true);
         }
     }
 }
