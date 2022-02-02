@@ -7,6 +7,14 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject boxAnim;
     [SerializeField] GameObject boxToPlaceInside;
     [SerializeField] GameObject placedBox;
+    [SerializeField] GameObject firstObjective;
+    [SerializeField] GameObject secondObjective;
+    [SerializeField] GameObject thirdObjective;
+    [SerializeField] GameObject kitchenDoor;
+    [SerializeField] GameObject bedroomDoor;
+    [SerializeField] GameObject roomLockedText;
+    [SerializeField] GameObject kitchenLockedCollider;
+    [SerializeField] GameObject bedLockedCollider;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
 
@@ -19,6 +27,7 @@ public class Day1Task : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(ableToPlaceBox);
         if (ableToPlaceBox == true)
         {
             if (Input.GetKey(KeyCode.E))
@@ -26,8 +35,20 @@ public class Day1Task : MonoBehaviour
                 Debug.Log("Box?");
                 boxToPlaceInside.SetActive(true);
                 Invoke(nameof(ReplaceBox), 0.5f);
+                firstObjective.SetActive(false);
+                secondObjective.SetActive(true);
+                boxAnim.SetActive(false);
+                Destroy(kitchenLockedCollider);
+                Destroy(bedLockedCollider);
+                kitchenDoor.GetComponent<BoxCollider>().enabled = true;
+                bedroomDoor.GetComponent<BoxCollider>().enabled = true;
             }
         }
+    }
+
+    void CantEnterRoom()
+    {
+        roomLockedText.SetActive(false);
     }
 
     void ReplaceBox()
@@ -59,6 +80,11 @@ public class Day1Task : MonoBehaviour
             {
                 ableToPlaceBox = false;
             }
-        } 
+        }
+        if (ableToPlaceBox == false && other.gameObject.tag == "KitchenLocked" || other.gameObject.tag == "BedLocked")
+        {
+            roomLockedText.SetActive(true);
+            Invoke(nameof(CantEnterRoom), 2);
+        }
     }
 }
