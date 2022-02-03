@@ -89,10 +89,15 @@ public class Day1Task : MonoBehaviour
         }
         if (other.gameObject.tag == "BedRoomDoor")
         {
-            secondObjective.SetActive(false);
-            thirdObjective.SetActive(true);
-            Invoke(nameof(GetAway), 2);
+            Invoke(nameof(WhatIsThisPlace), 2);
+            Invoke(nameof(GetAway), 4);
         }
+    }
+
+    private void WhatIsThisPlace()
+    {
+        secondObjective.SetActive(false);
+        thirdObjective.SetActive(true);
     }
 
     void GetAway()
