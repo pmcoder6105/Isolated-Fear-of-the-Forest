@@ -10,6 +10,7 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject firstObjective;
     [SerializeField] GameObject secondObjective;
     [SerializeField] GameObject thirdObjective;
+    [SerializeField] GameObject fourthObjective;
     [SerializeField] GameObject kitchenDoor;
     [SerializeField] GameObject bedroomDoor;
     [SerializeField] GameObject roomLockedText;
@@ -86,5 +87,17 @@ public class Day1Task : MonoBehaviour
             roomLockedText.SetActive(true);
             Invoke(nameof(CantEnterRoom), 2);
         }
+        if (other.gameObject.tag == "BedRoomDoor")
+        {
+            secondObjective.SetActive(false);
+            thirdObjective.SetActive(true);
+            Invoke(nameof(GetAway), 2);
+        }
+    }
+
+    void GetAway()
+    {
+        thirdObjective.SetActive(false);
+        fourthObjective.SetActive(true);
     }
 }
