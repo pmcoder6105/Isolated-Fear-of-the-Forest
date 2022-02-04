@@ -16,6 +16,8 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject roomLockedText;
     [SerializeField] GameObject kitchenLockedCollider;
     [SerializeField] GameObject bedLockedCollider;
+    [SerializeField] GameObject chainedFence1;
+    [SerializeField] GameObject chainedFence2;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
 
@@ -90,7 +92,7 @@ public class Day1Task : MonoBehaviour
         if (other.gameObject.tag == "BedRoomDoor")
         {
             Invoke(nameof(WhatIsThisPlace), 2);
-            Invoke(nameof(GetAway), 4);
+            Invoke(nameof(GetAway), 6);
         }
     }
 
@@ -104,5 +106,7 @@ public class Day1Task : MonoBehaviour
     {
         thirdObjective.SetActive(false);
         fourthObjective.SetActive(true);
+        Destroy(chainedFence1);
+        Destroy(chainedFence2);
     }
 }
