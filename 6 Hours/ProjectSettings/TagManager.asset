@@ -19,6 +19,9 @@ TagManager:
   - Floor
   - KitchenLocked
   - BedLocked
+  - HallWayDoor
+  - HallWayLivingRoomDoor
+  - BedHallWayDoor
   layers:
   - Default
   - TransparentFX

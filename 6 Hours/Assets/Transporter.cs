@@ -10,6 +10,8 @@ public class Transporter : MonoBehaviour
     [SerializeField] GameObject KRLightGoingIntoRoom;
     [SerializeField] GameObject BRLight;
     [SerializeField] GameObject BRLightGoingIntoRoom;
+    [SerializeField] GameObject HWLight;
+    [SerializeField] GameObject HWLightGoingIntoRoom;
 
     void Start()
     {
@@ -36,21 +38,21 @@ public class Transporter : MonoBehaviour
             KRLight.SetActive(false);
             Invoke(nameof(TurnKRLightBackNormal), 2);
         }
-        if (other.gameObject.tag == "BedRoomDoor")
+        if (other.gameObject.tag == "HallWayDoor")
         {
-            Debug.Log("Went into Bedroom");
-            Invoke(nameof(GoIntoBedRoomFromLivingRoom), 2);
+            Debug.Log("Went into hallway");
+            Invoke(nameof(GoIntoHallwayFromLivingRoom), 2);
             LRLightGoingIntoRoom.SetActive(true);
             LRLight.SetActive(false);
             Invoke(nameof(TurnLightBackNormal), 2);
         }
-        if (other.gameObject.tag == "BedLivingRoomDoor")
+        if (other.gameObject.tag == "HallWayLivingRoomDoor")
         {
             Debug.Log("Went into Living ROom");
-            Invoke(nameof(GoIntoLivingRoomFromBedRoom), 2);
-            BRLightGoingIntoRoom.SetActive(true);
-            BRLight.SetActive(false);
-            Invoke(nameof(TurnBRLightBackNormal), 2);
+            Invoke(nameof(GoIntoLivingRoomFromHallway), 2);
+            HWLightGoingIntoRoom.SetActive(true);
+            HWLight.SetActive(false);
+            Invoke(nameof(TurnHWlightBackNormal), 2);
         }
         if (other.gameObject.tag == "BackInsideDoor")
         {
@@ -65,6 +67,37 @@ public class Transporter : MonoBehaviour
             LRLight.SetActive(false);
             Invoke(nameof(TurnLightBackNormal), 2);
         }
+        if (other.gameObject.tag == "BedRoomDoor")
+        {
+            Debug.Log("Went into Bedroom");
+            Invoke(nameof(GoIntoBedRoomFromHallway), 2);
+            HWLightGoingIntoRoom.SetActive(true);
+            HWLight.SetActive(false);
+            Invoke(nameof(TurnHWlightBackNormal), 2);
+        }
+        if (other.gameObject.tag == "BedHallWayDoor")
+        {
+            Debug.Log("Went into hallway from bedroom");
+            Invoke(nameof(GoIntoHallwayFromBedroom), 2);
+            BRLightGoingIntoRoom.SetActive(true);
+            BRLight.SetActive(false);
+            Invoke(nameof(TurnBRLightBackNormal), 2);
+        }
+    }
+
+    private void GoIntoHallwayFromBedroom()
+    {
+        transform.position = new Vector3(2.668f, -1.994775f, 27.5f);
+    }
+
+    private void TurnHWlightBackNormal()
+    {
+        HWLight.SetActive(true);
+    }
+
+    private void GoIntoBedRoomFromHallway()
+    {
+        transform.position = new Vector3(2.668f, -1.994775f, 31.042f);
     }
 
     private void GoOutside()
@@ -72,7 +105,7 @@ public class Transporter : MonoBehaviour
         transform.position = new Vector3(-0.12f, -1.61f, -0.71f);
     }
 
-    private void GoIntoLivingRoomFromBedRoom()
+    private void GoIntoLivingRoomFromHallway()
     {
         transform.position = new Vector3(3.119f, -1.769f, 16.702f);
     }
@@ -82,7 +115,7 @@ public class Transporter : MonoBehaviour
         BRLight.SetActive(true);
     }
 
-    private void GoIntoBedRoomFromLivingRoom()
+    private void GoIntoHallwayFromLivingRoom()
     {
         transform.position = new Vector3(2.718f, -1.769f, 20.08f);
     }
