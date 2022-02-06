@@ -16,10 +16,11 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject roomLockedText;
     [SerializeField] GameObject kitchenLockedCollider;
     [SerializeField] GameObject bedLockedCollider;
-    [SerializeField] GameObject chainedFence1;
-    [SerializeField] GameObject chainedFence2;
+    [SerializeField] GameObject chainedFence1Anim;
+    [SerializeField] GameObject chainedFence2Anim;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
+    bool hasSeenBedroom = false;
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +95,11 @@ public class Day1Task : MonoBehaviour
             Invoke(nameof(WhatIsThisPlace), 2);
             Invoke(nameof(GetAway), 6);
         }
+        if (hasSeenBedroom == true && other.gameObject.tag == "Ground")
+        {
+            chainedFence1Anim.SetActive(true);
+            chainedFence2Anim.SetActive(true);
+        }
     }
 
     private void WhatIsThisPlace()
@@ -106,7 +112,6 @@ public class Day1Task : MonoBehaviour
     {
         thirdObjective.SetActive(false);
         fourthObjective.SetActive(true);
-        Destroy(chainedFence1);
-        Destroy(chainedFence2);
+        hasSeenBedroom = true;
     }
 }
