@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Day1Jumpscare : MonoBehaviour
 {
+    [SerializeField] GameObject jumpScareTimeline;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,13 @@ public class Day1Jumpscare : MonoBehaviour
         if (this.isActiveAndEnabled == true)
         {
             GetComponent<Animator>().Play("Shout", 0);
-        }   
+            Time.timeScale = .5f;
+            jumpScareTimeline.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            this.gameObject.SetActive(true);
+            jumpScareTimeline.SetActive(true);
+        }
     }
 }
