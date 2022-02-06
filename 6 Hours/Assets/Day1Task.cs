@@ -18,6 +18,8 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject bedLockedCollider;
     [SerializeField] GameObject chainedFence1Anim;
     [SerializeField] GameObject chainedFence2Anim;
+    [SerializeField] GameObject jumpScareCollider;
+    [SerializeField] GameObject monster;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
     bool hasSeenBedroom = false;
@@ -99,6 +101,11 @@ public class Day1Task : MonoBehaviour
         {
             chainedFence1Anim.SetActive(true);
             chainedFence2Anim.SetActive(true);
+            jumpScareCollider.SetActive(true);
+        }
+        if (other.gameObject.tag == "JumpScare")
+        {
+            monster.SetActive(true);
         }
     }
 

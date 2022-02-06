@@ -23,6 +23,7 @@ TagManager:
   - HallWayLivingRoomDoor
   - BedHallWayDoor
   - Ground
+  - JumpScare
   layers:
   - Default
   - TransparentFX
