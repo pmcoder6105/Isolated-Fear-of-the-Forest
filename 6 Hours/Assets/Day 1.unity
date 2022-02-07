@@ -2629,6 +2629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpScareTimeline: {fileID: 783461271}
+  jumpScare: {fileID: 8300000, guid: 74dea722b4dda824ca900d2c80893352, type: 3}
 --- !u!1001 &447342505
 PrefabInstance:
   m_ObjectHideFlags: 0
