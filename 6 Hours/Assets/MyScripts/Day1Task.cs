@@ -40,7 +40,7 @@ public class Day1Task : MonoBehaviour
             {
                 Debug.Log("Box?");
                 boxToPlaceInside.SetActive(true);
-                Invoke(nameof(ReplaceBox), 0.5f);
+                Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
                 secondObjective.SetActive(true);
                 boxAnim.SetActive(false);

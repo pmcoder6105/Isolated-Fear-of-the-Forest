@@ -15,6 +15,7 @@ public class Transporter : MonoBehaviour
     AudioSource aS;
     [SerializeField] AudioClip doorOpening1;
     [SerializeField] AudioClip doorOpening2;
+    [SerializeField] GameObject walkingEmpty;
     int doorSound;
 
     void Start()
@@ -22,126 +23,44 @@ public class Transporter : MonoBehaviour
         aS = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.D))
+        {
+            if (!walkingEmpty.GetComponent<AudioSource>().isPlaying) 
+            {
+                walkingEmpty.GetComponent<AudioSource>().Play();
+            }            
+        }
+        if (Input.GetKeyUp(KeyCode.W) ||
+            Input.GetKeyUp(KeyCode.S) ||
+            Input.GetKeyUp(KeyCode.A) ||
+            Input.GetKeyUp(KeyCode.D))
+        {
+            if (walkingEmpty.GetComponent<AudioSource>().isPlaying)
+            {
+                walkingEmpty.GetComponent<AudioSource>().Pause();
+            }
+        }
+    }
     void OnCollisionEnter(Collision other)
     {
         Debug.Log("Collision");
-        if (other.gameObject.tag == "KitchenDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went Into Kitchen");
-            Invoke(nameof(GoIntoKitchen), 2);
-            LRLightGoingIntoRoom.SetActive(true);
-            LRLight.SetActive(false);
-            Invoke(nameof(TurnLightBackNormal), 2);
-        }
+        GoToKitchenFromLivingRoom(other);
+        GoToLivingRoomFromKitchen(other);
+        GoToHallwayFromLivingRoom(other);
+        GoToLivingRoomFromHallway(other);
+        GoToLivingRoomFromOutside(other);
+        GoOutsideFromLivingRoom(other);
+        GoToBedRoomFromHallway(other);
+        GoToHallwayFromBedroom(other);
+    }
 
-        if (other.gameObject.tag == "KitchenLivingRoomDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went into Living Room");
-            Invoke(nameof(GoIntoLivingRoomFromKitchen), 2);
-            KRLightGoingIntoRoom.SetActive(true);
-            KRLight.SetActive(false);
-            Invoke(nameof(TurnKRLightBackNormal), 2);
-        }
-        if (other.gameObject.tag == "HallWayDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went into hallway");
-            Invoke(nameof(GoIntoHallwayFromLivingRoom), 2);
-            LRLightGoingIntoRoom.SetActive(true);
-            LRLight.SetActive(false);
-            Invoke(nameof(TurnLightBackNormal), 2);
-        }
-        if (other.gameObject.tag == "HallWayLivingRoomDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went into Living ROom");
-            Invoke(nameof(GoIntoLivingRoomFromHallway), 2);
-            HWLightGoingIntoRoom.SetActive(true);
-            HWLight.SetActive(false);
-            Invoke(nameof(TurnHWlightBackNormal), 2);
-        }
-        if (other.gameObject.tag == "BackInsideDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went Inside");
-            transform.position = new Vector3(-0.348f, -1.473f, 2.35f);
-        }
-        if (other.gameObject.tag == "GoOutsideDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went outside");
-            Invoke(nameof(GoOutside), 2);
-            LRLightGoingIntoRoom.SetActive(true);
-            LRLight.SetActive(false);
-            Invoke(nameof(TurnLightBackNormal), 2);
-        }
-        if (other.gameObject.tag == "BedRoomDoor")
-        {
-            doorSound = Random.Range(1, 3);
-            if (doorSound == 1)
-            {
-                aS.PlayOneShot(doorOpening1);
-            }
-            if (doorSound == 2)
-            {
-                aS.PlayOneShot(doorOpening2);
-            }
-            Debug.Log("Went into Bedroom");
-            Invoke(nameof(GoIntoBedRoomFromHallway), 2);
-            HWLightGoingIntoRoom.SetActive(true);
-            HWLight.SetActive(false);
-            Invoke(nameof(TurnHWlightBackNormal), 2);
-        }
+    void GoToHallwayFromBedroom(Collision other)
+    {
         if (other.gameObject.tag == "BedHallWayDoor")
         {
             doorSound = Random.Range(1, 3);
@@ -161,57 +80,201 @@ public class Transporter : MonoBehaviour
         }
     }
 
-    private void GoIntoHallwayFromBedroom()
+    void GoToBedRoomFromHallway(Collision other)
+    {
+        if (other.gameObject.tag == "BedRoomDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went into Bedroom");
+            Invoke(nameof(GoIntoBedRoomFromHallway), 2);
+            HWLightGoingIntoRoom.SetActive(true);
+            HWLight.SetActive(false);
+            Invoke(nameof(TurnHWlightBackNormal), 2);
+        }
+    }
+
+    void GoOutsideFromLivingRoom(Collision other)
+    {
+        if (other.gameObject.tag == "GoOutsideDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went outside");
+            Invoke(nameof(GoOutside), 2);
+            LRLightGoingIntoRoom.SetActive(true);
+            LRLight.SetActive(false);
+            Invoke(nameof(TurnLightBackNormal), 2);
+        }
+    }
+
+    void GoToLivingRoomFromOutside(Collision other)
+    {
+        if (other.gameObject.tag == "BackInsideDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went Inside");
+            transform.position = new Vector3(-0.348f, -1.473f, 2.35f);
+        }
+    }
+
+    void GoToLivingRoomFromHallway(Collision other)
+    {
+        if (other.gameObject.tag == "HallWayLivingRoomDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went into Living ROom");
+            Invoke(nameof(GoIntoLivingRoomFromHallway), 2);
+            HWLightGoingIntoRoom.SetActive(true);
+            HWLight.SetActive(false);
+            Invoke(nameof(TurnHWlightBackNormal), 2);
+        }
+    }
+
+    void GoToHallwayFromLivingRoom(Collision other)
+    {
+        if (other.gameObject.tag == "HallWayDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went into hallway");
+            Invoke(nameof(GoIntoHallwayFromLivingRoom), 2);
+            LRLightGoingIntoRoom.SetActive(true);
+            LRLight.SetActive(false);
+            Invoke(nameof(TurnLightBackNormal), 2);
+        }
+    }
+
+    void GoToLivingRoomFromKitchen(Collision other)
+    {
+        if (other.gameObject.tag == "KitchenLivingRoomDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went into Living Room");
+            Invoke(nameof(GoIntoLivingRoomFromKitchen), 2);
+            KRLightGoingIntoRoom.SetActive(true);
+            KRLight.SetActive(false);
+            Invoke(nameof(TurnKRLightBackNormal), 2);
+        }
+    }
+
+    void GoToKitchenFromLivingRoom(Collision other)
+    {
+        if (other.gameObject.tag == "KitchenDoor")
+        {
+            doorSound = Random.Range(1, 3);
+            if (doorSound == 1)
+            {
+                aS.PlayOneShot(doorOpening1);
+            }
+            if (doorSound == 2)
+            {
+                aS.PlayOneShot(doorOpening2);
+            }
+            Debug.Log("Went Into Kitchen");
+            Invoke(nameof(GoIntoKitchen), 2);
+            LRLightGoingIntoRoom.SetActive(true);
+            LRLight.SetActive(false);
+            Invoke(nameof(TurnLightBackNormal), 2);
+        }
+    }
+
+    void GoIntoHallwayFromBedroom()
     {
         transform.position = new Vector3(2.668f, -1.994775f, 27.5f);
     }
 
-    private void TurnHWlightBackNormal()
+    void TurnHWlightBackNormal()
     {
         HWLight.SetActive(true);
     }
 
-    private void GoIntoBedRoomFromHallway()
+    void GoIntoBedRoomFromHallway()
     {
         transform.position = new Vector3(2.668f, -1.994775f, 31.042f);
     }
 
-    private void GoOutside()
+    void GoOutside()
     {
         transform.position = new Vector3(-0.12f, -1.61f, -0.71f);
     }
 
-    private void GoIntoLivingRoomFromHallway()
+    void GoIntoLivingRoomFromHallway()
     {
         transform.position = new Vector3(3.119f, -1.769f, 16.702f);
     }
 
-    private void TurnBRLightBackNormal()
+    void TurnBRLightBackNormal()
     {
         BRLight.SetActive(true);
     }
 
-    private void GoIntoHallwayFromLivingRoom()
+    void GoIntoHallwayFromLivingRoom()
     {
         transform.position = new Vector3(2.718f, -1.769f, 20.08f);
     }
 
-    private void TurnKRLightBackNormal()
+    void TurnKRLightBackNormal()
     {
         KRLight.SetActive(true);
     }
 
-    private void GoIntoLivingRoomFromKitchen()
+    void GoIntoLivingRoomFromKitchen()
     {
         transform.position = new Vector3(-5.453f, -1.595f, 9.618f);
     }
 
-    private void TurnLightBackNormal()
+    void TurnLightBackNormal()
     {
         LRLight.SetActive(true);
     }
 
-    private void GoIntoKitchen()
+    void GoIntoKitchen()
     {
         transform.position = new Vector3(-10.14f, -1.595f, 9.618f);
     }
