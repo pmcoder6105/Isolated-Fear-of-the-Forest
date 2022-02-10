@@ -22,7 +22,10 @@ public class Day1Jumpscare : MonoBehaviour
             GetComponent<Animator>().Play("Shout", 0);
             Time.timeScale = .5f;
             jumpScareTimeline.SetActive(true);
-            aS.PlayOneShot(jumpScare);
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(jumpScare);
+            }
         }
     }
 }
