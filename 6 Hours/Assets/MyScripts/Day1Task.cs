@@ -27,7 +27,7 @@ public class Day1Task : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -105,8 +105,13 @@ public class Day1Task : MonoBehaviour
         }
         if (other.gameObject.tag == "JumpScare")
         {
-            monster.SetActive(true);
+            Invoke(nameof(TurnOnMonster), 0);
         }
+    }
+
+    private void TurnOnMonster()
+    {
+        monster.SetActive(true);
     }
 
     private void WhatIsThisPlace()

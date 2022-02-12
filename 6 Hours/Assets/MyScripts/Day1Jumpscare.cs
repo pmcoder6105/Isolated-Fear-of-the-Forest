@@ -12,6 +12,7 @@ public class Day1Jumpscare : MonoBehaviour
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
@@ -19,13 +20,18 @@ public class Day1Jumpscare : MonoBehaviour
     {
         if (this.isActiveAndEnabled == true)
         {
-            GetComponent<Animator>().Play("Shout", 0);
-            Time.timeScale = .5f;
+            Invoke(nameof(TurnOnMonster), 4.4f);
             jumpScareTimeline.SetActive(true);
-            if (!aS.isPlaying)
-            {
-                aS.PlayOneShot(jumpScare);
-            }
+        }
+    }
+
+    private void TurnOnMonster()
+    {
+        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().Play("Shout", 0);
+        if (!aS.isPlaying)
+        {
+            aS.PlayOneShot(jumpScare);
         }
     }
 }

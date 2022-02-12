@@ -48,7 +48,6 @@ public class Transporter : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Collision");
         GoToKitchenFromLivingRoom(other);
         GoToLivingRoomFromKitchen(other);
         GoToHallwayFromLivingRoom(other);
