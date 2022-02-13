@@ -1935,7 +1935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178252, guid: 1d96687606641d8448ec351d83deb5a3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 402488, guid: 1d96687606641d8448ec351d83deb5a3, type: 3}
       propertyPath: m_RootOrder
@@ -2641,7 +2641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpScareTimeline: {fileID: 783461271}
-  jumpScare: {fileID: 8300000, guid: caabce5c3659a464a80c70dda8137d53, type: 3}
+  monsterSoundChangeableDuringTimeline: {fileID: 0}
 --- !u!95 &438500892 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9536062, guid: 1d96687606641d8448ec351d83deb5a3, type: 3}
@@ -2657,7 +2657,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0b9f94874ecb0404e8160e67f606e5da, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5451,7 +5451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &783461272
 Transform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class Day1Jumpscare : MonoBehaviour
 {
     [SerializeField] GameObject jumpScareTimeline;
     AudioSource aS;
-    [SerializeField] AudioClip jumpScare;
+    [SerializeField] AudioClip monsterSoundChangeableDuringTimeline;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,19 @@ public class Day1Jumpscare : MonoBehaviour
         {
             Invoke(nameof(TurnOnMonster), 4.4f);
             jumpScareTimeline.SetActive(true);
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(monsterSoundChangeableDuringTimeline);
+            }
+            Invoke(nameof(Playjumpscare), 4.3f);
+        }
+    }
+
+    private void Playjumpscare()
+    {
+        if (!aS.isPlaying)
+        {
+            aS.PlayOneShot(monsterSoundChangeableDuringTimeline);
         }
     }
 
@@ -29,9 +42,5 @@ public class Day1Jumpscare : MonoBehaviour
     {
         GetComponent<Animator>().enabled = true;
         GetComponent<Animator>().Play("Shout", 0);
-        if (!aS.isPlaying)
-        {
-            aS.PlayOneShot(jumpScare);
-        }
     }
 }
