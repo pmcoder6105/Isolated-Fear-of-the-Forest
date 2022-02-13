@@ -16,6 +16,7 @@ public class Transporter : MonoBehaviour
     [SerializeField] AudioClip doorOpening1;
     [SerializeField] AudioClip doorOpening2;
     [SerializeField] GameObject walkingEmpty;
+    bool isTransporting = false;
     int doorSound;
 
     void Start()
@@ -62,6 +63,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "BedHallWayDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -79,10 +81,30 @@ public class Transporter : MonoBehaviour
         }
     }
 
+    void FixDoubleDoorBug(Collision other)
+    {
+        isTransporting = true;
+        if (isTransporting == true)
+        {
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+        Invoke(nameof(TurnDoorColliderBackOn), 2f);
+        if (isTransporting == false)
+        {
+            other.gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+
+    private void TurnDoorColliderBackOn()
+    {
+        isTransporting = false;
+    }
+
     void GoToBedRoomFromHallway(Collision other)
     {
         if (other.gameObject.tag == "BedRoomDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -104,6 +126,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "GoOutsideDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -125,6 +148,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "BackInsideDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -143,6 +167,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "HallWayLivingRoomDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -164,6 +189,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "HallWayDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -185,6 +211,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "KitchenLivingRoomDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
@@ -206,6 +233,7 @@ public class Transporter : MonoBehaviour
     {
         if (other.gameObject.tag == "KitchenDoor")
         {
+            FixDoubleDoorBug(other);
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
