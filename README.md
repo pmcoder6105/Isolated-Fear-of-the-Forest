@@ -42,3 +42,19 @@ First of all, all of these packs are free to use, and are very high quality
 20. "Tileable Bricks Wall" for wall texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
 
 21. "Wooden Floor Materials" for floor texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/wood/wooden-floor-materials-150564
+
+22. "Chain Gang" for chains in bedroom. Link: https://opengameart.org/content/chain-gang
+
+23. "Steps in wood floor" for walking sfx. Link: https://opengameart.org/content/steps-in-wood-floor
+
+24. "Door Open 01" for 1st door opening sfx. Link: https://opengameart.org/content/door-open-door-close-set
+
+25. "Door Open 02" for 2nd door opening sfx. Link: https://opengameart.org/content/door-open-door-close-set
+
+26. "Metal sounds" for fence gate opening sfx. Link: https://opengameart.org/content/metal-sounds
+
+27. "Horror Cinema 5" for jumpscare sfx. Link: https://opengameart.org/content/horror-cinema-5
+
+28. "Ghost breath" for monster breathing. Link: https://opengameart.org/content/ghost-breath
+
+29. "Creepy Forest (F)" for main soundtrack. Link: https://opengameart.org/content/creepy-forest-f
