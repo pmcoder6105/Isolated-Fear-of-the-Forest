@@ -40,3 +40,5 @@ First of all, all of these packs are free to use, and are very high quality
 19. "TV Set" for tvs. Link: https://assetstore.unity.com/packages/3d/props/electronics/tv-set-26193
 
 20. "Tileable Bricks Wall" for wall texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
+
+21. "Wooden Floor Materials" for floor texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/wood/wooden-floor-materials-150564
