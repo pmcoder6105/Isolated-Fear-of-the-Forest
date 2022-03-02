@@ -20,6 +20,8 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject chainedFence2Anim;
     [SerializeField] GameObject jumpScareCollider;
     [SerializeField] GameObject monster;
+    [SerializeField] AudioClip pickUpBox;
+    AudioSource aS;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
     bool hasSeenBedroom = false;
@@ -27,7 +29,7 @@ public class Day1Task : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        aS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class Day1Task : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 Debug.Log("Box?");
+                aS.PlayOneShot(pickUpBox);
                 boxToPlaceInside.SetActive(true);
                 Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
