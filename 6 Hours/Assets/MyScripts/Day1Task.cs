@@ -25,6 +25,7 @@ public class Day1Task : MonoBehaviour
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
     bool hasSeenBedroom = false;
+    bool hasPlacedBox = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,14 @@ public class Day1Task : MonoBehaviour
             {
                 Debug.Log("Box?");
                 boxToPlaceInside.SetActive(true);
+                if (boxToPlaceInside.activeInHierarchy == true && hasPlacedBox == false)
+                {                   
+                    if (!aS.isPlaying)
+                    {
+                        aS.PlayOneShot(pickUpBox);
+                    }
+                    hasPlacedBox = true;
+                }
                 Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
                 secondObjective.SetActive(true);
