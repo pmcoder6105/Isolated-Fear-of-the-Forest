@@ -41,7 +41,6 @@ public class Day1Task : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 Debug.Log("Box?");
-                aS.PlayOneShot(pickUpBox);
                 boxToPlaceInside.SetActive(true);
                 Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
