@@ -18,7 +18,6 @@ public class Transporter : MonoBehaviour
     [SerializeField] GameObject walkingEmpty;
     bool isTransporting = false;
     int doorSound;
-    GameObject collider;
 
     void Start()
     {
