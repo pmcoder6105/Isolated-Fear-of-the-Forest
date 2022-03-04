@@ -44,6 +44,7 @@ public class Day1Task : MonoBehaviour
                 boxToPlaceInside.SetActive(true);
                 if (ableToPlaceBox == true)
                 {
+                    aS.Stop();
                     if (!aS.isPlaying)
                     {
                         aS.PlayOneShot(placeBoxSFX);
