@@ -18467,6 +18467,7 @@ MonoBehaviour:
   doorOpening1: {fileID: 8300000, guid: 04682615f61964541b47169b7887c233, type: 3}
   doorOpening2: {fileID: 8300000, guid: c43b62c1c7407644ea522306381eee9a, type: 3}
   walkingEmpty: {fileID: 2105731882}
+  movement: {fileID: 734521394}
 --- !u!114 &734521381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18617,6 +18618,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &734521394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+  m_PrefabInstance: {fileID: 406245302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734521366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c9795a96c094f4cbde4d65546aa9b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &740805659
 PrefabInstance:
   m_ObjectHideFlags: 0
