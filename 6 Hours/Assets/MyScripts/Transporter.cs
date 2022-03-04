@@ -18,6 +18,7 @@ public class Transporter : MonoBehaviour
     [SerializeField] GameObject walkingEmpty;
     bool isTransporting = false;
     int doorSound;
+    GameObject collider;
 
     void Start()
     {
@@ -84,12 +85,13 @@ public class Transporter : MonoBehaviour
     void FixDoubleDoorBug(Collision other)
     {
         other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        collider = other.gameObject;
         Invoke(nameof(TurnDoorColliderBackOn), 2f);              
     }
 
     void TurnDoorColliderBackOn(Collision other)
     {
-        other.gameObject.GetComponent<BoxCollider>().enabled = true;
+        collider.GetComponent<BoxCollider>().enabled = true;
     }
 
     void GoToBedRoomFromHallway(Collision other)
