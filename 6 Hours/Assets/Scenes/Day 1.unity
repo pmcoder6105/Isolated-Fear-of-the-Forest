@@ -18491,7 +18491,7 @@ MonoBehaviour:
   chainedFence2Anim: {fileID: 1276920768}
   jumpScareCollider: {fileID: 637453912}
   monster: {fileID: 438500888}
-  pickUpBox: {fileID: 8300000, guid: faf5a8dc83e958240b3b63cb43f61b04, type: 3}
+  placeBoxSFX: {fileID: 8300000, guid: faf5a8dc83e958240b3b63cb43f61b04, type: 3}
 --- !u!4 &734521385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}

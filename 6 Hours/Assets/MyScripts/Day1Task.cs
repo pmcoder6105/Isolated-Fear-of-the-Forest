@@ -20,12 +20,11 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject chainedFence2Anim;
     [SerializeField] GameObject jumpScareCollider;
     [SerializeField] GameObject monster;
-    [SerializeField] AudioClip pickUpBox;
+    [SerializeField] AudioClip placeBoxSFX;
     AudioSource aS;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
     bool hasSeenBedroom = false;
-    bool hasPlacedBox = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,13 +42,12 @@ public class Day1Task : MonoBehaviour
             {
                 Debug.Log("Box?");
                 boxToPlaceInside.SetActive(true);
-                if (boxToPlaceInside.activeInHierarchy == true && hasPlacedBox == false)
-                {                   
+                if (ableToPlaceBox == true)
+                {
                     if (!aS.isPlaying)
                     {
-                        aS.PlayOneShot(pickUpBox);
+                        aS.PlayOneShot(placeBoxSFX);
                     }
-                    hasPlacedBox = true;
                 }
                 Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
@@ -61,6 +59,15 @@ public class Day1Task : MonoBehaviour
                 bedroomDoor.GetComponent<BoxCollider>().enabled = true;
             }
         }
+        if (ableToPlaceBox == true)
+        {
+            Invoke(nameof(TurnOffBoxSFX), 1f);
+        }
+    }
+
+    private void TurnOffBoxSFX()
+    {
+        ableToPlaceBox = false;
     }
 
     void CantEnterRoom()
