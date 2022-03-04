@@ -83,21 +83,13 @@ public class Transporter : MonoBehaviour
 
     void FixDoubleDoorBug(Collision other)
     {
-        isTransporting = true;
-        if (isTransporting == true)
-        {
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-        }
-        Invoke(nameof(TurnDoorColliderBackOn), 2f);
-        if (isTransporting == false)
-        {
-            other.gameObject.GetComponent<BoxCollider>().enabled = true;
-        }
+        other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        Invoke(nameof(TurnDoorColliderBackOn), 2f);              
     }
 
-    private void TurnDoorColliderBackOn()
+    void TurnDoorColliderBackOn(Collision other)
     {
-        isTransporting = false;
+        other.gameObject.GetComponent<BoxCollider>().enabled = true;
     }
 
     void GoToBedRoomFromHallway(Collision other)
