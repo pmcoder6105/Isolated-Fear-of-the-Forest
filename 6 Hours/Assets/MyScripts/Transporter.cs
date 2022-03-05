@@ -18,12 +18,10 @@ public class Transporter : MonoBehaviour
     [SerializeField] GameObject walkingEmpty;
     bool isTransporting = false;
     int doorSound;
-    [SerializeField] Component movement;
 
     void Start()
     {
         aS = GetComponent<AudioSource>();
-        //movement.
     }
 
     void Update()
