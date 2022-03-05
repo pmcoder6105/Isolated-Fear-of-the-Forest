@@ -13,6 +13,7 @@ public class Transporter : MonoBehaviour
     [SerializeField] GameObject HWLight;
     [SerializeField] GameObject HWLightGoingIntoRoom;
     AudioSource aS;
+    Rigidbody rB;
     [SerializeField] AudioClip doorOpening1;
     [SerializeField] AudioClip doorOpening2;
     [SerializeField] GameObject walkingEmpty;
@@ -22,6 +23,7 @@ public class Transporter : MonoBehaviour
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        rB = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -83,7 +85,13 @@ public class Transporter : MonoBehaviour
 
     void FixDoubleDoorBug(Collision other)
     {
-           
+        rB.isKinematic = true;
+        Invoke(nameof(TurnMovementBackOn), 2f);
+    }
+
+    private void TurnMovementBackOn()
+    {
+        rB.isKinematic = false;
     }
 
     void GoToBedRoomFromHallway(Collision other)
