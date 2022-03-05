@@ -141,8 +141,7 @@ public class Transporter : MonoBehaviour
     void GoToLivingRoomFromOutside(Collision other)
     {
         if (other.gameObject.tag == "BackInsideDoor")
-        {
-            FixDoubleDoorBug(other);
+        {            
             doorSound = Random.Range(1, 3);
             if (doorSound == 1)
             {
