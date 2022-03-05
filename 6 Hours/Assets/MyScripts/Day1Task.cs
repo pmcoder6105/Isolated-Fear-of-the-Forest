@@ -38,7 +38,7 @@ public class Day1Task : MonoBehaviour
         Debug.Log(ableToPlaceBox);
         if (ableToPlaceBox == true)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Box?");
                 boxToPlaceInside.SetActive(true);
