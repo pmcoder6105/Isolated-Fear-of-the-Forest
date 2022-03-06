@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transporter : MonoBehaviour
+public class GameControl : MonoBehaviour
 {
     [SerializeField] GameObject LRLight;
     [SerializeField] GameObject LRLightGoingIntoRoom;
