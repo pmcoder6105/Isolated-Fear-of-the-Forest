@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameControl : MonoBehaviour
@@ -16,8 +14,11 @@ public class GameControl : MonoBehaviour
     Rigidbody rB;
     [SerializeField] AudioClip doorOpening1;
     [SerializeField] AudioClip doorOpening2;
+    [SerializeField] AudioClip flashlightSFX;
     [SerializeField] GameObject walkingEmpty;
+    [SerializeField] GameObject flashlight;
     bool isTransporting = false;
+    bool isFlashlightOn = false;
     int doorSound;
 
     void Start()
@@ -28,15 +29,41 @@ public class GameControl : MonoBehaviour
 
     void Update()
     {
+        WalkingSFX();
+        FlashlightToggle();
+    }
+
+    void FlashlightToggle()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isFlashlightOn = !isFlashlightOn;
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(flashlightSFX);
+            }
+        }
+        if (isFlashlightOn == true)
+        {
+            flashlight.GetComponent<Light>().enabled = true;
+        }
+        if (isFlashlightOn == false)
+        {
+            flashlight.GetComponent<Light>().enabled = false;
+        }
+    }
+
+    void WalkingSFX()
+    {
         if (Input.GetKey(KeyCode.W) ||
             Input.GetKey(KeyCode.S) ||
             Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.D))
         {
-            if (!walkingEmpty.GetComponent<AudioSource>().isPlaying) 
+            if (!walkingEmpty.GetComponent<AudioSource>().isPlaying)
             {
                 walkingEmpty.GetComponent<AudioSource>().Play();
-            }            
+            }
         }
         if (Input.GetKeyUp(KeyCode.W) ||
             Input.GetKeyUp(KeyCode.S) ||
@@ -49,6 +76,7 @@ public class GameControl : MonoBehaviour
             }
         }
     }
+
     void OnCollisionEnter(Collision other)
     {
         GoToKitchenFromLivingRoom(other);
