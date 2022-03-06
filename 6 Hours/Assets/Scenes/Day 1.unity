@@ -18470,8 +18470,9 @@ MonoBehaviour:
   HWLightGoingIntoRoom: {fileID: 940381138}
   doorOpening1: {fileID: 8300000, guid: 04682615f61964541b47169b7887c233, type: 3}
   doorOpening2: {fileID: 8300000, guid: c43b62c1c7407644ea522306381eee9a, type: 3}
+  flashlightSFX: {fileID: 8300000, guid: f716593b77df55c478e7f1adc3d95e3d, type: 3}
   walkingEmpty: {fileID: 2105731882}
-  movement: {fileID: 734521394}
+  flashlight: {fileID: 1472114587}
 --- !u!114 &734521381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18622,17 +18623,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &734521394 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
-  m_PrefabInstance: {fileID: 406245302}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734521366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c9795a96c094f4cbde4d65546aa9b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &740805659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34116,6 +34106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86ca2f4159e6a942abd8dfc52b38395, type: 3}
+--- !u!1 &1472114587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1175331865632600, guid: d86ca2f4159e6a942abd8dfc52b38395, type: 3}
+  m_PrefabInstance: {fileID: 1472114586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1472373726
 PrefabInstance:
   m_ObjectHideFlags: 0
