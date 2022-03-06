@@ -40,6 +40,8 @@ public class GameControl : MonoBehaviour
             isFlashlightOn = !isFlashlightOn;
             if (!aS.isPlaying)
             {
+                aS.Stop();
+                aS.volume = 0.5f;
                 aS.PlayOneShot(flashlightSFX);
             }
         }
@@ -51,6 +53,15 @@ public class GameControl : MonoBehaviour
         {
             flashlight.GetComponent<Light>().enabled = false;
         }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            Invoke(nameof(TurnVolumeBackUp), 1f);
+        }
+    }
+
+    void TurnVolumeBackUp()
+    {
+        aS.volume = 1f;
     }
 
     void WalkingSFX()
