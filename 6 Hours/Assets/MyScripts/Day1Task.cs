@@ -40,10 +40,15 @@ public class Day1Task : MonoBehaviour
     {
         Debug.Log(ableToPlaceBox);
         PlaceBoxInHouse();
+        PickUpBox();
+    }
+
+    void PickUpBox()
+    {
         if (hasTouchedBox == true)
         {
             Debug.Log("has touched box");
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("has clicked e after touching box");
                 boxOutside.GetComponent<MeshRenderer>().enabled = false;
@@ -55,25 +60,23 @@ public class Day1Task : MonoBehaviour
         if (boxAnim.active == true)
         {
             useE.SetActive(false);
+            hasTouchedBox = false;
         }
     }
 
-    private void PlaceBoxInHouse()
+    void PlaceBoxInHouse()
     {
         if (ableToPlaceBox == true)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Box?");
-                boxToPlaceInside.SetActive(true);
-                if (ableToPlaceBox == true)
+                boxToPlaceInside.SetActive(true);                               
+                aS.Stop();
+                if (!aS.isPlaying)
                 {
-                    aS.Stop();
-                    if (!aS.isPlaying)
-                    {
-                        aS.PlayOneShot(placeBoxSFX);
-                    }
-                }
+                    aS.PlayOneShot(placeBoxSFX);
+                }                
                 Invoke(nameof(ReplaceBox), 0.1f);
                 firstObjective.SetActive(false);
                 secondObjective.SetActive(true);
@@ -82,15 +85,12 @@ public class Day1Task : MonoBehaviour
                 Destroy(bedLockedCollider);
                 kitchenDoor.GetComponent<BoxCollider>().enabled = true;
                 bedroomDoor.GetComponent<BoxCollider>().enabled = true;
+                Invoke(nameof(TurnOffBoxSFX), 1f);
             }
-        }
-        if (ableToPlaceBox == true)
-        {
-            Invoke(nameof(TurnOffBoxSFX), 1f);
         }
     }
 
-    private void TurnOffBoxSFX()
+    void TurnOffBoxSFX()
     {
         ableToPlaceBox = false;
     }
