@@ -20,11 +20,14 @@ public class Day1Task : MonoBehaviour
     [SerializeField] GameObject chainedFence2Anim;
     [SerializeField] GameObject jumpScareCollider;
     [SerializeField] GameObject monster;
+    [SerializeField] GameObject useE;
     [SerializeField] AudioClip placeBoxSFX;
+    [SerializeField] GameObject boxOutside;
     AudioSource aS;
     bool hasPickedBox = false;
     bool ableToPlaceBox = false;
     bool hasSeenBedroom = false;
+    bool hasTouchedBox = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,27 @@ public class Day1Task : MonoBehaviour
     void Update()
     {
         Debug.Log(ableToPlaceBox);
+        PlaceBoxInHouse();
+        if (hasTouchedBox == true)
+        {
+            Debug.Log("has touched box");
+            if (Input.GetKey(KeyCode.E))
+            {
+                Debug.Log("has clicked e after touching box");
+                boxOutside.GetComponent<MeshRenderer>().enabled = false;
+                boxOutside.gameObject.GetComponent<BoxCollider>().enabled = false;
+                boxAnim.SetActive(true);
+                hasPickedBox = true;
+            }
+        }
+        if (boxAnim.active == true)
+        {
+            useE.SetActive(false);
+        }
+    }
+
+    private void PlaceBoxInHouse()
+    {
         if (ableToPlaceBox == true)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -89,10 +113,9 @@ public class Day1Task : MonoBehaviour
         if (other.gameObject.tag == "Box")
         {
             Debug.Log("Picked Up Box");
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            boxAnim.SetActive(true);
-            hasPickedBox = true;
+            useE.SetActive(true);
+            hasTouchedBox = true;
+                                 
         }
         if (hasPickedBox == true)
         {
