@@ -18347,13 +18347,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LRLight: {fileID: 1901542407}
-  LRLightGoingIntoRoom: {fileID: 0}
+  fadeOutEffect: {fileID: 1565623163}
   KRLight: {fileID: 1490344363}
-  KRLightGoingIntoRoom: {fileID: 0}
   BRLight: {fileID: 1940415127}
-  BRLightGoingIntoRoom: {fileID: 0}
   HWLight: {fileID: 1452272483}
-  HWLightGoingIntoRoom: {fileID: 0}
   doorOpening1: {fileID: 8300000, guid: 04682615f61964541b47169b7887c233, type: 3}
   doorOpening2: {fileID: 8300000, guid: c43b62c1c7407644ea522306381eee9a, type: 3}
   flashlightSFX: {fileID: 8300000, guid: f716593b77df55c478e7f1adc3d95e3d, type: 3}
@@ -35827,6 +35824,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4339898394216490, guid: a7984f59c227d0240b9771d2797a085c, type: 3}
   m_PrefabInstance: {fileID: 1559035597}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1565623163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4340539383612703543, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
+  m_PrefabInstance: {fileID: 1742184923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1566964248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39979,6 +39981,10 @@ PrefabInstance:
     - target: {fileID: 4340539383612703543, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340539383612703545, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
+      propertyPath: timeEffect
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}

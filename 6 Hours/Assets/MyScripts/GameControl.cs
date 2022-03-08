@@ -288,6 +288,7 @@ public class GameControl : MonoBehaviour
     void TurnHWlightBackNormal()
     {
         HWLight.SetActive(true);
+        fadeOutEffect.SetActive(false);
     }
 
     void GoIntoBedRoomFromHallway()
@@ -308,6 +309,7 @@ public class GameControl : MonoBehaviour
     void TurnBRLightBackNormal()
     {
         BRLight.SetActive(true);
+        fadeOutEffect.SetActive(false);
     }
 
     void GoIntoHallwayFromLivingRoom()
@@ -318,6 +320,7 @@ public class GameControl : MonoBehaviour
     void TurnKRLightBackNormal()
     {
         KRLight.SetActive(true);
+        fadeOutEffect.SetActive(false);
     }
 
     void GoIntoLivingRoomFromKitchen()
@@ -328,6 +331,7 @@ public class GameControl : MonoBehaviour
     void TurnLightBackNormal()
     {
         LRLight.SetActive(true);
+        fadeOutEffect.SetActive(false);
     }
 
     void GoIntoKitchen()
