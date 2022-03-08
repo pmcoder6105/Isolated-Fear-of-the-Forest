@@ -3,13 +3,10 @@ using UnityEngine;
 public class GameControl : MonoBehaviour
 {
     [SerializeField] GameObject LRLight;
-    [SerializeField] GameObject LRLightGoingIntoRoom;
+    [SerializeField] GameObject fadeOutEffect;
     [SerializeField] GameObject KRLight;
-    [SerializeField] GameObject KRLightGoingIntoRoom;
     [SerializeField] GameObject BRLight;
-    [SerializeField] GameObject BRLightGoingIntoRoom;
     [SerializeField] GameObject HWLight;
-    [SerializeField] GameObject HWLightGoingIntoRoom;
     AudioSource aS;
     Rigidbody rB;
     [SerializeField] AudioClip doorOpening1;
@@ -116,7 +113,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went into hallway from bedroom");
             Invoke(nameof(GoIntoHallwayFromBedroom), 2);
-            BRLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             BRLight.SetActive(false);
             Invoke(nameof(TurnBRLightBackNormal), 2);
         }
@@ -149,7 +146,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went into Bedroom");
             Invoke(nameof(GoIntoBedRoomFromHallway), 2);
-            HWLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             HWLight.SetActive(false);
             Invoke(nameof(TurnHWlightBackNormal), 2);
         }
@@ -171,7 +168,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went outside");
             Invoke(nameof(GoOutside), 2);
-            LRLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             LRLight.SetActive(false);
             Invoke(nameof(TurnLightBackNormal), 2);
         }
@@ -211,7 +208,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went into Living ROom");
             Invoke(nameof(GoIntoLivingRoomFromHallway), 2);
-            HWLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             HWLight.SetActive(false);
             Invoke(nameof(TurnHWlightBackNormal), 2);
         }
@@ -233,7 +230,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went into hallway");
             Invoke(nameof(GoIntoHallwayFromLivingRoom), 2);
-            LRLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             LRLight.SetActive(false);
             Invoke(nameof(TurnLightBackNormal), 2);
         }
@@ -255,7 +252,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went into Living Room");
             Invoke(nameof(GoIntoLivingRoomFromKitchen), 2);
-            KRLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             KRLight.SetActive(false);
             Invoke(nameof(TurnKRLightBackNormal), 2);
         }
@@ -277,7 +274,7 @@ public class GameControl : MonoBehaviour
             }
             Debug.Log("Went Into Kitchen");
             Invoke(nameof(GoIntoKitchen), 2);
-            LRLightGoingIntoRoom.SetActive(true);
+            fadeOutEffect.SetActive(true);
             LRLight.SetActive(false);
             Invoke(nameof(TurnLightBackNormal), 2);
         }
