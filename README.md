@@ -1,3 +1,12 @@
+# 6Hours
+This game was an origial concept game with minimal ideas pulled out from other popular games. You are stuck in a cabin in the middle of the woods and you have to survive from this monster haunting the forest. You will have to perform several tasks thoughout the day and night in this game to survive. Get to the last night to escape. 
+
+# Where this game is at currently during production
+I am currently done with almost all of day 1, I might have to add a few more sound effects and polish, but other than that, I am currently on Night 1. I will delete this section of the README file once this game is done.
+
+# How to Build/Compile
+This is a Unity project. You will have to "clone this repo". Otherwise download the contents, and navigate to Assets>Levels then open any .unity file.
+
 # Asset packs used in this game
 First of all, all of these packs are free to use, and are very high quality
 
