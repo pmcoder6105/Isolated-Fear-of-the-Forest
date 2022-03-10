@@ -1,4 +1,4 @@
-# 6Hours
+# 6 Hours
 This game was an origial concept game with minimal ideas pulled out from other popular games. You are stuck in a cabin in the middle of the woods and you have to survive from this monster haunting the forest. You will have to perform several tasks thoughout the day and night in this game to survive. Get to the last night to escape. 
 
 # Where this game is at currently during production
