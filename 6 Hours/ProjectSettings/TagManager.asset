@@ -24,6 +24,7 @@ TagManager:
   - BedHallWayDoor
   - Ground
   - JumpScare
+  - Trail
   layers:
   - Default
   - TransparentFX
