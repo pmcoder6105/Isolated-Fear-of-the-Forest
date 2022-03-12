@@ -38,13 +38,22 @@ public class Night1 : MonoBehaviour
     {
         if (other.gameObject.tag == "Trail")
         {
-            isOnTrail = true;
+            //isOnTrail = true;
         }
-        else
+        else if (other.gameObject.tag != "Trail")
         {
-            isOnTrail = false;
+            //isOnTrail = false;
             Debug.Log("dead");
             monster.gameObject.SetActive(true);
+            leftOrRightJumpscare = Random.Range(1, 3);
+            if (leftOrRightJumpscare == 1)
+            {
+                Debug.Log("right jumpscare");
+            }
+            if (leftOrRightJumpscare == 2)
+            {
+                Debug.Log("left jumpscare");
+            }
         }
     }
 }
