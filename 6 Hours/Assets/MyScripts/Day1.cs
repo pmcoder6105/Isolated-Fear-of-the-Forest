@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Day1Task : MonoBehaviour
+public class Day1 : MonoBehaviour
 {
     [SerializeField] GameObject boxAnim;
     [SerializeField] GameObject boxToPlaceInside;
