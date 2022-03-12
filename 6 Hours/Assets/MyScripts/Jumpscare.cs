@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Day1Jumpscare : MonoBehaviour
+public class Jumpscare : MonoBehaviour
 {
     [SerializeField] GameObject jumpScareTimeline;
     AudioSource aS;
