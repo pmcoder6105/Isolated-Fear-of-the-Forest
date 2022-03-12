@@ -7,6 +7,8 @@ public class Night1 : MonoBehaviour
     [SerializeField] bool isCutsceneDone = false;
     Animator aN;
     bool isOnTrail = false;
+    [SerializeField] GameObject monster;
+    int leftOrRightJumpscare;
     
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,8 @@ public class Night1 : MonoBehaviour
         else
         {
             isOnTrail = false;
+            Debug.Log("dead");
+            monster.gameObject.SetActive(true);
         }
     }
 }
