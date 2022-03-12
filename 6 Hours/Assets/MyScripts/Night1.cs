@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Night1 : MonoBehaviour
 {
-    bool isCutsceneDone = false;
+    [SerializeField] bool isCutsceneDone = false;
     Animator aN;
     
     // Start is called before the first frame update
