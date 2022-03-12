@@ -45,15 +45,21 @@ public class Night1 : MonoBehaviour
             //isOnTrail = false;
             Debug.Log("dead");
             monster.gameObject.SetActive(true);
-            leftOrRightJumpscare = Random.Range(1, 3);
-            if (leftOrRightJumpscare == 1)
-            {
-                Debug.Log("right jumpscare");
-            }
-            if (leftOrRightJumpscare == 2)
-            {
-                Debug.Log("left jumpscare");
-            }
+            RandomDirectionOfJumpscare();
+        }
+    }
+
+    void RandomDirectionOfJumpscare()
+    {
+        leftOrRightJumpscare = Random.Range(1, 3);
+        if (leftOrRightJumpscare == 1)
+        {
+            Debug.Log("right jumpscare");
+            monster.transform.position = this.gameObject.transform.position;
+        }
+        if (leftOrRightJumpscare == 2)
+        {
+            Debug.Log("left jumpscare");
         }
     }
 }
