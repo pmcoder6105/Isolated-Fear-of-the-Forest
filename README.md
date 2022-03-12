@@ -7,9 +7,6 @@ I am currently done with almost all of day 1, I might have to add a few more sou
 # How to Build/Compile
 This is a Unity project. You will have to "clone this repo". Otherwise download the contents, and navigate to Assets>Levels then open any .unity file.
 
-# IDEAS SO I DON'T FORGET
-I already have a box flashlight; I have added it to my assets. I will delete this section of the README file once this game is done.
-
 # Asset packs used in this game
 First of all, all of these packs are free to use, and are very high quality
 
