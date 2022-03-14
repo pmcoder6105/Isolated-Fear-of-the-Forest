@@ -8,6 +8,7 @@ public class Night1 : MonoBehaviour
     Animator aN;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
+    //[SerializeField] AnimationClip death;
     int leftOrRightJumpscare;
     
     // Start is called before the first frame update
@@ -46,6 +47,9 @@ public class Night1 : MonoBehaviour
             Debug.Log("dead");
             monster.gameObject.SetActive(true);
             RandomDirectionOfJumpscare();
+            aN.enabled = true;
+            aN.Play("DeathAnimNight1", 0);
+            this.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 
@@ -60,6 +64,7 @@ public class Night1 : MonoBehaviour
         if (leftOrRightJumpscare == 2)
         {
             Debug.Log("left jumpscare");
+            monster.transform.position = this.gameObject.transform.position;
         }
     }
 }
