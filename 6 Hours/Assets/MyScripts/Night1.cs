@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Night1 : MonoBehaviour
 {
-    [SerializeField] bool isCutsceneDone = false;
+    [SerializeField] bool aNOn = false;
     Animator aN;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
@@ -25,9 +25,13 @@ public class Night1 : MonoBehaviour
 
     void EnablePlayerMovementAfterCutscene()
     {
-        if (isCutsceneDone == true)
+        if (aNOn == false)
         {
             aN.enabled = false;
+        }
+        else
+        {
+            aN.enabled = true;
         }
     }
     void OnCollisionEnter(Collision other)
@@ -44,6 +48,7 @@ public class Night1 : MonoBehaviour
         else if (other.gameObject.tag != "Trail")
         {
             //isOnTrail = false;
+            aNOn = true;
             GetComponent<Animator>().enabled = true;
             aN.enabled = true;
             Debug.Log("dead");
