@@ -27,6 +27,7 @@ public class Day1Jumpscare : MonoBehaviour
                 aS.PlayOneShot(monsterSoundChangeableDuringTimeline);
             }
             Invoke(nameof(Playjumpscare), 4.3f);
+            Invoke(nameof(Stop), Mathf.Epsilon);
         }
     }
 
@@ -42,5 +43,14 @@ public class Day1Jumpscare : MonoBehaviour
     {
         GetComponent<Animator>().enabled = true;
         GetComponent<Animator>().Play("Shout", 0);
+    }
+    void Stop()
+    {
+        GetComponent<Day1Jumpscare>().enabled = false;
+        Debug.Log("stop");
+        if (aS.isPlaying)
+        {
+            aS.Stop();
+        }
     }
 }

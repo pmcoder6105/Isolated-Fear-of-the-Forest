@@ -44,10 +44,11 @@ public class Night1 : MonoBehaviour
         else if (other.gameObject.tag != "Trail")
         {
             //isOnTrail = false;
+            GetComponent<Animator>().enabled = true;
+            aN.enabled = true;
             Debug.Log("dead");
             monster.gameObject.SetActive(true);
-            RandomDirectionOfJumpscare();
-            aN.enabled = true;
+            RandomDirectionOfJumpscare();            
             aN.Play("DeathAnimNight1", 0);
             this.GetComponent<Rigidbody>().isKinematic = true;
         }
