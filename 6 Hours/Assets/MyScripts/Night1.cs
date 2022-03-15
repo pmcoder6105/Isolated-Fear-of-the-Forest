@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Night1 : MonoBehaviour
 {
-    [SerializeField] bool aNOn = false;
+    [SerializeField] bool aNOn = true;
     Animator aN;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
@@ -29,7 +29,7 @@ public class Night1 : MonoBehaviour
         {
             aN.enabled = false;
         }
-        else
+        else if (aNOn == true)
         {
             aN.enabled = true;
         }
