@@ -55,11 +55,15 @@ public class Night1 : MonoBehaviour
 
     void RandomDirectionOfJumpscare()
     {
+        monster.transform.localRotation = this.gameObject.transform.localRotation;
         leftOrRightJumpscare = Random.Range(1, 3);
         if (leftOrRightJumpscare == 1)
         {
             Debug.Log("right jumpscare");
-            monster.transform.position = this.gameObject.transform.position;
+            float currentPlayerPosX = this.gameObject.transform.position.x - 2;
+            float monsterPosX = monster.transform.position.x;
+            monsterPosX = currentPlayerPosX;
+            monster.transform.localRotation = Quaternion.Euler(monster.transform.localRotation.x, -90f, monster.transform.localRotation.z);
         }
         if (leftOrRightJumpscare == 2)
         {
