@@ -60,15 +60,15 @@ public class Night1 : MonoBehaviour
         if (leftOrRightJumpscare == 1)
         {
             Debug.Log("right jumpscare");
-            float currentPlayerPosX = this.gameObject.transform.position.x - 2;
+            float currentPlayerPosX = this.gameObject.transform.position.x + 2;
             float monsterPosX = monster.transform.position.x;
             monsterPosX = currentPlayerPosX;
-            monster.transform.localRotation = Quaternion.Euler(monster.transform.localRotation.x, -90f, monster.transform.localRotation.z);
+            monster.transform.localRotation = Quaternion.Euler(monster.transform.localRotation.x, 90f, monster.transform.localRotation.z);
         }
         if (leftOrRightJumpscare == 2)
         {
             Debug.Log("left jumpscare");
-            monster.transform.position = this.gameObject.transform.position;
+            //monster.transform.position = this.gameObject.transform.position;
         }
     }
 }
