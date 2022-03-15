@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jumpscare : MonoBehaviour
+public class Day1Jumpscare : MonoBehaviour
 {
     [SerializeField] GameObject jumpScareTimeline;
     AudioSource aS;
@@ -36,12 +36,6 @@ public class Jumpscare : MonoBehaviour
         {
             aS.PlayOneShot(monsterSoundChangeableDuringTimeline);
         }
-        Invoke(nameof(StopJumpscare), .00000001f);
-    }
-
-    void StopJumpscare()
-    {
-        aS.Stop();
     }
 
     private void TurnOnMonster()
