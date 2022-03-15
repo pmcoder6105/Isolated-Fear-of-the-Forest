@@ -20,7 +20,18 @@ public class Night1Jumpscare : MonoBehaviour
             if (!aS.isPlaying)
             {
                 aS.PlayOneShot(jumpscare);
+                Invoke(nameof(Stop), Mathf.Epsilon);
             }
         }
+    }
+
+    void Stop()
+    {
+        GetComponent<Night1Jumpscare>().enabled = false;
+        Debug.Log("stop");
+        if (aS.isPlaying)
+        {
+            aS.Stop();
+        }       
     }
 }
