@@ -30,12 +30,18 @@ public class Jumpscare : MonoBehaviour
         }
     }
 
-    private void Playjumpscare()
+    void Playjumpscare()
     {
         if (!aS.isPlaying)
         {
             aS.PlayOneShot(monsterSoundChangeableDuringTimeline);
         }
+        Invoke(nameof(StopJumpscare), .00000001f);
+    }
+
+    void StopJumpscare()
+    {
+        aS.Stop();
     }
 
     private void TurnOnMonster()
