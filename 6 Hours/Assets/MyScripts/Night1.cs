@@ -8,7 +8,8 @@ public class Night1 : MonoBehaviour
     Animator aN;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
-    
+    Vector3 monsterPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,8 @@ public class Night1 : MonoBehaviour
         }
         else if (other.gameObject.tag != "Trail")
         {
-            //isOnTrail = false;
+            //isOnTrail = false;            
+            monsterPos = monster.gameObject.transform.position;
             aNOn = true;
             GetComponent<Animator>().enabled = true;
             aN.enabled = true;
@@ -59,5 +61,6 @@ public class Night1 : MonoBehaviour
     void JumpscareMonster()
     {
         monster.SetActive(true);
+        monster.gameObject.transform.position = monsterPos;
     }
 }
