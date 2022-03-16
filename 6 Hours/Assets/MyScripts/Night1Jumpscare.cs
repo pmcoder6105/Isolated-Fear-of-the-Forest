@@ -5,11 +5,13 @@ using UnityEngine;
 public class Night1Jumpscare : MonoBehaviour
 {
     AudioSource aS;
+    Animator aN;
     [SerializeField] AudioClip jumpscare;
     // Start is called before the first frame update
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        aN = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -17,6 +19,8 @@ public class Night1Jumpscare : MonoBehaviour
     {
         if (this.gameObject.active == true)
         {
+            aN.Play("Shout", 0);
+            //aN.StopPlayback();
             if (!aS.isPlaying)
             {
                 aS.PlayOneShot(jumpscare);
