@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     [SerializeField] AudioClip doorOpening1;
     [SerializeField] AudioClip doorOpening2;
     [SerializeField] AudioClip flashlightSFX;
+    [SerializeField] AudioClip jumpSFX;
     [SerializeField] GameObject walkingEmpty;
     [SerializeField] GameObject flashlight;
     bool isTransporting = false;
@@ -95,6 +96,16 @@ public class GameControl : MonoBehaviour
         GoOutsideFromLivingRoom(other);
         GoToBedRoomFromHallway(other);
         GoToHallwayFromBedroom(other);
+        if (other.gameObject.active == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!aS.isPlaying)
+                {
+                    aS.PlayOneShot(jumpSFX);
+                }
+            }
+        }
     }
 
     void GoToHallwayFromBedroom(Collision other)
