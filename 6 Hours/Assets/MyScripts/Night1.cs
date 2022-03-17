@@ -8,6 +8,7 @@ public class Night1 : MonoBehaviour
     Animator aN;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
+    [SerializeField] GameObject fadeOut;
     Vector3 monsterPos;
 
     // Start is called before the first frame update
@@ -55,6 +56,7 @@ public class Night1 : MonoBehaviour
             JumpscareMonster();            
             aN.Play("DeathAnimNight1", 0);
             this.GetComponent<Rigidbody>().isKinematic = true;
+            fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
         }
     }
 
