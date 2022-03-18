@@ -6,9 +6,11 @@ public class Night1 : MonoBehaviour
 {
     [SerializeField] bool aNOn = true;
     Animator aN;
+    AudioSource aS;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
     [SerializeField] GameObject fadeOut;
+    [SerializeField] AudioClip rustle;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -17,10 +19,12 @@ public class Night1 : MonoBehaviour
     int rustle5;
     int rustle6;
     int rustle7;
-
+    float time = 0f;
+    int timeInSeconds;
     // Start is called before the first frame update
     void Start()
     {
+        aS = GetComponent<AudioSource>();
         aN = GetComponent<Animator>();
         rustle1 = Random.Range(4+24, 24+16);
         rustle2 = Random.Range(22+24, 24+51);
@@ -41,7 +45,14 @@ public class Night1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnablePlayerMovementAfterCutscene();
+        time += Time.deltaTime;
+        Mathf.Round(time);
+        EnablePlayerMovementAfterCutscene();       
+        if (time == rustle1)
+        {
+            aS.PlayOneShot(rustle);
+            Debug.Log("played rustle");
+        }
     }
 
     void EnablePlayerMovementAfterCutscene()
