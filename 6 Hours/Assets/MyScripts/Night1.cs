@@ -47,17 +47,23 @@ public class Night1 : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        Mathf.Round(time);
-        EnablePlayerMovementAfterCutscene();       
-        if (time == rustle1)
+        //Mathf.Round(time);
+        EnablePlayerMovementAfterCutscene();
+        if (time >= rustle1 && time <= rustle1 + 2)
         {
-            aS.PlayOneShot(rustle);
+            if (!aS.isPlaying)
+            {
+                aS.Stop();
+                aS.PlayOneShot(rustle);
+            }
             Debug.Log("played rustle");
+            hasAvoidedJumpscareRustle = false;
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 hasAvoidedJumpscareRustle = true;
+                return;
             }
-            Invoke(nameof(DeathIfNotAvoidJumpscare), 3f);
+            Invoke(nameof(DeathIfNotAvoidJumpscare), 5f);
         }
     }
 
