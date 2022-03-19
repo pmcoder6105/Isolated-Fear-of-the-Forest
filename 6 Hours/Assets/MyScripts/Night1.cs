@@ -10,7 +10,9 @@ public class Night1 : MonoBehaviour
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
     [SerializeField] GameObject fadeOut;
+    [SerializeField] GameObject radio;
     [SerializeField] AudioClip rustle;
+    [SerializeField] AudioClip radioSFX;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -61,6 +63,10 @@ public class Night1 : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 hasAvoidedJumpscareRustle = true;
+                if (!radio.GetComponent<AudioSource>().isPlaying)
+                {
+                    radio.GetComponent<AudioSource>().PlayOneShot(radioSFX);
+                }
                 return;
             }
             Invoke(nameof(DeathIfNotAvoidJumpscare), 5f);
