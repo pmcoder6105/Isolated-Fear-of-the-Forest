@@ -48,28 +48,37 @@ public class Night1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(hasAvoidedJumpscareRustle);
         time += Time.deltaTime;
         //Mathf.Round(time);
         EnablePlayerMovementAfterCutscene();
-        if (time >= rustle1 && time <= rustle1 + 2)
-        {
+        if (time >= rustle1 && time <= rustle1 + 1)
+        {           
+            hasAvoidedJumpscareRustle = false;
             if (!aS.isPlaying)
             {
                 aS.Stop();
                 aS.PlayOneShot(rustle);
             }
-            Debug.Log("played rustle");
-            hasAvoidedJumpscareRustle = false;
-            if (Input.GetKey(KeyCode.Mouse1))
+            Debug.Log("played rustle");            
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 hasAvoidedJumpscareRustle = true;
+                Debug.Log("averted jumpscare?");
                 if (!radio.GetComponent<AudioSource>().isPlaying)
                 {
                     radio.GetComponent<AudioSource>().PlayOneShot(radioSFX);
                 }
                 return;
             }
-            Invoke(nameof(DeathIfNotAvoidJumpscare), 5f);
+            if (hasAvoidedJumpscareRustle == true)
+            {
+                if (monster.active == true)
+                {
+                    monster.SetActive(false);
+                }
+            }
+            Invoke(nameof(DeathIfNotAvoidJumpscare), 3f);
         }
     }
 
