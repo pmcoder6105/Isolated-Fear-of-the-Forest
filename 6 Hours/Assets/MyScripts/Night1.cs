@@ -20,7 +20,8 @@ public class Night1 : MonoBehaviour
     int rustle6;
     int rustle7;
     float time = 0f;
-    int timeInSeconds;
+    bool hasAvoidedJumpscareRustle = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,19 @@ public class Night1 : MonoBehaviour
         {
             aS.PlayOneShot(rustle);
             Debug.Log("played rustle");
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                hasAvoidedJumpscareRustle = true;
+            }
+            Invoke(nameof(DeathIfNotAvoidJumpscare), 3f);
+        }
+    }
+
+    void DeathIfNotAvoidJumpscare()
+    {
+        if (hasAvoidedJumpscareRustle == false)
+        {
+            Jumpscare();
         }
     }
 
@@ -80,16 +94,21 @@ public class Night1 : MonoBehaviour
         else if (other.gameObject.tag != "Trail")
         {
             //isOnTrail = false;            
-            monsterPos = monster.gameObject.transform.position;
-            aNOn = true;
-            GetComponent<Animator>().enabled = true;
-            aN.enabled = true;
-            Debug.Log("dead");
-            JumpscareMonster();            
-            aN.Play("DeathAnimNight1", 0);
-            this.GetComponent<Rigidbody>().isKinematic = true;
-            fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
+            Jumpscare();
         }
+    }
+
+    void Jumpscare()
+    {
+        monsterPos = monster.gameObject.transform.position;
+        aNOn = true;
+        GetComponent<Animator>().enabled = true;
+        aN.enabled = true;
+        Debug.Log("dead");
+        JumpscareMonster();
+        aN.Play("DeathAnimNight1", 0);
+        this.GetComponent<Rigidbody>().isKinematic = true;
+        fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
     }
 
     void JumpscareMonster()
