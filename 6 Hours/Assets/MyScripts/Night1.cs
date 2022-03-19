@@ -22,7 +22,8 @@ public class Night1 : MonoBehaviour
     int rustle6;
     int rustle7;
     float time = 0f;
-    bool hasAvoidedJumpscareRustle = true;
+    bool hasAvoidedJumpscareRustle;
+    bool makeSureHasAvoidedDoesntTurnFalse = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,15 +56,25 @@ public class Night1 : MonoBehaviour
         if (time >= rustle1 && time <= rustle1 + 1)
         {           
             hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+    }
+
+    void AvoidJumpscare()
+    {
+        if (hasAvoidedJumpscareRustle == false)
+        {
             if (!aS.isPlaying)
             {
                 aS.Stop();
                 aS.PlayOneShot(rustle);
             }
-            Debug.Log("played rustle");            
+            Debug.Log("played rustle");
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 hasAvoidedJumpscareRustle = true;
+                makeSureHasAvoidedDoesntTurnFalse = true;
+                
                 Debug.Log("averted jumpscare?");
                 if (!radio.GetComponent<AudioSource>().isPlaying)
                 {
@@ -71,19 +82,19 @@ public class Night1 : MonoBehaviour
                 }
                 return;
             }
-            if (hasAvoidedJumpscareRustle == true)
-            {
-                if (monster.active == true)
-                {
-                    monster.SetActive(false);
-                }
-            }
-            Invoke(nameof(DeathIfNotAvoidJumpscare), 3f);
         }
+        Invoke(nameof(JumpscareAfterNotPlayingAudio), 2f);
     }
 
-    void DeathIfNotAvoidJumpscare()
+    private void JumpscareAfterNotPlayingAudio()
     {
+        if (makeSureHasAvoidedDoesntTurnFalse == true)
+        {
+            if (hasAvoidedJumpscareRustle == false)
+            {
+                hasAvoidedJumpscareRustle = true;
+            }
+        }        
         if (hasAvoidedJumpscareRustle == false)
         {
             Jumpscare();
