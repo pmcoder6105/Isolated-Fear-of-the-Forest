@@ -60,37 +60,49 @@ public class Night1 : MonoBehaviour
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle2 && time <= rustle2 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle3 && time <= rustle3 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle4 && time <= rustle4 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle5 && time <= rustle5 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle6 && time <= rustle6 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
         if (time >= rustle7 && time <= rustle7 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
         }
+    }
+
+    private void TurnBoolTrueToPrepareForNextJumpscare()
+    {
+        hasAvoidedJumpscareRustle = true;
     }
 
     void AvoidJumpscare()
