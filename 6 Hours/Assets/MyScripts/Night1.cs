@@ -49,12 +49,45 @@ public class Night1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(hasAvoidedJumpscareRustle);
         time += Time.deltaTime;
-        //Mathf.Round(time);
         EnablePlayerMovementAfterCutscene();
+        RustleTest();
+    }
+
+    void RustleTest()
+    {
         if (time >= rustle1 && time <= rustle1 + 1)
-        {           
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle2 && time <= rustle2 + 1)
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle3 && time <= rustle3 + 1)
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle4 && time <= rustle4 + 1)
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle5 && time <= rustle5 + 1)
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle6 && time <= rustle6 + 1)
+        {
+            hasAvoidedJumpscareRustle = false;
+            AvoidJumpscare();
+        }
+        if (time >= rustle7 && time <= rustle7 + 1)
+        {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
         }
@@ -86,7 +119,7 @@ public class Night1 : MonoBehaviour
         Invoke(nameof(JumpscareAfterNotPlayingAudio), 2f);
     }
 
-    private void JumpscareAfterNotPlayingAudio()
+    void JumpscareAfterNotPlayingAudio()
     {
         if (makeSureHasAvoidedDoesntTurnFalse == true)
         {
@@ -132,7 +165,7 @@ public class Night1 : MonoBehaviour
 
     void Jumpscare()
     {
-        monsterPos = monster.gameObject.transform.position;
+        //monsterPos = monster.gameObject.transform.position;
         aNOn = true;
         GetComponent<Animator>().enabled = true;
         aN.enabled = true;
@@ -146,6 +179,6 @@ public class Night1 : MonoBehaviour
     void JumpscareMonster()
     {
         monster.SetActive(true);
-        monster.gameObject.transform.position = monsterPos;
+        //monster.gameObject.transform.position = monsterPos;
     }
 }
