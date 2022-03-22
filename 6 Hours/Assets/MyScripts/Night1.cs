@@ -10,10 +10,13 @@ public class Night1 : MonoBehaviour
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
     [SerializeField] GameObject night1Instructions;
+    [SerializeField] GameObject doomSFXEmpty;
     [SerializeField] GameObject fadeOut;
     [SerializeField] GameObject radio;
+    [SerializeField] GameObject canvas;
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
+    [SerializeField] AudioClip doomSFX;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -25,13 +28,14 @@ public class Night1 : MonoBehaviour
     float time = 0f;
     bool hasAvoidedJumpscareRustle;
     bool makeSureHasAvoidedDoesntTurnFalse = false;
+    bool hasSeenNight1Instructions = false;
 
     // Start is called before the first frame update
     void Start()
     {
         aS = GetComponent<AudioSource>();
         aN = GetComponent<Animator>();
-        rustle1 = Random.Range(4+24, 24+16);
+        rustle1 = Random.Range(10+24, 24+16);
         rustle2 = Random.Range(22+24, 24+51);
         rustle3 = Random.Range(60+24, 24+78);
         rustle4 = Random.Range(85+24, 24+94);
@@ -160,9 +164,47 @@ public class Night1 : MonoBehaviour
         }
         if (night1Instructions.active == true)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0.5f;
+            Invoke(nameof(PlayerHasSeenInstructions), 5f);
+            NightOneInstructionsOff();
+            if (!aS.isPlaying)
+            {
+                aS.Stop();
+                Invoke(nameof(PlayDoomSFX), 0.1f);
+                Invoke(nameof(StopMusic), 3);
+            }
         }
     }
+
+    private void PlayerHasSeenInstructions()
+    {
+        hasSeenNight1Instructions = true;
+    }
+
+    void NightOneInstructionsOff()
+    {
+        if (hasSeenNight1Instructions == true)
+        {
+            Invoke(nameof(PlayGame), .1f);
+        }
+    }
+
+    void PlayGame()
+    {
+        canvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    private void PlayDoomSFX()
+    {
+        doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+    }
+
+    void StopMusic()
+    {
+        doomSFXEmpty.SetActive(false);
+    }
+
     void OnCollisionEnter(Collision other)
     {
         CheckIfOnTrail(other);
