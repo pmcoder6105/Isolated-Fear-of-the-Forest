@@ -9,6 +9,7 @@ public class Night1 : MonoBehaviour
     AudioSource aS;
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
+    [SerializeField] GameObject night1Instructions;
     [SerializeField] GameObject fadeOut;
     [SerializeField] GameObject radio;
     [SerializeField] AudioClip rustle;
@@ -151,10 +152,15 @@ public class Night1 : MonoBehaviour
         if (aNOn == false)
         {
             aN.enabled = false;
+            night1Instructions.SetActive(true);
         }
         else if (aNOn == true)
         {
             aN.enabled = true;
+        }
+        if (night1Instructions.active == true)
+        {
+            Time.timeScale = 0;
         }
     }
     void OnCollisionEnter(Collision other)
