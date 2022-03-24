@@ -16,6 +16,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
     [SerializeField] AudioClip doomSFX;
+    [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
     Vector3 monsterPos;
     int rustle1;
@@ -63,6 +64,22 @@ public class Night1 : MonoBehaviour
             float timeNeeded = Time.time - 24;
             timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
+        if (Time.time > 144 && Time.time < 149)
+        {
+            if (!aS.isPlaying)
+            {
+                timer.GetComponent<TMP_Text>().text = "2:00";
+                aS.Stop();
+                aS.PlayOneShot(alarmBeep);
+                Invoke(nameof(StopAudioWithEpsilon), Mathf.Epsilon);
+                Invoke(nameof(Jumpscare), 2f);
+            }
+        }
+    }
+
+    void StopAudioWithEpsilon()
+    {
+        aS.Stop();
     }
 
     void RustleTest()
