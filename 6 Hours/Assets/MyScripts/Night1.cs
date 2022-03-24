@@ -55,9 +55,14 @@ public class Night1 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {    
+    {
         EnablePlayerMovementAfterCutscene();
         RustleTest();
+        RunTime();
+    }
+
+    private void RunTime()
+    {
         if (shouldStartTimer == true)
         {
             timer.SetActive(true);
