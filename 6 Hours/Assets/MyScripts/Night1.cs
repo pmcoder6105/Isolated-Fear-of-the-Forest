@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Night1 : MonoBehaviour
@@ -17,6 +16,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
     [SerializeField] AudioClip doomSFX;
+    [SerializeField] TMP_Text timer;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -53,14 +53,14 @@ public class Night1 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        time += Time.deltaTime;
+    {    
         EnablePlayerMovementAfterCutscene();
         RustleTest();
     }
 
     void RustleTest()
     {
+        time += Time.deltaTime;
         if (time >= rustle1 && time <= rustle1 + 1)
         {
             hasAvoidedJumpscareRustle = false;
