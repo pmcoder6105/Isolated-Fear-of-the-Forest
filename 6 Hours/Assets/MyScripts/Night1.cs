@@ -29,6 +29,7 @@ public class Night1 : MonoBehaviour
     bool hasAvoidedJumpscareRustle;
     bool makeSureHasAvoidedDoesntTurnFalse = false;
     bool hasSeenNight1Instructions = false;
+    bool shouldStartTimer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,12 @@ public class Night1 : MonoBehaviour
     {    
         EnablePlayerMovementAfterCutscene();
         RustleTest();
+        if (shouldStartTimer == true)
+        {
+            timer.SetActive(true);
+            float timeNeeded = Time.time - 24;
+            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+        }
     }
 
     void RustleTest()
@@ -164,17 +171,16 @@ public class Night1 : MonoBehaviour
         }
         if (night1Instructions.active == true)
         {
-            Time.timeScale = 0.5f;
+            Time.timeScale = 0.7f;
             Invoke(nameof(PlayerHasSeenInstructions), 5f);
             NightOneInstructionsOff();
+            shouldStartTimer = true;
             if (!aS.isPlaying)
             {
                 aS.Stop();
                 Invoke(nameof(PlayDoomSFX), 0.1f);
                 Invoke(nameof(StopMusic), 3);
-            }
-            float timeNeeded = Time.deltaTime - 24;
-            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+            }            
         }
     }
 
@@ -195,6 +201,7 @@ public class Night1 : MonoBehaviour
     {
         canvas.SetActive(false);
         Time.timeScale = 1;
+        shouldStartTimer = true;
     }
 
     private void PlayDoomSFX()
