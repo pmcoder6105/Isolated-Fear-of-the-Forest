@@ -16,7 +16,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
     [SerializeField] AudioClip doomSFX;
-    [SerializeField] TMP_Text timer;
+    [SerializeField] GameObject timer;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -173,6 +173,9 @@ public class Night1 : MonoBehaviour
                 Invoke(nameof(PlayDoomSFX), 0.1f);
                 Invoke(nameof(StopMusic), 3);
             }
+            float timeSinceGameStarted = Time.deltaTime - 24;
+            float timeLeft = timeSinceGameStarted + Time.deltaTime;
+            timer.GetComponent<TMP_Text>().text = timeLeft.ToString();
         }
     }
 
