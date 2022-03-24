@@ -71,7 +71,7 @@ public class Night1 : MonoBehaviour
                 timer.GetComponent<TMP_Text>().text = "2:00";
                 aS.Stop();
                 aS.PlayOneShot(alarmBeep);
-                Invoke(nameof(StopAudioWithEpsilon), Mathf.Epsilon);
+                //Invoke(nameof(StopAudioWithEpsilon), Mathf.Epsilon);
                 Invoke(nameof(Jumpscare), 2f);
             }
         }
