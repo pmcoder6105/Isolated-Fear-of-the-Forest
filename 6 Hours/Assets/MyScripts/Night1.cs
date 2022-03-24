@@ -173,9 +173,8 @@ public class Night1 : MonoBehaviour
                 Invoke(nameof(PlayDoomSFX), 0.1f);
                 Invoke(nameof(StopMusic), 3);
             }
-            float timeSinceGameStarted = Time.deltaTime - 24;
-            float timeLeft = timeSinceGameStarted + Time.deltaTime;
-            timer.GetComponent<TMP_Text>().text = timeLeft.ToString();
+            float timeNeeded = Time.deltaTime - 24;
+            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
     }
 
