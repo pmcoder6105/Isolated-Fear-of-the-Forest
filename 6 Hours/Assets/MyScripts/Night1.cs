@@ -31,6 +31,8 @@ public class Night1 : MonoBehaviour
     bool makeSureHasAvoidedDoesntTurnFalse = false;
     bool hasSeenNight1Instructions = false;
     bool shouldStartTimer = false;
+    [SerializeField] GameObject audioTrackingBeginningTimeline;
+    [SerializeField] GameObject car;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,9 @@ public class Night1 : MonoBehaviour
         Debug.Log(rustle5);
         Debug.Log(rustle6);
         Debug.Log(rustle7);
+        aN.ForceStateNormalizedTime(1);
+        audioTrackingBeginningTimeline.SetActive(false);
+        car.SetActive(false);
     }
 
     // Update is called once per frame
