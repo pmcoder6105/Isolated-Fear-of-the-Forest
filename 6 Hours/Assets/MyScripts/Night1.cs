@@ -63,7 +63,7 @@ public class Night1 : MonoBehaviour
         {
             aN.ForceStateNormalizedTime(1);
             audioTrackingBeginningTimeline.SetActive(false);
-            fadeOut.GetComponent<Animator>().StopPlayback();
+            fadeOut.GetComponent<Animator>().ForceStateNormalizedTime(1);
             car.SetActive(false);
             timer.GetComponent<TMP_Text>().text = "0";
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();
