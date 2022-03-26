@@ -63,11 +63,12 @@ public class Night1 : MonoBehaviour
         {
             aN.ForceStateNormalizedTime(1);
             audioTrackingBeginningTimeline.SetActive(false);
+            fadeOut.GetComponent<Animator>().StopPlayback();
             car.SetActive(false);
             timer.GetComponent<TMP_Text>().text = "0";
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();
-        }        
-    }
+        }
+    }   
 
     // Update is called once per frame
     void Update()
@@ -214,7 +215,7 @@ public class Night1 : MonoBehaviour
         }
         if (night1Instructions.active == true)
         {
-            Time.timeScale = 0.7f;
+            Time.timeScale = 1f;
             Invoke(nameof(PlayerHasSeenInstructions), 5f);
             NightOneInstructionsOff();
             shouldStartTimer = true;
