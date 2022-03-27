@@ -18,7 +18,6 @@ public class GameControl : MonoBehaviour
     bool isTransporting = false;
     bool isFlashlightOn = false;
     int doorSound;
-    bool stopFlashlight = false;
 
     void Start()
     {
@@ -43,24 +42,14 @@ public class GameControl : MonoBehaviour
             flashlight.GetComponent<Light>().enabled = true;
             if (!aS.isPlaying)
             {
-                stopFlashlight = true;
                 aS.Stop();
-                if (stopFlashlight == true)
-                {
-                    aS.PlayOneShot(flashlightSFX);
-                }
+                aS.PlayOneShot(flashlightSFX);
             }
-            Invoke(nameof(StopFlashlightLoop), 1f);
         }
         if (isFlashlightOn == false)
         {
             flashlight.GetComponent<Light>().enabled = false;
         }
-    }
-
-    private void StopFlashlightLoop()
-    {
-        stopFlashlight = false;
     }
 
     void WalkingSFX()
