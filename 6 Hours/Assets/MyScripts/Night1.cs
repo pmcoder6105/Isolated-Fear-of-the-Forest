@@ -174,7 +174,7 @@ public class Night1 : MonoBehaviour
                 Debug.Log("averted jumpscare?");
                 if (!radio.GetComponent<AudioSource>().isPlaying)
                 {
-                    radio.GetComponent<AudioSource>().Stop();
+                    //radio.GetComponent<AudioSource>().Stop();
                     radio.GetComponent<AudioSource>().PlayOneShot(radioSFX);
                 }
                 else if (radio.GetComponent<AudioSource>().isPlaying)
@@ -224,7 +224,7 @@ public class Night1 : MonoBehaviour
             {
                 aS.Stop();
                 Invoke(nameof(PlayDoomSFX), 0.1f);
-                Invoke(nameof(StopMusic), 3);
+                Invoke(nameof(StopMusic), 4);
             }            
         }
     }
