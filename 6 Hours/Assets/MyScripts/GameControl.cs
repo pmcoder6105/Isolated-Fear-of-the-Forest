@@ -35,16 +35,16 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            isFlashlightOn = !isFlashlightOn;
+            isFlashlightOn = !isFlashlightOn;      
+        }
+        if (isFlashlightOn == true)
+        {
+            flashlight.GetComponent<Light>().enabled = true;
             if (!aS.isPlaying)
             {
                 aS.Stop();
                 aS.PlayOneShot(flashlightSFX);
             }
-        }
-        if (isFlashlightOn == true)
-        {
-            flashlight.GetComponent<Light>().enabled = true;
         }
         if (isFlashlightOn == false)
         {
