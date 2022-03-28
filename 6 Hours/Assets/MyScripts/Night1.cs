@@ -224,7 +224,7 @@ public class Night1 : MonoBehaviour
             {
                 aS.Stop();
                 Invoke(nameof(PlayDoomSFX), 0.1f);
-                Invoke(nameof(StopMusic), 4);
+                Invoke(nameof(StopMusic), 5);
             }            
         }
     }
