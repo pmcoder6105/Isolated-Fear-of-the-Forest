@@ -40,13 +40,16 @@ public class Night1 : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
         aN = GetComponent<Animator>();
-        rustle1 = Random.Range(10 + 30, 30 + 16);
-        rustle2 = Random.Range(22 + 30, 30 + 51);
-        rustle3 = Random.Range(60 + 30, 30 + 78);
-        rustle4 = Random.Range(85 + 30, 30 + 94);
-        rustle5 = Random.Range(96 + 30, 30 + 106);
-        rustle6 = Random.Range(110 + 30, 30 + 115);
-        rustle7 = Random.Range(116 + 30, 30 + 120);
+        if (shouldSkipIntro == false)
+        {
+            rustle1 = Random.Range(10 + 30, 30 + 16);
+            rustle2 = Random.Range(22 + 30, 30 + 51);
+            rustle3 = Random.Range(60 + 30, 30 + 78);
+            rustle4 = Random.Range(85 + 30, 30 + 94);
+            rustle5 = Random.Range(96 + 30, 30 + 106);
+            rustle6 = Random.Range(110 + 30, 30 + 115);
+            rustle7 = Random.Range(116 + 30, 30 + 120);
+        }
         Debug.Log(rustle1);
         Debug.Log(rustle2);
         Debug.Log(rustle3);
@@ -67,6 +70,13 @@ public class Night1 : MonoBehaviour
             car.SetActive(false);
             timer.GetComponent<TMP_Text>().text = "0";
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();
+            rustle1 = Random.Range(10, 16);
+            rustle2 = Random.Range(22, 51);
+            rustle3 = Random.Range(60, 78);
+            rustle4 = Random.Range(85, 94);
+            rustle5 = Random.Range(96, 106);
+            rustle6 = Random.Range(110, 115);
+            rustle7 = Random.Range(116, 120);
         }
     }   
 
