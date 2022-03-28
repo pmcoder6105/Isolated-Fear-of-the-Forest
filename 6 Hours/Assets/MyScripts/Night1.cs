@@ -68,7 +68,7 @@ public class Night1 : MonoBehaviour
             audioTrackingBeginningTimeline.SetActive(false);
             fadeOut.GetComponent<Animator>().ForceStateNormalizedTime(1);
             car.SetActive(false);
-            timer.GetComponent<TMP_Text>().text = "0";
+            //timer.GetComponent<TMP_Text>().text = "0";
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();
             rustle1 = Random.Range(10, 16);
             rustle2 = Random.Range(22, 51);
@@ -77,6 +77,7 @@ public class Night1 : MonoBehaviour
             rustle5 = Random.Range(96, 106);
             rustle6 = Random.Range(110, 115);
             rustle7 = Random.Range(116, 120);
+            Debug.Log(Time.timeSinceLevelLoad);
         }
     }   
 
@@ -93,8 +94,11 @@ public class Night1 : MonoBehaviour
         if (shouldStartTimer == true)
         {
             timer.SetActive(true);
-            float timeNeeded = Time.time - 30;
-            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+            if (shouldSkipIntro == false)
+            {
+                float timeNeeded = Time.time - 30;
+                timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+            }                       
         }
         if (Time.time > 144 && Time.time < 149)
         {
