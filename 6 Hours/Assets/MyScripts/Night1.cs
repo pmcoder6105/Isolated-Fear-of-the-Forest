@@ -49,7 +49,8 @@ public class Night1 : MonoBehaviour
             rustle5 = Random.Range(96 + 30, 30 + 106);
             rustle6 = Random.Range(110 + 30, 30 + 115);
             rustle7 = Random.Range(116 + 30, 30 + 120);
-        }
+        }        
+        DebugKeys();
         Debug.Log(rustle1);
         Debug.Log(rustle2);
         Debug.Log(rustle3);
@@ -57,27 +58,23 @@ public class Night1 : MonoBehaviour
         Debug.Log(rustle5);
         Debug.Log(rustle6);
         Debug.Log(rustle7);
-        DebugKeys();
     }
 
     void DebugKeys()
     {
         if (shouldSkipIntro == true)
-        {
+        {            
             aN.ForceStateNormalizedTime(1);
             audioTrackingBeginningTimeline.SetActive(false);
             fadeOut.GetComponent<Animator>().ForceStateNormalizedTime(1);
-            car.SetActive(false);
-            //timer.GetComponent<TMP_Text>().text = "0";
-            timer.GetComponent<TMP_Text>().text = Time.time.ToString();
+            car.SetActive(false);            
             rustle1 = Random.Range(10, 16);
             rustle2 = Random.Range(22, 51);
             rustle3 = Random.Range(60, 78);
             rustle4 = Random.Range(85, 94);
             rustle5 = Random.Range(96, 106);
             rustle6 = Random.Range(110, 115);
-            rustle7 = Random.Range(116, 120);
-            Debug.Log(Time.timeSinceLevelLoad);
+            rustle7 = Random.Range(116, 120);          
         }
     }   
 
@@ -98,7 +95,11 @@ public class Night1 : MonoBehaviour
             {
                 float timeNeeded = Time.time - 30;
                 timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
-            }                       
+            }  
+            if (shouldSkipIntro == true)
+            {
+                timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+            }
         }
         if (Time.time > 144 && Time.time < 149)
         {
