@@ -101,14 +101,14 @@ public class Night1 : MonoBehaviour
                 timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
             }
         }
-        if (Time.time > 144 && Time.time < 149)
+        if (Time.time > 120 && Time.time < 129)
         {
             if (!aS.isPlaying)
             {
                 timer.GetComponent<TMP_Text>().text = "2:00";
                 aS.Stop();
                 aS.PlayOneShot(alarmBeep);
-                //Invoke(nameof(StopAudioWithEpsilon), Mathf.Epsilon);
+                Invoke(nameof(StopAudioWithEpsilon), 3);
                 Invoke(nameof(Jumpscare), 2f);
             }
         }
