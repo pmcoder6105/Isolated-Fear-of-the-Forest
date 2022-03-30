@@ -303,6 +303,7 @@ public class Night1 : MonoBehaviour
         aN.Play("DeathAnimNight1", 0);
         this.GetComponent<Rigidbody>().isKinematic = true;
         fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
+        timer.SetActive(false);
     }
 
     void JumpscareMonster()
