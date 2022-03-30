@@ -25,6 +25,7 @@ TagManager:
   - Ground
   - JumpScare
   - Trail
+  - House
   layers:
   - Default
   - TransparentFX

@@ -277,15 +277,15 @@ public class Night1 : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         CheckIfOnTrail(other);
+        if (other.gameObject.tag == "House")
+        {
+            Debug.Log("youve won");
+        }
     }
 
     void CheckIfOnTrail(Collision other)
     {
-        if (other.gameObject.tag == "Trail")
-        {
-            //isOnTrail = true;
-        }
-        else if (other.gameObject.tag != "Trail")
+        if (other.gameObject.tag != "Trail" && other.gameObject.tag != "House")
         {
             //isOnTrail = false;            
             Jumpscare();
