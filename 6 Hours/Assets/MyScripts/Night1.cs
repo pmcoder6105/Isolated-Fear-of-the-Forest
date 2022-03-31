@@ -18,6 +18,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip doomSFX;
     [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
+    [SerializeField] GameObject winScreen;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -95,23 +96,35 @@ public class Night1 : MonoBehaviour
             {
                 float timeNeeded = Time.time - 30;
                 timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+                if (Time.time > 140 && Time.time < 149)
+                {
+                    if (!aS.isPlaying)
+                    {
+                        timer.GetComponent<TMP_Text>().text = "2:00";
+                        aS.Stop();
+                        aS.PlayOneShot(alarmBeep);
+                        Invoke(nameof(StopAudioWithEpsilon), 3);
+                        Invoke(nameof(Jumpscare), 2f);
+                    }
+                }
             }  
             if (shouldSkipIntro == true)
             {
                 timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+                if (Time.time > 120 && Time.time < 129)
+                {
+                    if (!aS.isPlaying)
+                    {
+                        timer.GetComponent<TMP_Text>().text = "2:00";
+                        aS.Stop();
+                        aS.PlayOneShot(alarmBeep);
+                        Invoke(nameof(StopAudioWithEpsilon), 3);
+                        Invoke(nameof(Jumpscare), 2f);
+                    }
+                }
             }
         }
-        if (Time.time > 120 && Time.time < 129)
-        {
-            if (!aS.isPlaying)
-            {
-                timer.GetComponent<TMP_Text>().text = "2:00";
-                aS.Stop();
-                aS.PlayOneShot(alarmBeep);
-                Invoke(nameof(StopAudioWithEpsilon), 3);
-                Invoke(nameof(Jumpscare), 2f);
-            }
-        }
+        
     }
 
     void StopAudioWithEpsilon()
@@ -280,6 +293,9 @@ public class Night1 : MonoBehaviour
         if (other.gameObject.tag == "House")
         {
             Debug.Log("youve won");
+            winScreen.SetActive(true);
+            timer.SetActive(false);
+
         }
     }
 
