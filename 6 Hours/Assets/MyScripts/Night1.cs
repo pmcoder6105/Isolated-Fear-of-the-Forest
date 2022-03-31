@@ -33,7 +33,7 @@ public class Night1 : MonoBehaviour
     bool shouldStartTimer = false;
     [SerializeField] GameObject audioTrackingBeginningTimeline;
     [SerializeField] GameObject car;
-    [SerializeField] bool shouldSkipIntro = false;
+    [SerializeField] public bool shouldSkipIntro = false;
 
     // Start is called before the first frame update
     void Start()
