@@ -306,6 +306,13 @@ public class Night1 : MonoBehaviour
             monster = null;
             gC.walkingEmpty.SetActive(false);
             fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
+            rustle1 = 500;
+            rustle2 = 500;
+            rustle3 = 500;
+            rustle4 = 500;
+            rustle5 = 500;
+            rustle6 = 500;
+            rustle7 = 500;
             Invoke(nameof(TurnFadeOutBackOff), 1f);
             timer.SetActive(false);            
         }
