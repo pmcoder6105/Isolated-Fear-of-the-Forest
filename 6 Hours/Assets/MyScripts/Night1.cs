@@ -315,6 +315,8 @@ public class Night1 : MonoBehaviour
             rustle7 = 500;
             Invoke(nameof(TurnFadeOutBackOff), 1f);
             timer.SetActive(false);
+            this.gameObject.GetComponent<Animator>().enabled = true;
+            aN.Play("TurnOffControlToEnableCursor", 0);
         }
     }
 
