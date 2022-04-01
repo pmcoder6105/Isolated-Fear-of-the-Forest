@@ -14,7 +14,7 @@ public class GameControl : MonoBehaviour
     [SerializeField] AudioClip flashlightSFX;
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] public GameObject walkingEmpty;
-    [SerializeField] GameObject flashlight;
+    [SerializeField] public GameObject flashlight;
     bool isTransporting = false;
     bool isFlashlightOn = false;
     int doorSound;
@@ -33,24 +33,27 @@ public class GameControl : MonoBehaviour
 
     void FlashlightToggle()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (flashlight.active == true)
         {
-            isFlashlightOn = !isFlashlightOn;
-            if (!aS.isPlaying)
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                aS.Stop();
-                aS.PlayOneShot(flashlightSFX);
-                Invoke(nameof(StopPlayingAudio), 0.3f);
+                isFlashlightOn = !isFlashlightOn;
+                if (!aS.isPlaying)
+                {
+                    aS.Stop();
+                    aS.PlayOneShot(flashlightSFX);
+                    Invoke(nameof(StopPlayingAudio), 0.3f);
+                }
             }
-        }
-        if (isFlashlightOn == true)
-        {
-            flashlight.GetComponent<Light>().enabled = true;
-        }
-        if (isFlashlightOn == false)
-        {
-            flashlight.GetComponent<Light>().enabled = false;
-        }
+            if (isFlashlightOn == true)
+            {
+                flashlight.GetComponent<Light>().enabled = true;
+            }
+            if (isFlashlightOn == false)
+            {
+                flashlight.GetComponent<Light>().enabled = false;
+            }
+        }  
     }
 
     void StopPlayingAudio()
@@ -65,6 +68,7 @@ public class GameControl : MonoBehaviour
             Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.D))
         {
+            walkingEmpty.SetActive(true);
             if (!walkingEmpty.GetComponent<AudioSource>().isPlaying)
             {
                 walkingEmpty.GetComponent<AudioSource>().Play();
@@ -75,10 +79,7 @@ public class GameControl : MonoBehaviour
             Input.GetKeyUp(KeyCode.A) ||
             Input.GetKeyUp(KeyCode.D))
         {
-            if (walkingEmpty.GetComponent<AudioSource>().isPlaying)
-            {
-                walkingEmpty.GetComponent<AudioSource>().Stop();
-            }
+            walkingEmpty.SetActive(false);
         }
     }
 

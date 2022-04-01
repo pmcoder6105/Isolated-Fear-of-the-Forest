@@ -22,6 +22,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject loseScreen;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -115,6 +116,11 @@ public class Night1 : MonoBehaviour
                         Invoke(nameof(StopAudioWithEpsilon), 3);
                         Invoke(nameof(Jumpscare), 2f);
                     }
+                    bloodOverlay.SetActive(true);
+                    Invoke(nameof(TurnFadeOutBackOffLose), 1f);
+                    Invoke(nameof(TurnOnLoseScreen), 1f);
+                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                    this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 }
             }  
             if (shouldSkipIntro == true)
@@ -130,6 +136,11 @@ public class Night1 : MonoBehaviour
                         Invoke(nameof(StopAudioWithEpsilon), 3);
                         Invoke(nameof(Jumpscare), 2f);
                     }
+                    bloodOverlay.SetActive(true);
+                    Invoke(nameof(TurnFadeOutBackOffLose), 1f);
+                    Invoke(nameof(TurnOnLoseScreen), 1f);
+                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                    this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 }
             }
         }
@@ -144,47 +155,54 @@ public class Night1 : MonoBehaviour
     void RustleTest()
     {
         time += Time.deltaTime;
-        if (time >= rustle1 && time <= rustle1 + 0.4)
+        if (time >= rustle1 && time <= rustle1 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle2 && time <= rustle2 + 0.4)
+        if (time >= rustle2 && time <= rustle2 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle3 && time <= rustle3 + 0.4)
+        if (time >= rustle3 && time <= rustle3 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle4 && time <= rustle4 + 0.4)
+        if (time >= rustle4 && time <= rustle4 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle5 && time <= rustle5 + 0.4)
+        if (time >= rustle5 && time <= rustle5 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle6 && time <= rustle6 + 0.4)
+        if (time >= rustle6 && time <= rustle6 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
-        if (time >= rustle7 && time <= rustle7 + 0.4)
+        if (time >= rustle7 && time <= rustle7 + 1)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
+            aS.volume = 0.01f;
         }
     }
 
@@ -237,6 +255,11 @@ public class Night1 : MonoBehaviour
         if (hasAvoidedJumpscareRustle == false)
         {
             Jumpscare();
+            bloodOverlay.SetActive(true);
+            Invoke(nameof(TurnFadeOutBackOffLose), 1f);
+            Invoke(nameof(TurnOnLoseScreen), 1f);
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         }
     }
 
@@ -314,14 +337,15 @@ public class Night1 : MonoBehaviour
             rustle5 = 500;
             rustle6 = 500;
             rustle7 = 500;
-            Invoke(nameof(TurnFadeOutBackOff), 1f);
+            Invoke(nameof(TurnFadeOutBackOffWin), 1f);
             timer.SetActive(false);
             this.gameObject.GetComponent<Animator>().enabled = true;
             aN.Play("TurnOffControlToEnableCursor", 0);
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         }
     }
 
-    private void TurnFadeOutBackOff()
+    private void TurnFadeOutBackOffWin()
     {
         fadeOut.SetActive(false);
         winScreen.SetActive(true);
@@ -338,7 +362,21 @@ public class Night1 : MonoBehaviour
             //isOnTrail = false;            
             Jumpscare();
             bloodOverlay.SetActive(true);
+            Invoke(nameof(TurnFadeOutBackOffLose), 1f);
+            Invoke(nameof(TurnOnLoseScreen), 1f);
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         }
+    }
+
+    private void TurnOnLoseScreen()
+    {
+        loseScreen.SetActive(true);
+    }
+
+    void TurnFadeOutBackOffLose()
+    {
+        fadeOut.SetActive(false);
     }
 
     void Jumpscare()
@@ -351,7 +389,6 @@ public class Night1 : MonoBehaviour
         JumpscareMonster();
         aN.Play("DeathAnimNight1", 0);
         this.GetComponent<Rigidbody>().isKinematic = true;
-        fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
         timer.SetActive(false);
         gC.walkingEmpty.SetActive(false);
         rustle1 = 500;
@@ -361,6 +398,7 @@ public class Night1 : MonoBehaviour
         rustle5 = 500;
         rustle6 = 500;
         rustle7 = 500;
+        gC.flashlight.SetActive(false);
     }
 
     void JumpscareMonster()
