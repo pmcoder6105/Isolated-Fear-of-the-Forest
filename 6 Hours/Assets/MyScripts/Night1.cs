@@ -11,6 +11,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject night1Instructions;
     [SerializeField] GameObject doomSFXEmpty;
     [SerializeField] GameObject fadeOut;
+    [SerializeField] GameObject bloodOverlay;
     [SerializeField] GameObject radio;
     [SerializeField] GameObject canvas;
     [SerializeField] AudioClip rustle;
@@ -336,6 +337,7 @@ public class Night1 : MonoBehaviour
         {
             //isOnTrail = false;            
             Jumpscare();
+            bloodOverlay.SetActive(true);
         }
     }
 
