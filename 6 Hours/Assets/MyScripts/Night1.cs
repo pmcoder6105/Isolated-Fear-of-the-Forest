@@ -16,6 +16,8 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
     [SerializeField] AudioClip doomSFX;
+    [SerializeField] AudioClip loseSFX;
+    [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject winScreen;
@@ -35,6 +37,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject audioTrackingBeginningTimeline;
     [SerializeField] GameObject car;
     [SerializeField] public bool shouldSkipIntro = false;
+    GameControl gC;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,7 @@ public class Night1 : MonoBehaviour
         Debug.Log(rustle5);
         Debug.Log(rustle6);
         Debug.Log(rustle7);
+        gC = FindObjectOfType<GameControl>();
     }
 
     void DebugKeys()
@@ -76,7 +80,7 @@ public class Night1 : MonoBehaviour
             rustle5 = Random.Range(96, 106);
             rustle6 = Random.Range(110, 115);
             rustle7 = Random.Range(116, 120);          
-        }
+        }        
     }   
 
     // Update is called once per frame
@@ -85,6 +89,10 @@ public class Night1 : MonoBehaviour
         EnablePlayerMovementAfterCutscene();
         RustleTest();
         RunTime();
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            this.gameObject.transform.position = new Vector3(12.71f, -6.497f, -18.334f);
+        }
     }
 
     private void RunTime()
@@ -244,7 +252,6 @@ public class Night1 : MonoBehaviour
         }
         if (night1Instructions.active == true)
         {
-            Time.timeScale = 1f;
             Invoke(nameof(PlayerHasSeenInstructions), 5f);
             NightOneInstructionsOff();
             shouldStartTimer = true;
@@ -273,7 +280,6 @@ public class Night1 : MonoBehaviour
     void PlayGame()
     {
         canvas.SetActive(false);
-        Time.timeScale = 1;
         shouldStartTimer = true;
     }
 
@@ -293,9 +299,25 @@ public class Night1 : MonoBehaviour
         if (other.gameObject.tag == "House")
         {
             Debug.Log("youve won");
-            winScreen.SetActive(true);
-            timer.SetActive(false);
+            aS.Stop();
+            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            this.gameObject.GetComponent<GameControl>().enabled = false;
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            monster = null;
+            gC.walkingEmpty.SetActive(false);
+            fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
+            Invoke(nameof(TurnFadeOutBackOff), 1f);
+            timer.SetActive(false);            
+        }
+    }
 
+    private void TurnFadeOutBackOff()
+    {
+        fadeOut.SetActive(false);
+        winScreen.SetActive(true);
+        if (!aS.isPlaying)
+        {
+            aS.PlayOneShot(winSFX);
         }
     }
 
