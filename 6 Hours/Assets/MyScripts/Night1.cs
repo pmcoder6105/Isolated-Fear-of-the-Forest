@@ -314,7 +314,8 @@ public class Night1 : MonoBehaviour
             rustle6 = 500;
             rustle7 = 500;
             Invoke(nameof(TurnFadeOutBackOff), 1f);
-            timer.SetActive(false);            
+            timer.SetActive(false);
+            Cursor.visible = true;
         }
     }
 
@@ -349,6 +350,14 @@ public class Night1 : MonoBehaviour
         this.GetComponent<Rigidbody>().isKinematic = true;
         fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
         timer.SetActive(false);
+        gC.walkingEmpty.SetActive(false);
+        rustle1 = 500;
+        rustle2 = 500;
+        rustle3 = 500;
+        rustle4 = 500;
+        rustle5 = 500;
+        rustle6 = 500;
+        rustle7 = 500;
     }
 
     void JumpscareMonster()
