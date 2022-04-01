@@ -77,7 +77,7 @@ public class GameControl : MonoBehaviour
         {
             if (walkingEmpty.GetComponent<AudioSource>().isPlaying)
             {
-                walkingEmpty.GetComponent<AudioSource>().Pause();
+                walkingEmpty.GetComponent<AudioSource>().Stop();
             }
         }
     }
