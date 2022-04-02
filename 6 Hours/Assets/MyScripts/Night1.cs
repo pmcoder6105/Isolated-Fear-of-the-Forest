@@ -134,7 +134,7 @@ public class Night1 : MonoBehaviour
                         aS.Stop();
                         aS.PlayOneShot(alarmBeep);
                         Invoke(nameof(StopAudioWithEpsilon), 3);
-                        Invoke(nameof(Jumpscare), 2f);
+                        Invoke(nameof(Jumpscare), 0.5f);
                     }
                     bloodOverlay.SetActive(true);
                     Invoke(nameof(TurnFadeOutBackOffLose), 1f);
