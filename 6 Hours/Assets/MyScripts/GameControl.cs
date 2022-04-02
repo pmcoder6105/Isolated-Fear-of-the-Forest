@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
         rB = GetComponent<Rigidbody>();
+        //walkingEmpty.SetActive(false);
     }
 
     void Update()
