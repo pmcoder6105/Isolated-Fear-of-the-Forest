@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
         aS = GetComponent<AudioSource>();
         rB = GetComponent<Rigidbody>();
         //walkingEmpty.SetActive(false);
+        walkingEmpty.GetComponent<AudioSource>().volume = 0f;
     }
 
     void Update()
@@ -69,18 +70,20 @@ public class GameControl : MonoBehaviour
             Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.D))
         {
-            walkingEmpty.SetActive(true);
-            if (!walkingEmpty.GetComponent<AudioSource>().isPlaying)
-            {
-                walkingEmpty.GetComponent<AudioSource>().Play();
-            }
+            //walkingEmpty.SetActive(true);
+            //if (!walkingEmpty.GetComponent<AudioSource>().isPlaying)
+            //{
+            //    walkingEmpty.GetComponent<AudioSource>().Play();
+            //}
+            walkingEmpty.GetComponent<AudioSource>().volume = 0.7f;
         }
         if (Input.GetKeyUp(KeyCode.W) ||
             Input.GetKeyUp(KeyCode.S) ||
             Input.GetKeyUp(KeyCode.A) ||
             Input.GetKeyUp(KeyCode.D))
         {
-            walkingEmpty.SetActive(false);
+            //walkingEmpty.SetActive(false);
+            walkingEmpty.GetComponent<AudioSource>().volume = 0f;
         }
     }
 
