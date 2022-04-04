@@ -8,6 +8,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject StockHomeSupplies;
     [SerializeField] GameObject OrderCleaningSupplies;
     [SerializeField] GameObject Appliances;
+    [SerializeField] GameObject laptop;
     Vector3 MainScreenPos;
     Vector3 StockHomeSuppliesPos;
     Vector3 OrderCleaningSuppliesPos;
@@ -29,6 +30,28 @@ public class Night2 : MonoBehaviour
         MainScreen.transform.position = MainScreenPos;
         StockHomeSupplies.transform.position = StockHomeSuppliesPos;
         OrderCleaningSupplies.transform.position = OrderCleaningSuppliesPos;
-        Appliances.transform.position = AppliancesPos; 
+        Appliances.transform.position = AppliancesPos;
+        //if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(laptop))
+        //{
+        //
+        //}
+        
+    }
+
+    void OnMouseOver()
+    {
+        this.GetComponent<Rigidbody>().isKinematic = true;
+        MainScreen.SetActive(true);
+        StockHomeSupplies.SetActive(true);
+        OrderCleaningSupplies.SetActive(true);
+        Appliances.SetActive(true);
+    }
+    private void OnMouseExit()
+    {
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        MainScreen.SetActive(false);
+        StockHomeSupplies.SetActive(false);
+        OrderCleaningSupplies.SetActive(false);
+        Appliances.SetActive(false);
     }
 }
