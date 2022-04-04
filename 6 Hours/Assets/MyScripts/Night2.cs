@@ -20,6 +20,7 @@ public class Night2 : MonoBehaviour
         StockHomeSuppliesPos = StockHomeSupplies.transform.position;
         OrderCleaningSuppliesPos = OrderCleaningSupplies.transform.position;
         AppliancesPos = Appliances.transform.position;
+        this.gameObject.GetComponent<Animator>().Play("EnterRoomNight2", 0);
     }
 
     // Update is called once per frame
