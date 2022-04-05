@@ -6,6 +6,7 @@ public class Buttons : MonoBehaviour
     Night1 n1;
     AudioSource aS;
     [SerializeField] AudioClip buttonClickNight2;
+    [SerializeField] AudioClip whirringSFXWhenCompletingTask;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +31,16 @@ public class Buttons : MonoBehaviour
     public void ClickLaptopButtonNight2()
     {
         aS.PlayOneShot(buttonClickNight2);
+    }
+
+    public void CompleteButtonTask()
+    {
+        aS.PlayOneShot(whirringSFXWhenCompletingTask);
+        Invoke(nameof(FinishTaskWithDingSFXOnceDoneUsingInvoke), 5f);
+    }
+
+    void FinishTaskWithDingSFXOnceDoneUsingInvoke()
+    {
+        Debug.Log("finished task");
     }
 }

@@ -7,6 +7,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject MainScreen;
     bool isLookingAtScreen = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,13 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ToggleBetweenLaptopAndExteriorView();
+    }
+
+    private void ToggleBetweenLaptopAndExteriorView()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
-        {                        
+        {
             isLookingAtScreen = !isLookingAtScreen;
             if (isLookingAtScreen == true)
             {
