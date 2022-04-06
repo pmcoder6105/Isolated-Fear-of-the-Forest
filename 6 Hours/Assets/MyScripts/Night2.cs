@@ -7,6 +7,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject MainScreen;
     bool isLookingAtScreen = false;
     [SerializeField] bool isTransitioningToScreen = false;
+    [SerializeField] GameObject cam;
 
 
     // Start is called before the first frame update
@@ -30,8 +31,8 @@ public class Night2 : MonoBehaviour
                 isLookingAtScreen = !isLookingAtScreen;
             }               
             if (isLookingAtScreen == true)
-            {
-                this.gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, -42.63f, transform.rotation.z);
+            {                
+                cam.transform.rotation = Quaternion.Euler(0, 0, 0);                             
                 GetComponent<Animator>().Play("ZoomIntoComputerNight2");
                 GetComponent<CapsuleCollider>().enabled = false;
                 GetComponent<Rigidbody>().isKinematic = true;
@@ -39,6 +40,7 @@ public class Night2 : MonoBehaviour
             }
             if (isLookingAtScreen == false)
             {
+                cam.transform.rotation = Quaternion.Euler(0, 0, 0);
                 GetComponent<Animator>().Play("ZoomOutOfComputerNight2");
                 GetComponent<CapsuleCollider>().enabled = true;
                 GetComponent<Rigidbody>().isKinematic = false;
@@ -49,6 +51,9 @@ public class Night2 : MonoBehaviour
 
     private void TurnMainScreenActiveAfterZoomingIn()
     {
-        MainScreen.SetActive(true);
+        if (GetComponent<Rigidbody>().isKinematic == true)
+        {
+            MainScreen.SetActive(true);
+        }        
     }
 }
