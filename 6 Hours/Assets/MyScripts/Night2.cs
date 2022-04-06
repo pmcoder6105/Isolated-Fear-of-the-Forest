@@ -30,7 +30,8 @@ public class Night2 : MonoBehaviour
                 isLookingAtScreen = !isLookingAtScreen;
             }               
             if (isLookingAtScreen == true)
-            {                                          
+            {
+                cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 GetComponent<Animator>().Play("ZoomIntoComputerNight2");
                 GetComponent<CapsuleCollider>().enabled = false;
                 GetComponent<Rigidbody>().isKinematic = true;
