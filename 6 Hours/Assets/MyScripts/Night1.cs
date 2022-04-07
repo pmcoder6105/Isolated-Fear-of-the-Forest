@@ -9,14 +9,14 @@ public class Night1 : MonoBehaviour
     bool isOnTrail = false;
     [SerializeField] GameObject monster;
     [SerializeField] GameObject night1Instructions;
-    [SerializeField] GameObject doomSFXEmpty;
-    [SerializeField] GameObject fadeOut;
+    [SerializeField] public GameObject doomSFXEmpty;
+    [SerializeField] public GameObject fadeOut;
     [SerializeField] GameObject bloodOverlay;
     [SerializeField] GameObject radio;
     [SerializeField] GameObject canvas;
     [SerializeField] AudioClip rustle;
     [SerializeField] AudioClip radioSFX;
-    [SerializeField] AudioClip doomSFX;
+    [SerializeField] public AudioClip doomSFX;
     [SerializeField] AudioClip loseSFX;
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip alarmBeep;
@@ -39,7 +39,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject audioTrackingBeginningTimeline;
     [SerializeField] GameObject car;
     [SerializeField] public bool shouldSkipIntro = false;
-    GameControl gC;
+    GameControl gC;    
 
     // Start is called before the first frame update
     void Start()
@@ -206,7 +206,7 @@ public class Night1 : MonoBehaviour
         }
     }
 
-    private void TurnBoolTrueToPrepareForNextJumpscare()
+    void TurnBoolTrueToPrepareForNextJumpscare()
     {
         hasAvoidedJumpscareRustle = true;
     }
