@@ -5,21 +5,26 @@ using UnityEngine;
 public class Night2 : MonoBehaviour
 {
     [SerializeField] GameObject MainScreen;
+    [SerializeField] GameObject Appliances;
+    [SerializeField] GameObject HomeSupplies;
+    [SerializeField] GameObject Cleaning;
     bool isLookingAtScreen = false;
     [SerializeField] bool isTransitioningToScreen = false;
     [SerializeField] GameObject cam;
+    Buttons bT;
 
 
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
+        bT = FindObjectOfType<Buttons>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ToggleBetweenLaptopAndExteriorView();        
+        ToggleBetweenLaptopAndExteriorView();
     }
     private void ToggleBetweenLaptopAndExteriorView()
     {
@@ -37,12 +42,15 @@ public class Night2 : MonoBehaviour
                 GetComponent<Rigidbody>().isKinematic = true;
                 Invoke(nameof(TurnMainScreenActiveAfterZoomingIn), 1f);
             }
-            if (isLookingAtScreen == false)
+            if (isLookingAtScreen == false && bT.canMoveFromScreen == true)
             {
                 GetComponent<Animator>().Play("ZoomOutOfComputerNight2");
                 GetComponent<CapsuleCollider>().enabled = true;
                 GetComponent<Rigidbody>().isKinematic = false;
                 MainScreen.SetActive(false);
+                Appliances.SetActive(false);
+                HomeSupplies.SetActive(false);
+                Cleaning.SetActive(false);
             }
         }
     }
