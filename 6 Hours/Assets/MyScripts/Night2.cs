@@ -86,7 +86,7 @@ public class Night2 : MonoBehaviour
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
                 Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-                aS.volume = 0.01;
+                aS.volume = 0.01f;
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
