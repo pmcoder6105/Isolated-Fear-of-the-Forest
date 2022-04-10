@@ -30,12 +30,12 @@ public class Night2 : MonoBehaviour
     int redEye14Right;
     int redEye15Left;
     [SerializeField] GameObject redEyeLeft1GameObject;
-    bool hasAvoidedJumpscare;
+    bool hasAvoidedJumpscare = true;
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
     [SerializeField] AudioClip redEyesDoomSfx;
+    [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
-    Night1 n1;
 
     // Start is called before the first frame update
     void Start()
@@ -59,22 +59,22 @@ public class Night2 : MonoBehaviour
         redEye14Right = Random.Range(175 + 10, 10 + 177);
         redEye15Left = Random.Range(177 + 10, 10 + 180);
         aS = GetComponent<AudioSource>();
-        n1 = FindObjectOfType<Night1>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(hasAvoidedJumpscare);
         ToggleBetweenLaptopAndExteriorView();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 1)
         {
+            redEyeLeft1GameObject.SetActive(true);
             redEyeLeft1GameObject.GetComponent<Animator>().Play("redEyesLeft1", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
-            aS.volume = 0.01f;
-            leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+            aS.volume = 0.01f;            
         }
     }
 
@@ -84,11 +84,15 @@ public class Night2 : MonoBehaviour
         {
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            Debug.Log("need to avoid jumpscare now");
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && Cursor.lockState == CursorLockMode.None)
             {
+                Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);                                
+                leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+                leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
+                leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);                
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
@@ -96,6 +100,7 @@ public class Night2 : MonoBehaviour
 
     void JumpscareAfterNotAvertingDanger()
     {
+        redEyeLeft1GameObject.SetActive(false);
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
@@ -124,8 +129,8 @@ public class Night2 : MonoBehaviour
             redEye15Left = 500;
             //once timer is created make sure to set timer false here too
             monster.SetActive(true);
-            n1.fadeOut.SetActive(true);
-            n1.doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(n1.doomSFX);
+            //n1.fadeOut.SetActive(true);
+            //n1.doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(n1.doomSFX);
             //once created lose screen, make sure to enable it here
         }
     }
