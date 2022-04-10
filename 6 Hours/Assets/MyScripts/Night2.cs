@@ -8,7 +8,9 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject Appliances;
     [SerializeField] GameObject HomeSupplies;
     [SerializeField] GameObject Cleaning;
+    [SerializeField] GameObject fadeOut;
     [SerializeField] GameObject monster;
+    [SerializeField] GameObject doomSFXEmpty;
     bool isLookingAtScreen = false;
     [SerializeField] bool isTransitioningToScreen = false;
     [SerializeField] GameObject cam;
@@ -34,6 +36,7 @@ public class Night2 : MonoBehaviour
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
     [SerializeField] AudioClip redEyesDoomSfx;
+    [SerializeField] AudioClip doomSFX;
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
 
@@ -129,8 +132,8 @@ public class Night2 : MonoBehaviour
             redEye15Left = 500;
             //once timer is created make sure to set timer false here too
             monster.SetActive(true);
-            //n1.fadeOut.SetActive(true);
-            //n1.doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(n1.doomSFX);
+            fadeOut.SetActive(true);
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             //once created lose screen, make sure to enable it here
         }
     }
