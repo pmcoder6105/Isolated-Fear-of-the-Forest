@@ -77,16 +77,16 @@ public class Night2 : MonoBehaviour
             hasAvoidedJumpscare = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
-            aS.volume = 0.01f;            
+            aS.volume = 0.01f;
+            aS.Stop();
+            aS.PlayOneShot(redEyesDoomSfx);
         }
     }
 
     void AvoidJumpscare()
     {
         if (hasAvoidedJumpscare == false)
-        {
-            aS.Stop();
-            aS.PlayOneShot(redEyesDoomSfx);
+        {            
             Debug.Log("need to avoid jumpscare now");
             if (Input.GetKeyDown(KeyCode.LeftArrow) && Cursor.lockState == CursorLockMode.None)
             {
@@ -95,15 +95,28 @@ public class Night2 : MonoBehaviour
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
-                leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);                
+                leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                Invoke(nameof(LeftHallwayAvertedDoor), 4f);
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
     }
 
+    void LeftHallwayAvertedDoor()
+    {
+        if (leftEyeHallwayAvertedObject.GetComponent<Animator>().isActiveAndEnabled)
+        {
+            leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
+            leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+            leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeMoveBackAfterAverting", 0);
+        }        
+        leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+    }
+    
     void JumpscareAfterNotAvertingDanger()
     {
         redEyeLeft1GameObject.SetActive(false);
+        //make other gameobjects false
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
