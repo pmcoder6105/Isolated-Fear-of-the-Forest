@@ -130,7 +130,7 @@ public class Night2 : MonoBehaviour
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 rightEyeHallwayAvertedObject.SetActive(true);
                 rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
-                rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
+                rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("RightHallwayEyeAvertedDoor", 0);
                 rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 Invoke(nameof(RightHallwayAvertedDoor), 4f);
             }
