@@ -65,6 +65,7 @@ public class Night2 : MonoBehaviour
         redEye15Left = Random.Range(177 + 10, 10 + 180);
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
+        rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class Night2 : MonoBehaviour
             redEyeRightGameobject.SetActive(true);
             redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
             hasAvoidedJumpscare = false;
-            AvoidJumpscareLeft();
+            AvoidJumpscareRight();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
             aS.volume = 0.01f;
             aS.Stop();
@@ -117,14 +118,40 @@ public class Night2 : MonoBehaviour
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
     }
 
+    void AvoidJumpscareRight()
+    {
+        if (hasAvoidedJumpscare == false)
+        {
+            Debug.Log("need to avoid jumpscare now");
+            if (Input.GetKeyDown(KeyCode.RightArrow) && Cursor.lockState == CursorLockMode.None)
+            {
+                Debug.Log("Has avoided jumpscare?");
+                hasAvoidedJumpscare = true;
+                makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
+                rightEyeHallwayAvertedObject.SetActive(true);
+                rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+                rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
+                rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                Invoke(nameof(RightHallwayAvertedDoor), 4f);
+            }
+        }
+        Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
+    }
+
     void LeftHallwayAvertedDoor()
     {
         leftEyeHallwayAvertedObject.gameObject.SetActive(false);
+    }
+
+    void RightHallwayAvertedDoor()
+    {
+        rightEyeHallwayAvertedObject.SetActive(false);
     }
     
     void JumpscareAfterNotAvertingDanger()
     {
         redEyeLeftGameobject.SetActive(false);
+        redEyeRightGameobject.SetActive(false);
         //make other gameobjects false
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
