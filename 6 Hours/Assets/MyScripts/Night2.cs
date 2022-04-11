@@ -31,7 +31,8 @@ public class Night2 : MonoBehaviour
     int vent13;
     int redEye14Right;
     int redEye15Left;
-    [SerializeField] GameObject redEyeLeft1GameObject;
+    [SerializeField] GameObject redEyeLeftGameobject;
+    [SerializeField] GameObject redEyeRightGameobject;
     bool hasAvoidedJumpscare = true;
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
@@ -39,6 +40,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] AudioClip doomSFX;
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
+    [SerializeField] GameObject rightEyeHallwayAvertedObject;
 
     // Start is called before the first frame update
     void Start()
@@ -70,12 +72,24 @@ public class Night2 : MonoBehaviour
     {
         Debug.Log(hasAvoidedJumpscare);
         ToggleBetweenLaptopAndExteriorView();
-        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 1)
+        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
-            redEyeLeft1GameObject.SetActive(true);
-            redEyeLeft1GameObject.GetComponent<Animator>().Play("redEyesLeft1", 0);
+            redEyeLeftGameobject.SetActive(true);
+            redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLight", 0);
             hasAvoidedJumpscare = false;
-            AvoidJumpscare();
+            AvoidJumpscareLeft();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            aS.volume = 0.01f;
+            aS.Stop();
+            aS.PlayOneShot(redEyesDoomSfx);
+        }
+
+        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 2)
+        {
+            redEyeRightGameobject.SetActive(true);
+            redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
+            hasAvoidedJumpscare = false;
+            AvoidJumpscareLeft();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
             aS.volume = 0.01f;
             aS.Stop();
@@ -83,7 +97,7 @@ public class Night2 : MonoBehaviour
         }
     }
 
-    void AvoidJumpscare()
+    void AvoidJumpscareLeft()
     {
         if (hasAvoidedJumpscare == false)
         {            
@@ -93,6 +107,7 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
+                leftEyeHallwayAvertedObject.SetActive(true);
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
                 leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
@@ -104,18 +119,12 @@ public class Night2 : MonoBehaviour
 
     void LeftHallwayAvertedDoor()
     {
-        if (leftEyeHallwayAvertedObject.GetComponent<Animator>().isActiveAndEnabled)
-        {
-            leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
-            leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
-            leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeMoveBackAfterAverting", 0);
-        }        
-        leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+        leftEyeHallwayAvertedObject.gameObject.SetActive(false);
     }
     
     void JumpscareAfterNotAvertingDanger()
     {
-        redEyeLeft1GameObject.SetActive(false);
+        redEyeLeftGameobject.SetActive(false);
         //make other gameobjects false
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
