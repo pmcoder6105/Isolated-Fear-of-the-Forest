@@ -96,6 +96,18 @@ public class Night2 : MonoBehaviour
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
         }
+
+        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 2)
+        {
+            redEyeRightGameobject.SetActive(true);
+            redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
+            hasAvoidedJumpscare = false;
+            AvoidJumpscareRight();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            aS.volume = 0.01f;
+            aS.Stop();
+            aS.PlayOneShot(redEyesDoomSfx);
+        }
     }
 
     void AvoidJumpscareLeft()
