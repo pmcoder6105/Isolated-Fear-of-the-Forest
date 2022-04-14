@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Night2 : MonoBehaviour
@@ -41,6 +39,9 @@ public class Night2 : MonoBehaviour
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
     [SerializeField] GameObject rightEyeHallwayAvertedObject;
+    [SerializeField] GameObject ventDarknessGameobject;
+    [SerializeField] GameObject ventAvertedObject;
+    [SerializeField] AudioClip crawlingInVent;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +67,12 @@ public class Night2 : MonoBehaviour
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
         rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
+        ventAvertedObject.GetComponent<Animator>().enabled = false;
+        Debug.Log(redEye1Left);
+        Debug.Log(redEye2Right);
+        Debug.Log(redEye3Right);
+        Debug.Log(vent4);
+        Debug.Log(redEye5Left);
     }
 
     // Update is called once per frame
@@ -108,6 +115,14 @@ public class Night2 : MonoBehaviour
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
         }
+
+        if (Time.time >= vent4 && Time.time <= vent4 + 2)
+        {
+            ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+            hasAvoidedJumpscare = false;
+            AvoidJumpscareRight();
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+        }
     }
 
     void AvoidJumpscareLeft()
@@ -140,8 +155,27 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                rightEyeHallwayAvertedObject.SetActive(true);
-                rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+                ventAvertedObject.SetActive(true);
+                ventAvertedObject.GetComponent<Animator>().enabled = true;
+                ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
+                ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                Invoke(nameof(VentAvertedDoor), 4f);
+            }
+        }
+        Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
+    }
+
+    void AvoidJumpscareVent()
+    {
+        if (hasAvoidedJumpscare == false)
+        {
+            Debug.Log("need to avoid jumpscare now");
+            if (Input.GetKeyDown(KeyCode.UpArrow) && Cursor.lockState == CursorLockMode.None)
+            {
+                Debug.Log("Has avoided jumpscare?");
+                hasAvoidedJumpscare = true;
+                makeSureHasAvoidedJumpscareDoesntTurnFalse = true;                
+                ventAvertedObject.GetComponent<Animator>().enabled = true;
                 rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("RightHallwayEyeAvertedDoor", 0);
                 rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 Invoke(nameof(RightHallwayAvertedDoor), 4f);
@@ -159,12 +193,17 @@ public class Night2 : MonoBehaviour
     {
         rightEyeHallwayAvertedObject.SetActive(false);
     }
-    
+
+    void VentAvertedDoor()
+    {
+        ventAvertedObject.SetActive(false);
+    }
+
     void JumpscareAfterNotAvertingDanger()
     {
         redEyeLeftGameobject.SetActive(false);
         redEyeRightGameobject.SetActive(false);
-        //make other gameobjects false
+        ventAvertedObject.SetActive(false);
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
@@ -203,7 +242,8 @@ public class Night2 : MonoBehaviour
     {
         hasAvoidedJumpscare = true;
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
-        // make sure to disable animator component of other averters such as right hallway door and vent
+        rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
+        ventAvertedObject.GetComponent<Animator>().enabled = false;
     }
 
     private void ToggleBetweenLaptopAndExteriorView()
