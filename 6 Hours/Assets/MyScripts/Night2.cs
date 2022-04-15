@@ -83,7 +83,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
             redEyeLeftGameobject.SetActive(true);
-            redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLight", 0);
+            redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareLeft();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6f);
@@ -95,7 +95,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye2Right && Time.time <= redEye2Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
-            redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
+            redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -107,7 +107,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye3Right && Time.time <= redEye3Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
-            redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
+            redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -118,7 +118,10 @@ public class Night2 : MonoBehaviour
 
         if (Time.time >= vent4 && Time.time <= vent4 + 2)
         {
-            ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying)
+            {
+                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+            }            
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -138,7 +141,10 @@ public class Night2 : MonoBehaviour
                 leftEyeHallwayAvertedObject.SetActive(true);
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
-                leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                if (!leftEyeHallwayAvertedObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    leftEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
                 Invoke(nameof(LeftHallwayAvertedDoor), 4f);
             }
         }
