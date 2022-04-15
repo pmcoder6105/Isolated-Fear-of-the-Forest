@@ -80,48 +80,48 @@ public class Night2 : MonoBehaviour
     {
         Debug.Log(hasAvoidedJumpscare);
         ToggleBetweenLaptopAndExteriorView();
-        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 4)
+        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
             redEyeLeftGameobject.SetActive(true);
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareLeft();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 4)
+        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
             redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 4)
+        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
             redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= vent4 && Time.time <= vent4 + 4)
+        if (Time.time >= vent4 && Time.time <= vent4 + 2)
         {
             ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
         }
     }
 
