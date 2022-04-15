@@ -80,7 +80,7 @@ public class Night2 : MonoBehaviour
     {
         Debug.Log(hasAvoidedJumpscare);
         ToggleBetweenLaptopAndExteriorView();
-        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
+        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 4)
         {
             redEyeLeftGameobject.SetActive(true);
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLight", 0);
@@ -92,7 +92,7 @@ public class Night2 : MonoBehaviour
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 2)
+        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 4)
         {
             redEyeRightGameobject.SetActive(true);
             redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
@@ -104,7 +104,7 @@ public class Night2 : MonoBehaviour
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 2)
+        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 4)
         {
             redEyeRightGameobject.SetActive(true);
             redEyeRightGameobject.GetComponent<Animator>().Play("redEyesLeft1", 0);
@@ -116,7 +116,7 @@ public class Night2 : MonoBehaviour
             aS.PlayOneShot(redEyesDoomSfx);
         }
 
-        if (Time.time >= vent4 && Time.time <= vent4 + 2)
+        if (Time.time >= vent4 && Time.time <= vent4 + 4)
         {
             ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             hasAvoidedJumpscare = false;
