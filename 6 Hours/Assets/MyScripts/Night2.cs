@@ -161,11 +161,14 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                ventAvertedObject.SetActive(true);
-                ventAvertedObject.GetComponent<Animator>().enabled = true;
-                ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
-                ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
-                Invoke(nameof(VentAvertedDoor), 4f);
+                rightEyeHallwayAvertedObject.SetActive(true);
+                rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
+                rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("RightHallwayEyeAvertedDoor", 0);
+                if (!rightEyeHallwayAvertedObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
+                Invoke(nameof(RightHallwayAvertedDoor), 4f);
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
@@ -182,9 +185,12 @@ public class Night2 : MonoBehaviour
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;                
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
-                rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("RightHallwayEyeAvertedDoor", 0);
-                rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
-                Invoke(nameof(RightHallwayAvertedDoor), 4f);
+                ventAvertedObject.GetComponent<Animator>().Play("VentAvertedDoor", 0);
+                if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
+                Invoke(nameof(VentAvertedDoor), 4f);
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
