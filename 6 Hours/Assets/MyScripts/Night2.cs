@@ -185,7 +185,7 @@ public class Night2 : MonoBehaviour
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;                
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
-                ventAvertedObject.GetComponent<Animator>().Play("VentAvertedDoor", 0);
+                ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
                 {
                     ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
