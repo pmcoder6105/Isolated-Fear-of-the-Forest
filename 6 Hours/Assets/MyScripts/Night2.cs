@@ -98,7 +98,7 @@ public class Night2 : MonoBehaviour
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -110,7 +110,7 @@ public class Night2 : MonoBehaviour
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -124,7 +124,7 @@ public class Night2 : MonoBehaviour
             }            
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
         }
     }
 
@@ -148,7 +148,7 @@ public class Night2 : MonoBehaviour
                 Invoke(nameof(LeftHallwayAvertedDoor), 4f);
             }
         }
-        Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
+        Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
     }
 
     void AvoidJumpscareRight()
@@ -171,7 +171,7 @@ public class Night2 : MonoBehaviour
                 Invoke(nameof(RightHallwayAvertedDoor), 4f);
             }
         }
-        Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
+        Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
     }
 
     void AvoidJumpscareVent()
@@ -181,19 +181,20 @@ public class Night2 : MonoBehaviour
             Debug.Log("need to avoid jumpscare now");
             if (Input.GetKeyDown(KeyCode.UpArrow) && Cursor.lockState == CursorLockMode.None)
             {
-                Debug.Log("Has avoided jumpscare?");
+                Debug.Log("Has avoided vent jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;                
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
                 ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
                 {
+                    ventAvertedObject.GetComponent<AudioSource>().volume = 0.2f;
                     ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
                 Invoke(nameof(VentAvertedDoor), 4f);
             }
         }
-        Invoke(nameof(JumpscareAfterNotAvertingDanger), 3);
+        Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
     }
 
     void LeftHallwayAvertedDoor()
@@ -213,6 +214,9 @@ public class Night2 : MonoBehaviour
 
     void JumpscareAfterNotAvertingDanger()
     {
+        redEyeLeftGameobject.GetComponent<Animator>().enabled = false;
+        redEyeRightGameobject.GetComponent<Animator>().enabled = false; 
+        ventAvertedObject.GetComponent<Animator>().enabled = false;
         redEyeLeftGameobject.SetActive(false);
         redEyeRightGameobject.SetActive(false);
         ventAvertedObject.SetActive(false);
