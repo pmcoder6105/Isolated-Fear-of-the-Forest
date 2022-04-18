@@ -83,6 +83,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
             redEyeLeftGameobject.SetActive(true);
+            redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareLeft();
@@ -95,6 +96,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye2Right && Time.time <= redEye2Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
+            redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
@@ -107,6 +109,7 @@ public class Night2 : MonoBehaviour
         if (Time.time >= redEye3Right && Time.time <= redEye3Right + 2)
         {
             redEyeRightGameobject.SetActive(true);
+            redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
@@ -120,10 +123,11 @@ public class Night2 : MonoBehaviour
         {
             if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying)
             {
+                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.3f;
                 ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }            
             hasAvoidedJumpscare = false;
-            AvoidJumpscareRight();
+            AvoidJumpscareVent();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
         }
     }
