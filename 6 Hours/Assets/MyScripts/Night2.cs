@@ -142,7 +142,7 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                leftEyeHallwayAvertedObject.SetActive(true);
+                //leftEyeHallwayAvertedObject.SetActive(true);
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
                 leftEyeHallwayAvertedObject.GetComponent<Animator>().Play("LeftHallwayEyeAvertedDoor", 0);
                 if (!leftEyeHallwayAvertedObject.GetComponent<AudioSource>().isPlaying)
@@ -165,7 +165,7 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                rightEyeHallwayAvertedObject.SetActive(true);
+                //rightEyeHallwayAvertedObject.SetActive(true);
                 rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = true;
                 rightEyeHallwayAvertedObject.GetComponent<Animator>().Play("RightHallwayEyeAvertedDoor", 0);
                 if (!rightEyeHallwayAvertedObject.GetComponent<AudioSource>().isPlaying)
@@ -188,7 +188,7 @@ public class Night2 : MonoBehaviour
                 Debug.Log("Has avoided vent jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
-                ventAvertedObject.SetActive(true);
+                //ventAvertedObject.SetActive(true);
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
                 ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
@@ -204,27 +204,33 @@ public class Night2 : MonoBehaviour
 
     void LeftHallwayAvertedDoor()
     {
-        leftEyeHallwayAvertedObject.gameObject.SetActive(false);
+        //leftEyeHallwayAvertedObject.gameObject.SetActive(false);
+        leftEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().enabled = false;
+        leftEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().ForceStateNormalizedTime(0);
     }
 
     void RightHallwayAvertedDoor()
     {
-        rightEyeHallwayAvertedObject.SetActive(false);
+        //rightEyeHallwayAvertedObject.gameObject.SetActive(false);
+        rightEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().enabled = false;
+        rightEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().ForceStateNormalizedTime(0);
     }
 
     void VentAvertedDoor()
     {
-        ventAvertedObject.SetActive(false);
+        //ventAvertedObject.gameObject.SetActive(false);
+        ventAvertedObject.gameObject.GetComponent<Animator>().enabled = false;
+        ventAvertedObject.gameObject.GetComponent<Animator>().ForceStateNormalizedTime(0);        
     }
 
     void JumpscareAfterNotAvertingDanger()
     {
         redEyeLeftGameobject.GetComponent<Animator>().enabled = false;
         redEyeRightGameobject.GetComponent<Animator>().enabled = false; 
-        ventAvertedObject.GetComponent<Animator>().enabled = false;
+        //ventAvertedObject.GetComponent<Animator>().enabled = false;
         redEyeLeftGameobject.SetActive(false);
         redEyeRightGameobject.SetActive(false);
-        ventAvertedObject.SetActive(false);
+        //ventAvertedObject.SetActive(false);
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
