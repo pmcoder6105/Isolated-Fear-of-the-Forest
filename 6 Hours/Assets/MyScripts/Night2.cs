@@ -187,7 +187,8 @@ public class Night2 : MonoBehaviour
             {
                 Debug.Log("Has avoided vent jumpscare?");
                 hasAvoidedJumpscare = true;
-                makeSureHasAvoidedJumpscareDoesntTurnFalse = true;                
+                makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
+                ventAvertedObject.SetActive(true);
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
                 ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
