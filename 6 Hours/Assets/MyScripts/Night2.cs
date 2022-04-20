@@ -191,7 +191,7 @@ public class Night2 : MonoBehaviour
                 {
                     rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
-                Invoke(nameof(RightHallwayAvertedDoor), 7f);
+                Invoke(nameof(RightHallwayAvertedDoor), 4f);
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
