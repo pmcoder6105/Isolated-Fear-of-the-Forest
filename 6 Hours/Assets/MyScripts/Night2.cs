@@ -49,7 +49,7 @@ public class Night2 : MonoBehaviour
     {
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
         bT = FindObjectOfType<Buttons>();
-        redEye1Left = Random.Range(6 + 10,10+ 13);
+        redEye1Left = Random.Range(5 + 10,12+ 13);
         redEye2Right = Random.Range(14 + 10,10+ 25);
         redEye3Right = Random.Range(27 + 10,10+ 36);
         vent4 = Random.Range(37+10,10+ 48);
@@ -67,7 +67,7 @@ public class Night2 : MonoBehaviour
         redEye15Left = Random.Range(177 + 10, 10 + 180);
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
-        rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
+        //rightEyeHallwayAvertedObject.GetComponent<Animator>().Stop = false;
         ventAvertedObject.GetComponent<Animator>().enabled = false;
         Debug.Log(redEye1Left);
         Debug.Log(redEye2Right);
@@ -231,7 +231,7 @@ public class Night2 : MonoBehaviour
     void RightHallwayAvertedDoor()
     {
         redEyeRightGameobject.gameObject.SetActive(false);
-        rightEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().enabled = false;
+        //rightEyeHallwayAvertedObject.gameObject.GetComponent<Animator>().enabled = false;
     }
 
     void VentAvertedDoor()
@@ -279,9 +279,7 @@ public class Night2 : MonoBehaviour
     void TurnBoolTrueToPrepareForNextJumpscare()
     {
         hasAvoidedJumpscare = true;
-        leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
-        rightEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
-        ventAvertedObject.GetComponent<Animator>().enabled = false;
+        canCloseDoor = true;
     }
 
     private void ToggleBetweenLaptopAndExteriorView()
