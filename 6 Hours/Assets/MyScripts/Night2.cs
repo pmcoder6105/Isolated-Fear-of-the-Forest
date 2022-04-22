@@ -49,22 +49,21 @@ public class Night2 : MonoBehaviour
     {
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
         bT = FindObjectOfType<Buttons>();
-        redEye1Left = Random.Range(5 + 10,12+ 13);
-        redEye2Right = Random.Range(14 + 10,10+ 25);
-        redEye3Right = Random.Range(27 + 10,10+ 36);
-        vent4 = Random.Range(37+10,10+ 48);
-        redEye5Left = Random.Range(50+10,10+ 70);
-        vent6 = Random.Range(71+10,10+ 83);
-        vent7 = Random.Range(85+10,10+ 100);
-        redEye8Right = Random.Range(110+10,10+ 130);
-        redEye9Right = Random.Range(135+10, 10+145);
-        vent10 = Random.Range(146 + 10,10+ 150);
-        redEye10Left = Random.Range(151 + 10, 10+157);
-        vent11 = Random.Range(158 + 10, 10+165);
-        vent12 = Random.Range(166 + 10, 10 + 170);
-        vent13 = Random.Range(171 + 10, 10 + 174);
-        redEye14Right = Random.Range(175 + 10, 10 + 177);
-        redEye15Left = Random.Range(177 + 10, 10 + 180);
+        redEye1Left = Random.Range(5 + 10,9+ 10);
+        redEye2Right = Random.Range(14 + 10,10+ 20);
+        redEye3Right = Random.Range(24 + 10,10+ 32);
+        vent4 = Random.Range(37+10,10+ 43);
+        redEye5Left = Random.Range(47+10,10+ 57);
+        vent6 = Random.Range(65+10,10+ 71);
+        vent7 = Random.Range(75+10,10+ 81);
+        redEye8Right = Random.Range(86+10,10+ 95);
+        redEye9Right = Random.Range(101+10, 10+109);
+        vent10 = Random.Range(115 + 10,10+ 123);
+        redEye10Left = Random.Range(130 + 10, 10+140);
+        vent11 = Random.Range(146 + 10, 10+152);
+        vent12 = Random.Range(158 + 10, 10 + 164);
+        vent13 = Random.Range(170 + 10, 10 + 174);
+        redEye14Right = Random.Range(176 + 10, 10 + 180);
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
         //rightEyeHallwayAvertedObject.GetComponent<Animator>().Stop = false;
@@ -79,7 +78,7 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(hasAvoidedJumpscare);
+        Debug.Log(canCloseDoor);
         ToggleBetweenLaptopAndExteriorView();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
@@ -88,7 +87,7 @@ public class Night2 : MonoBehaviour
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareLeft();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -105,7 +104,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -122,7 +121,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -130,14 +129,18 @@ public class Night2 : MonoBehaviour
 
         if (Time.time >= vent4 && Time.time <= vent4 + 2)
         {
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && hasAvoidedJumpscare == false)
             {
                 ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.3f;
                 ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }            
+            else if (hasAvoidedJumpscare == true)
+            {
+                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+            }
             hasAvoidedJumpscare = false;
             AvoidJumpscareVent();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 3);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
         }
     }
 
@@ -213,6 +216,7 @@ public class Night2 : MonoBehaviour
                 ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0, 0f);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
                 {
+                    ventDarknessGameobject.GetComponent<AudioSource>().Stop();
                     ventAvertedObject.GetComponent<AudioSource>().volume = 0.2f;
                     ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
