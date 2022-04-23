@@ -50,20 +50,21 @@ public class Night2 : MonoBehaviour
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
         bT = FindObjectOfType<Buttons>();
         redEye1Left = Random.Range(5 + 10,9+ 10);
-        redEye2Right = Random.Range(14 + 10,10+ 20);
-        redEye3Right = Random.Range(24 + 10,10+ 32);
-        vent4 = Random.Range(37+10,10+ 43);
-        redEye5Left = Random.Range(47+10,10+ 57);
+        redEye2Right = Random.Range(15 + 10,10+ 21);
+        redEye3Right = Random.Range(27 + 10,10+ 35);
+        vent4 = Random.Range(40+10,10+ 43);
+        redEye5Left = Random.Range(50+10,10+ 57);
         vent6 = Random.Range(65+10,10+ 71);
-        vent7 = Random.Range(75+10,10+ 81);
-        redEye8Right = Random.Range(86+10,10+ 95);
-        redEye9Right = Random.Range(101+10, 10+109);
-        vent10 = Random.Range(115 + 10,10+ 123);
-        redEye10Left = Random.Range(130 + 10, 10+140);
-        vent11 = Random.Range(146 + 10, 10+152);
-        vent12 = Random.Range(158 + 10, 10 + 164);
-        vent13 = Random.Range(170 + 10, 10 + 174);
-        redEye14Right = Random.Range(176 + 10, 10 + 180);
+        vent7 = Random.Range(78+10,10+ 85);
+        redEye8Right = Random.Range(95+10,10+ 104);
+        redEye9Right = Random.Range(111+10, 10+119);
+        vent10 = Random.Range(126 + 10,10+ 131);
+        redEye10Left = Random.Range(138 + 10, 10+145);
+        vent11 = Random.Range(152 + 10, 10+161);
+        vent12 = Random.Range(169 + 10, 10 + 175);
+        vent13 = Random.Range(182 + 10, 10 + 189);
+        redEye14Right = Random.Range(195 + 10, 10 + 201);
+        redEye15Left = Random.Range(206 + 10, 10 + 210);
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;
         //rightEyeHallwayAvertedObject.GetComponent<Animator>().Stop = false;
@@ -87,7 +88,7 @@ public class Night2 : MonoBehaviour
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;
             AvoidJumpscareLeft();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -104,7 +105,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -121,7 +122,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             AvoidJumpscareRight();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = 0.01f;
             aS.Stop();
             aS.PlayOneShot(redEyesDoomSfx);
@@ -140,7 +141,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             AvoidJumpscareVent();
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.1f);
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
         }
     }
 
