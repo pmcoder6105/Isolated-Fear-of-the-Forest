@@ -79,7 +79,7 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canCloseDoor);
+        Debug.Log(hasAvoidedJumpscare);
         ToggleBetweenLaptopAndExteriorView();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 2)
         {
@@ -278,12 +278,14 @@ public class Night2 : MonoBehaviour
             fadeOut.SetActive(true);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             //once created lose screen, make sure to enable it here
+            Debug.Log("you have now died lol sorrry");
         }
     }
 
     void TurnBoolTrueToPrepareForNextJumpscare()
     {
         hasAvoidedJumpscare = true;
+        makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
         canCloseDoor = true;
     }
 
