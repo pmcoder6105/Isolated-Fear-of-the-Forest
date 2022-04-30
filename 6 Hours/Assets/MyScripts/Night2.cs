@@ -91,7 +91,10 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = 0.7f;
             aS.Stop();
-            aS.PlayOneShot(redEyesDoomSfx);
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+            }
         }
 
         if (Time.time >= redEye2Right && Time.time <= redEye2Right + 4)
@@ -108,7 +111,10 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = .9f;
             aS.Stop();
-            aS.PlayOneShot(redEyesDoomSfx);
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+            }
         }
 
         if (Time.time >= redEye3Right && Time.time <= redEye3Right + 4)
@@ -125,7 +131,10 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
             aS.volume = .9f;
             aS.Stop();
-            aS.PlayOneShot(redEyesDoomSfx);
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+            }
         }
 
         if (Time.time >= vent4 && Time.time <= vent4 + 4)
@@ -305,6 +314,7 @@ public class Night2 : MonoBehaviour
             //redEye2Right = 500;
             //redEye3Right = 500;
             //vent4 = 500;
+            Debug.Log("you have now died lol sorrry");
             redEye5Left = 500;
             vent6 = 500;
             vent7 = 500;
@@ -317,16 +327,17 @@ public class Night2 : MonoBehaviour
             vent13 = 500;
             redEye14Right = 500;
             redEye15Left = 500;
+            hasAvoidedJumpscare = true;
             //once timer is created make sure to set timer false here too
             monster.SetActive(true);
             fadeOut.SetActive(true);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-            //once created lose screen, make sure to enable it here
-            Debug.Log("you have now died lol sorrry");
+            //once created lose screen, make sure to enable it here            
         }
         else if (hasAvoidedJumpscare == true)
         {
             Debug.Log("nvm ur good now");
+            hasAvoidedJumpscare = true;
         }
     }
 
