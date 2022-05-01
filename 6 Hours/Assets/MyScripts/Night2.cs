@@ -83,22 +83,30 @@ public class Night2 : MonoBehaviour
         ToggleBetweenLaptopAndExteriorView();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 4)
         {
+            //aS.volume = 0.9f;
+            //aS.Stop();
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+                Invoke(nameof(StopAudioAfterPlayed), 2.9f);
+            }
             AvoidJumpscareLeft();
             redEyeLeftGameobject.SetActive(true);
             redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;            
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
-            aS.volume = 0.7f;
-            aS.Stop();
-            if (!aS.isPlaying)
-            {
-                aS.PlayOneShot(redEyesDoomSfx);
-            }
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);            
         }
 
         if (Time.time >= redEye2Right && Time.time <= redEye2Right + 4)
         {
+            //aS.volume = .9f;
+            //aS.Stop();
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+                Invoke(nameof(StopAudioAfterPlayed), 2.9f);
+            }
             AvoidJumpscareRight();
             redEyeRightGameobject.SetActive(true);
             if (redEyeRightGameobject.active == false)
@@ -108,17 +116,18 @@ public class Night2 : MonoBehaviour
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;            
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
-            aS.volume = .9f;
-            aS.Stop();
-            if (!aS.isPlaying)
-            {
-                aS.PlayOneShot(redEyesDoomSfx);
-            }
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);           
         }
 
         if (Time.time >= redEye3Right && Time.time <= redEye3Right + 4)
         {
+            //aS.volume = .9f;
+            //aS.Stop();
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(redEyesDoomSfx);
+                Invoke(nameof(StopAudioAfterPlayed), 2.9f);
+            }
             AvoidJumpscareRight();
             redEyeRightGameobject.SetActive(true);
             if (redEyeRightGameobject.active == false)
@@ -128,13 +137,7 @@ public class Night2 : MonoBehaviour
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;            
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);
-            aS.volume = .9f;
-            aS.Stop();
-            if (!aS.isPlaying)
-            {
-                aS.PlayOneShot(redEyesDoomSfx);
-            }
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);            
         }
 
         if (Time.time >= vent4 && Time.time <= vent4 + 4)
@@ -206,6 +209,10 @@ public class Night2 : MonoBehaviour
                     rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
                 Invoke(nameof(RightHallwayAvertedDoor), 4f);
+            }
+            else if (!Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Debug.Log("oh not u didn't save ur self lol sorry");
             }
         }
         Invoke(nameof(JumpscareAfterNotAvertingDanger2), 4);
@@ -383,5 +390,20 @@ public class Night2 : MonoBehaviour
         {
             MainScreen.SetActive(true);
         }        
+    }
+
+    void StopAudioAfterPlayed()
+    {
+        if (aS.isPlaying)
+        {
+            Debug.Log("time to quit audio");
+            aS.volume = 0f;
+            Invoke(nameof(StartAudioAgain), 3.1f);
+        }        
+    }
+
+    void StartAudioAgain()
+    {
+        aS.volume = 0.5f;
     }
 }
