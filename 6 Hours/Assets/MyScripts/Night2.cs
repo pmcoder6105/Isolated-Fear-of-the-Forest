@@ -43,6 +43,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject ventAvertedObject;
     [SerializeField] AudioClip crawlingInVent;
     bool canCloseDoor = true;
+    bool shouldInvokeJumpscare = false;
 
     // Start is called before the first frame update
     void Start()
@@ -79,8 +80,9 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(hasAvoidedJumpscare + "yo this is hasavoidedJumpscare");
+        Debug.Log(hasAvoidedJumpscare + " this is hasAvoidedJumpscare");
         ToggleBetweenLaptopAndExteriorView();
+        //StartJumpscareRight();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 4)
         {
             //aS.volume = 0.9f;
@@ -96,18 +98,17 @@ public class Night2 : MonoBehaviour
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;            
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 4.01f);            
-        }
-
+        }        
         if (Time.time >= redEye2Right && Time.time <= redEye2Right + 4)
-        {
-            //aS.volume = .9f;
-            //aS.Stop();
+        {        
+            shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
             {
                 aS.PlayOneShot(redEyesDoomSfx);
                 Invoke(nameof(StopAudioAfterPlayed), 2.9f);
             }
             AvoidJumpscareRight();
+            Invoke(nameof(StartJumpscareRight), 4.1f);       
             redEyeRightGameobject.SetActive(true);
             if (redEyeRightGameobject.active == false)
             {
@@ -157,6 +158,18 @@ public class Night2 : MonoBehaviour
         }
     }
 
+    void StartJumpscareRight()
+    {
+        if (shouldInvokeJumpscare == true && hasAvoidedJumpscare == false)
+        {
+            //JumpscareAfterNotAvertingDanger2();
+            monster.SetActive(true);
+            fadeOut.SetActive(true);
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Debug.Log("time to jumpscare right please??");
+        }       
+    }
+
     void StopRightEyeFromLooping()
     {
         if (redEyeRightGameobject.active == true)
@@ -169,11 +182,11 @@ public class Night2 : MonoBehaviour
     {
         if (hasAvoidedJumpscare == false)
         {            
-            Debug.Log("need to avoid jumpscare now");
+            //Debug.Log("need to avoid jumpscare now");
             if (Input.GetKeyDown(KeyCode.LeftArrow) && canCloseDoor == true)
             {
                 canCloseDoor = false;
-                Debug.Log("Has avoided jumpscare?");
+                //Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 //leftEyeHallwayAvertedObject.SetActive(true);
@@ -191,13 +204,14 @@ public class Night2 : MonoBehaviour
 
     void AvoidJumpscareRight()
     {
+        //JumpscareAfterNotAvertingDanger2();
         if (hasAvoidedJumpscare == false)
         {
-            Debug.Log("need to avoid jumpscare now");
+            //Debug.Log("need to avoid jumpscare now");            
             if (Input.GetKeyDown(KeyCode.RightArrow) && canCloseDoor == true)
             {
                 canCloseDoor = false;
-                Debug.Log("Has avoided jumpscare?");
+                //Debug.Log("Has avoided jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 //rightEyeHallwayAvertedObject.SetActive(true);
@@ -208,25 +222,21 @@ public class Night2 : MonoBehaviour
                 {
                     rightEyeHallwayAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
-                Invoke(nameof(RightHallwayAvertedDoor), 4f);
-            }
-            else if (!Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Debug.Log("oh not u didn't save ur self lol sorry");
-            }
+                Invoke(nameof(RightHallwayAvertedDoor), 4f);                
+            }                        
         }
-        Invoke(nameof(JumpscareAfterNotAvertingDanger2), 4);
+        //Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
     }
 
     void AvoidJumpscareVent()
     {
         if (hasAvoidedJumpscare == false)
         {
-            Debug.Log("need to avoid jumpscare now");
+            //Debug.Log("need to avoid jumpscare now");
             if (Input.GetKeyDown(KeyCode.UpArrow) && canCloseDoor == true)
             {
                 canCloseDoor = false;
-                Debug.Log("Has avoided vent jumpscare?");
+                //Debug.Log("Has avoided vent jumpscare?");
                 hasAvoidedJumpscare = true;
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 //ventAvertedObject.SetActive(true);
@@ -264,7 +274,7 @@ public class Night2 : MonoBehaviour
 
     void JumpscareAfterNotAvertingDanger()
     {
-        Debug.Log("Dang ur dead now");
+        Debug.Log("la boom a la caca whip");
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
@@ -296,17 +306,13 @@ public class Night2 : MonoBehaviour
             fadeOut.SetActive(true);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             //once created lose screen, make sure to enable it here
-            Debug.Log("you have now died lol sorrry");
-        }
-        else if (hasAvoidedJumpscare == true)
-        {
-            Debug.Log("nvm ur good now");
+            
         }
     }
 
     void JumpscareAfterNotAvertingDanger2()
     {
-        Debug.Log("Dang ur dead now");
+        Debug.Log("la boom a la caca whip");
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)
@@ -316,11 +322,6 @@ public class Night2 : MonoBehaviour
         }
         if (hasAvoidedJumpscare == false)
         {
-            //this.GetComponent<Rigidbody>().isKinematic = true;
-            //redEye1Left = 500;
-            //redEye2Right = 500;
-            //redEye3Right = 500;
-            //vent4 = 500;
             Debug.Log("you have now died lol sorrry");
             redEye5Left = 500;
             vent6 = 500;
@@ -334,17 +335,12 @@ public class Night2 : MonoBehaviour
             vent13 = 500;
             redEye14Right = 500;
             redEye15Left = 500;
-            hasAvoidedJumpscare = true;
             //once timer is created make sure to set timer false here too
             monster.SetActive(true);
             fadeOut.SetActive(true);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-            //once created lose screen, make sure to enable it here            
-        }
-        else if (hasAvoidedJumpscare == true)
-        {
-            Debug.Log("nvm ur good now");
-            hasAvoidedJumpscare = true;
+            //once created lose screen, make sure to enable it here
+            Debug.Log("la boom a la caca whip whip deadness");
         }
     }
 
