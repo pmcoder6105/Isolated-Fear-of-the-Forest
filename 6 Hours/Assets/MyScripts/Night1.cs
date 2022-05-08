@@ -6,7 +6,6 @@ public class Night1 : MonoBehaviour
     [SerializeField] bool aNOn = true;
     Animator aN;
     AudioSource aS;
-    bool isOnTrail = false;
     [SerializeField] GameObject monster;
     [SerializeField] GameObject night1Instructions;
     [SerializeField] public GameObject doomSFXEmpty;
