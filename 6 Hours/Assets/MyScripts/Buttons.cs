@@ -4,11 +4,12 @@ using UnityEngine;
 public class Buttons : MonoBehaviour
 {
     Night1 n1;
+    Night2 n2;
     AudioSource aS;
     [SerializeField] AudioClip buttonClickNight2;
     [SerializeField] AudioClip whirringSFXWhenCompletingTask;
     [SerializeField] AudioClip ding;
-
+    [SerializeField] GameObject winScreen;
     [SerializeField] GameObject screwInLightBulb;
     [SerializeField] GameObject stove;
     [SerializeField] GameObject hinges;
@@ -21,11 +22,13 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject wipes;
     [SerializeField] GameObject soap;
     [SerializeField] GameObject vacuum;
+    [SerializeField] GameObject winFadeOut;
     bool canFinishAnotherTask = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        n2 = FindObjectOfType<Night2>();
         n1 = FindObjectOfType<Night1>();
         aS = GetComponent<AudioSource>();
     }
@@ -206,5 +209,36 @@ public class Buttons : MonoBehaviour
     {
         Destroy(grains);
         Cursor.lockState = CursorLockMode.None;
+    }
+    public void LogOut()
+    {
+        if (screwInLightBulb == null &&
+            stove == null &&
+            hinges == null && 
+            connectToInternet == null && 
+            grains == null &&
+            meat == null && 
+            dairy == null && 
+            vegetables == null &&
+            sprays == null && 
+            wipes == null && 
+            soap == null &&
+            vacuum == null)
+        {
+            winFadeOut.SetActive(true);
+            Invoke(nameof(TurnOnWinScreen), 2f);
+            if (!n2.doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+            {
+                n2.doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(n2.doomSFX);
+            }                        
+        }
+        else
+        {
+            Debug.Log("you have to complete more tasks before winning");
+        }
+    }
+    void TurnOnWinScreen()
+    {
+        winScreen.SetActive(true);
     }
 }

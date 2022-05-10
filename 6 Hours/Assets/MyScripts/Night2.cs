@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Night2 : MonoBehaviour
 {
+    [SerializeField] GameObject laptop;
     [SerializeField] GameObject MainScreen;
     [SerializeField] GameObject Appliances;
     [SerializeField] GameObject HomeSupplies;
@@ -50,7 +51,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject doomSFXEmpty12;
     [SerializeField] GameObject doomSFXEmpty13;
     [SerializeField] GameObject doomSFXEmpty14;
-    [SerializeField] GameObject doomSFXEmpty15;
+    [SerializeField] public GameObject doomSFXEmpty15;
     bool isLookingAtScreen = false;
     [SerializeField] bool isTransitioningToScreen = false;
     [SerializeField] GameObject cam;
@@ -76,7 +77,7 @@ public class Night2 : MonoBehaviour
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
     [SerializeField] AudioClip redEyesDoomSfx;
-    [SerializeField] AudioClip doomSFX;
+    [SerializeField] public AudioClip doomSFX;
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
     [SerializeField] GameObject rightEyeHallwayAvertedObject;
@@ -494,6 +495,15 @@ public class Night2 : MonoBehaviour
                 Destroy(fadeOut15);
                 Destroy(doomSFXEmpty15);
             }
+        }
+        if (monster.active || monster2.active || monster3.active || monster4.active || monster5.active || monster6.active || 
+            monster7.active || monster8.active || monster9.active || monster10.active || monster11.active || monster12.active || monster13.active || monster14.active || monster15.active)
+        {
+            MainScreen.SetActive(false);
+            Appliances.SetActive(false);
+            HomeSupplies.SetActive(false);
+            Cleaning.SetActive(false);
+            laptop.SetActive(false);
         }
     }
 
