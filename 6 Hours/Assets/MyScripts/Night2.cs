@@ -1,8 +1,10 @@
 using UnityEngine;
+using TMPro;
 
 public class Night2 : MonoBehaviour
 {
     [SerializeField] GameObject laptop;
+    [SerializeField] GameObject timer;
     [SerializeField] GameObject MainScreen;
     [SerializeField] GameObject Appliances;
     [SerializeField] GameObject HomeSupplies;
@@ -87,30 +89,57 @@ public class Night2 : MonoBehaviour
     bool canCloseDoor = true;
     bool shouldInvokeJumpscare = false;
     bool shouldNotScarePlayerAfterClosingDoorBug = false;
+    public bool shouldSkipIntro;
 
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
         bT = FindObjectOfType<Buttons>();
-        redEye1Left = Random.Range(5 + 10, 9 + 10);
-        redEye2Right = Random.Range(15 + 10, 10 + 21);
-        redEye3Right = Random.Range(27 + 10, 10 + 35);
-        vent4 = Random.Range(40 + 10, 10 + 43);
-        redEye5Left = Random.Range(50 + 10, 10 + 57);
-        vent6 = Random.Range(65 + 10, 10 + 71);
-        vent7 = Random.Range(78 + 10, 10 + 85);
-        redEye8Right = Random.Range(95 + 10, 10 + 104);
-        redEye9Right = Random.Range(111 + 10, 10 + 119);
-        vent10 = Random.Range(126 + 10, 10 + 131);
-        redEye11Left = Random.Range(138 + 10, 10 + 145);
-        vent12 = Random.Range(160 + 10, 10 + 175);
-        vent13 = Random.Range(182 + 10, 10 + 189);
-        redEye14Right = Random.Range(195 + 10, 10 + 201);
-        redEye15Left = Random.Range(206 + 10, 10 + 210);
+        if (shouldSkipIntro == false)
+        {
+            redEye1Left = Random.Range(5 + 10, 9 + 10);
+            redEye2Right = Random.Range(15 + 10, 10 + 21);
+            redEye3Right = Random.Range(27 + 10, 10 + 35);
+            vent4 = Random.Range(40 + 10, 10 + 43);
+            redEye5Left = Random.Range(50 + 10, 10 + 57);
+            vent6 = Random.Range(65 + 10, 10 + 71);
+            vent7 = Random.Range(78 + 10, 10 + 85);
+            redEye8Right = Random.Range(95 + 10, 10 + 104);
+            redEye9Right = Random.Range(111 + 10, 10 + 119);
+            vent10 = Random.Range(126 + 10, 10 + 131);
+            redEye11Left = Random.Range(138 + 10, 10 + 145);
+            vent12 = Random.Range(160 + 10, 10 + 175);
+            vent13 = Random.Range(182 + 10, 10 + 189);
+            redEye14Right = Random.Range(195 + 10, 10 + 201);
+            redEye15Left = Random.Range(206 + 10, 10 + 210);
+        }
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;        
         ventAvertedObject.GetComponent<Animator>().enabled = false;
+        SkipIntro();
+    }
+
+    void SkipIntro()
+    {
+        if (shouldSkipIntro == true)
+        {
+            redEye1Left = Random.Range(5, 9);
+            redEye2Right = Random.Range(15, 21);
+            redEye3Right = Random.Range(27, 35);
+            vent4 = Random.Range(40, 43);
+            redEye5Left = Random.Range(50, 57);
+            vent6 = Random.Range(65, 71);
+            vent7 = Random.Range(78, 85);
+            redEye8Right = Random.Range(95, 104);
+            redEye9Right = Random.Range(111, 119);
+            vent10 = Random.Range(126, 131);
+            redEye11Left = Random.Range(138, 145);
+            vent12 = Random.Range(160, 175);
+            vent13 = Random.Range(182, 189);
+            redEye14Right = Random.Range(195, 201);
+            redEye15Left = Random.Range(206, 210);
+        }
     }
 
     // Update is called once per frame
@@ -118,6 +147,14 @@ public class Night2 : MonoBehaviour
     {
         Debug.Log(shouldNotScarePlayerAfterClosingDoorBug + " this is shouldNotScarePlayerAfterClosingDoorBug");
         ToggleBetweenLaptopAndExteriorView();
+        if (shouldSkipIntro == true)
+        {
+            RunTime();
+        }
+        if (shouldSkipIntro == false)
+        {
+            Invoke(nameof(RunTime), 10f);
+        }
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
         {
             if (!aS.isPlaying)
@@ -504,6 +541,20 @@ public class Night2 : MonoBehaviour
             HomeSupplies.SetActive(false);
             Cleaning.SetActive(false);
             laptop.SetActive(false);
+        }
+    }
+
+    void RunTime()
+    {
+        timer.SetActive(true);
+        if (shouldSkipIntro == true)
+        {
+            timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+        }
+        if (shouldSkipIntro == false)
+        {
+            float timeNeeded = Time.timeSinceLevelLoad - 30;
+            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
     }
 

@@ -105,7 +105,8 @@ public class Night1 : MonoBehaviour
             {
                 float timeNeeded = Time.time - 30;
                 timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
-                if (Time.time > 140 && Time.time < 149)
+                //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
+                if (Time.time > 150 && Time.time < 159)
                 {
                     if (!aS.isPlaying)
                     {
