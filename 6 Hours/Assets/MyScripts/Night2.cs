@@ -99,21 +99,21 @@ public class Night2 : MonoBehaviour
         bT = FindObjectOfType<Buttons>();
         if (shouldSkipIntro == false)
         {
-            redEye1Left = Random.Range(5 + 10, 9 + 10);
-            redEye2Right = Random.Range(15 + 10, 10 + 21);
-            redEye3Right = Random.Range(27 + 10, 10 + 35);
-            vent4 = Random.Range(40 + 10, 10 + 43);
-            redEye5Left = Random.Range(50 + 10, 10 + 57);
-            vent6 = Random.Range(65 + 10, 10 + 71);
-            vent7 = Random.Range(78 + 10, 10 + 85);
-            redEye8Right = Random.Range(95 + 10, 10 + 104);
-            redEye9Right = Random.Range(111 + 10, 10 + 119);
-            vent10 = Random.Range(126 + 10, 10 + 131);
-            redEye11Left = Random.Range(138 + 10, 10 + 145);
-            vent12 = Random.Range(160 + 10, 10 + 175);
-            vent13 = Random.Range(182 + 10, 10 + 189);
-            redEye14Right = Random.Range(195 + 10, 10 + 201);
-            redEye15Left = Random.Range(206 + 10, 10 + 210);
+            redEye1Left = Random.Range(20 + 10, 26 + 10);
+            redEye2Right = Random.Range(34 + 10, 10 + 40);
+            redEye3Right = Random.Range(47 + 10, 10 + 53);
+            vent4 = Random.Range(60 + 10, 10 + 66);
+            redEye5Left = Random.Range(73 + 10, 10 + 78);
+            vent6 = Random.Range(85 + 10, 10 + 95);
+            vent7 = Random.Range(101 + 10, 10 + 111);
+            redEye8Right = Random.Range(120 + 10, 10 + 126);
+            redEye9Right = Random.Range(134 + 10, 10 + 140);
+            vent10 = Random.Range(148 + 10, 10 + 154);
+            redEye11Left = Random.Range(160 + 10, 10 + 166);
+            vent12 = Random.Range(175 + 10, 10 + 200);
+            vent13 = Random.Range(207 + 10, 10 + 215);
+            redEye14Right = Random.Range(222 + 10, 10 + 228);
+            redEye15Left = Random.Range(231 + 10, 10 + 240);
         }
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;        
@@ -126,21 +126,21 @@ public class Night2 : MonoBehaviour
         if (shouldSkipIntro == true)
         {
             GetComponent<Animator>().ForceStateNormalizedTime(1);
-            redEye1Left = Random.Range(5, 9);
-            redEye2Right = Random.Range(15, 21);
-            redEye3Right = Random.Range(27, 35);
-            vent4 = Random.Range(40, 43);
-            redEye5Left = Random.Range(50, 57);
-            vent6 = Random.Range(65, 71);
-            vent7 = Random.Range(78, 85);
-            redEye8Right = Random.Range(95, 104);
-            redEye9Right = Random.Range(111, 119);
-            vent10 = Random.Range(126, 131);
-            redEye11Left = Random.Range(138, 145);
-            vent12 = Random.Range(160, 175);
-            vent13 = Random.Range(182, 189);
-            redEye14Right = Random.Range(195, 201);
-            redEye15Left = Random.Range(206, 210);
+            redEye1Left = Random.Range(20, 26);
+            redEye2Right = Random.Range(34, 40);
+            redEye3Right = Random.Range(47, 53);
+            vent4 = Random.Range(60, 66);
+            redEye5Left = Random.Range(73, 78);
+            vent6 = Random.Range(85, 95);
+            vent7 = Random.Range(101, 111);
+            redEye8Right = Random.Range(120, 126);
+            redEye9Right = Random.Range(134, 140);
+            vent10 = Random.Range(148, 154);
+            redEye11Left = Random.Range(160, 166);
+            vent12 = Random.Range(175, 200);
+            vent13 = Random.Range(207, 215);
+            redEye14Right = Random.Range(222, 228);
+            redEye15Left = Random.Range(231, 240);
         }
     }
 
