@@ -90,6 +90,7 @@ public class Night2 : MonoBehaviour
     bool shouldInvokeJumpscare = false;
     bool shouldNotScarePlayerAfterClosingDoorBug = false;
     public bool shouldSkipIntro;
+    public bool shouldStartTimer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -124,6 +125,7 @@ public class Night2 : MonoBehaviour
     {
         if (shouldSkipIntro == true)
         {
+            GetComponent<Animator>().ForceStateNormalizedTime(1);
             redEye1Left = Random.Range(5, 9);
             redEye2Right = Random.Range(15, 21);
             redEye3Right = Random.Range(27, 35);
@@ -147,14 +149,7 @@ public class Night2 : MonoBehaviour
     {
         Debug.Log(shouldNotScarePlayerAfterClosingDoorBug + " this is shouldNotScarePlayerAfterClosingDoorBug");
         ToggleBetweenLaptopAndExteriorView();
-        if (shouldSkipIntro == true)
-        {
-            RunTime();
-        }
-        if (shouldSkipIntro == false)
-        {
-            Invoke(nameof(RunTime), 10f);
-        }
+        RunTime();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
         {
             if (!aS.isPlaying)
@@ -547,15 +542,25 @@ public class Night2 : MonoBehaviour
     void RunTime()
     {
         timer.SetActive(true);
+        Debug.Log(Time.time);
         if (shouldSkipIntro == true)
         {
-            timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+            timer.GetComponent<TMP_Text>().text = Time.time.ToString();            
         }
         if (shouldSkipIntro == false)
         {
-            float timeNeeded = Time.timeSinceLevelLoad - 30;
+            Invoke(nameof(StartTimeAfterSkip), 10f);
+        }
+        if (shouldStartTimer == true)
+        {
+            float timeNeeded = Time.time - 10;
             timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
+    }
+
+    void StartTimeAfterSkip()
+    {
+        shouldStartTimer = true;        
     }
 
     void StartJumpscareForAllJumpscaresWithBug2()
