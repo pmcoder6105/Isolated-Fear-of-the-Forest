@@ -4,6 +4,7 @@ using TMPro;
 public class Night2 : MonoBehaviour
 {
     [SerializeField] GameObject laptop;
+    [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject MainScreen;
     [SerializeField] GameObject Appliances;
@@ -79,6 +80,7 @@ public class Night2 : MonoBehaviour
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
     [SerializeField] AudioClip redEyesDoomSfx;
+    [SerializeField] AudioClip alarmBeep;
     [SerializeField] public AudioClip doomSFX;
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
@@ -545,17 +547,46 @@ public class Night2 : MonoBehaviour
         Debug.Log(Time.time);
         if (shouldSkipIntro == true)
         {
-            timer.GetComponent<TMP_Text>().text = Time.time.ToString();            
+            timer.GetComponent<TMP_Text>().text = Time.time.ToString();  
+            if (Time.time >= 240 && Time.time <= 245)
+            {
+                Debug.Log("add jumpscare material here");
+                if (!aS.isPlaying)
+                {
+                    aS.PlayOneShot(alarmBeep);
+                }
+                monster15.SetActive(true);
+                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                fadeOut15.SetActive(true);
+                Invoke(nameof(TurnOnLoseScreen), 1f);
+            }
         }
         if (shouldSkipIntro == false)
         {
             Invoke(nameof(StartTimeAfterSkip), 10f);
+            if (Time.time >= 250 && Time.time <= 255)
+            {
+                Debug.Log("add jumpscare material here");
+                if (!aS.isPlaying)
+                {
+                    aS.PlayOneShot(alarmBeep);
+                }
+                monster15.SetActive(true);
+                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                fadeOut15.SetActive(true);
+                Invoke(nameof(TurnOnLoseScreen), 1f);
+            }
         }
         if (shouldStartTimer == true)
         {
             float timeNeeded = Time.time - 10;
             timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
+    }
+
+    void TurnOnLoseScreen()
+    {
+        loseScreen.SetActive(true);
     }
 
     void StartTimeAfterSkip()
