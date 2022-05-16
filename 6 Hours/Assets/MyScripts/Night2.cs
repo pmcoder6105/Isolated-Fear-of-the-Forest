@@ -150,7 +150,6 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(shouldNotScarePlayerAfterClosingDoorBug + " this is shouldNotScarePlayerAfterClosingDoorBug");
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
@@ -553,7 +552,6 @@ public class Night2 : MonoBehaviour
     void RunTime()
     {
         timer.SetActive(true);
-        Debug.Log(Time.time);
         if (shouldSkipIntro == true)
         {
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();  
