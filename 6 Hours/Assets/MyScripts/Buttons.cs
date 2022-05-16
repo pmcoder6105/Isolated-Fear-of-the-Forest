@@ -23,6 +23,8 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject soap;
     [SerializeField] GameObject vacuum;
     [SerializeField] GameObject winFadeOut;
+    [SerializeField] GameObject monsters;
+    [SerializeField] GameObject fadeOutsDooms;
     bool canFinishAnotherTask = true;
 
     // Start is called before the first frame update
@@ -240,5 +242,12 @@ public class Buttons : MonoBehaviour
     void TurnOnWinScreen()
     {
         winScreen.SetActive(true);
+        winFadeOut.SetActive(false);
+        Destroy(n2.MainScreen);
+        Destroy(n2.Cleaning);
+        Destroy(n2.HomeSupplies);
+        Destroy(n2.Appliances);
+        Destroy(monsters);
+        Destroy(fadeOutsDooms);
     }
 }

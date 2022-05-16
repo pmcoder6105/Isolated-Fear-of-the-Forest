@@ -7,10 +7,10 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject instructions;
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject timer;
-    [SerializeField] GameObject MainScreen;
-    [SerializeField] GameObject Appliances;
-    [SerializeField] GameObject HomeSupplies;
-    [SerializeField] GameObject Cleaning;
+    [SerializeField] public GameObject MainScreen;
+    [SerializeField] public GameObject Appliances;
+    [SerializeField] public GameObject HomeSupplies;
+    [SerializeField] public GameObject Cleaning;   
     [SerializeField] GameObject fadeOut;
     [SerializeField] GameObject fadeOut2;
     [SerializeField] GameObject fadeOut3;
@@ -56,6 +56,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject doomSFXEmpty13;
     [SerializeField] GameObject doomSFXEmpty14;
     [SerializeField] public GameObject doomSFXEmpty15;
+    [SerializeField] GameObject doomSFXOpeningInstructions;
     bool isLookingAtScreen = false;
     [SerializeField] bool isTransitioningToScreen = false;
     [SerializeField] GameObject cam;
@@ -152,6 +153,12 @@ public class Night2 : MonoBehaviour
     {
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Destroy(Appliances);
+            Destroy(Cleaning);
+            Destroy(HomeSupplies);
+        }
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
         {
             if (!aS.isPlaying)
@@ -544,16 +551,17 @@ public class Night2 : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                instructions.SetActive(false);
+                Destroy(instructions);
+                Destroy(doomSFXOpeningInstructions);
             }
         }
     }
 
     void RunTime()
-    {
-        timer.SetActive(true);
+    {        
         if (shouldSkipIntro == true)
         {
+            timer.SetActive(true);
             timer.GetComponent<TMP_Text>().text = Time.time.ToString();  
             if (Time.time >= 240 && Time.time <= 245)
             {
@@ -563,14 +571,17 @@ public class Night2 : MonoBehaviour
                     aS.PlayOneShot(alarmBeep);
                 }
                 monster15.SetActive(true);
-                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+                {
+                    doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                }
                 fadeOut15.SetActive(true);
                 Invoke(nameof(TurnOnLoseScreen), 1f);
             }
             instructions.SetActive(true);
-            if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+            if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
             {
-                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             }            
         }
         if (shouldSkipIntro == false)
@@ -584,7 +595,10 @@ public class Night2 : MonoBehaviour
                     aS.PlayOneShot(alarmBeep);
                 }
                 monster15.SetActive(true);
-                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+                {
+                    doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                }
                 fadeOut15.SetActive(true);
                 Invoke(nameof(TurnOnLoseScreen), 1f);
             }
@@ -603,11 +617,12 @@ public class Night2 : MonoBehaviour
 
     void StartTimeAfterSkip()
     {
+        timer.SetActive(true);
         shouldStartTimer = true;
         instructions.SetActive(true);
-        if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+        if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
         {
-            doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         }
     }
 
