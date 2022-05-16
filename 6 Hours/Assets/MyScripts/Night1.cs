@@ -298,12 +298,16 @@ public class Night1 : MonoBehaviour
         if (hasSeenNight1Instructions == true)
         {
             Invoke(nameof(PlayGame), .1f);
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                night1Instructions.SetActive(false);
+            }
         }
     }
 
     void PlayGame()
     {
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
         shouldStartTimer = true;
     }
 

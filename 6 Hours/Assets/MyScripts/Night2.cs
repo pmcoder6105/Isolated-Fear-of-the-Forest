@@ -4,6 +4,7 @@ using TMPro;
 public class Night2 : MonoBehaviour
 {
     [SerializeField] GameObject laptop;
+    [SerializeField] GameObject instructions;
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject MainScreen;
@@ -539,6 +540,14 @@ public class Night2 : MonoBehaviour
             Cleaning.SetActive(false);
             laptop.SetActive(false);
         }
+
+        if (instructions.active)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                instructions.SetActive(false);
+            }
+        }
     }
 
     void RunTime()
@@ -560,6 +569,11 @@ public class Night2 : MonoBehaviour
                 fadeOut15.SetActive(true);
                 Invoke(nameof(TurnOnLoseScreen), 1f);
             }
+            instructions.SetActive(true);
+            if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+            {
+                doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            }            
         }
         if (shouldSkipIntro == false)
         {
@@ -591,7 +605,12 @@ public class Night2 : MonoBehaviour
 
     void StartTimeAfterSkip()
     {
-        shouldStartTimer = true;        
+        shouldStartTimer = true;
+        instructions.SetActive(true);
+        if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+        {
+            doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        }
     }
 
     void StartJumpscareForAllJumpscaresWithBug2()
