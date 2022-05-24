@@ -31,6 +31,7 @@ public class GameControl : MonoBehaviour
     {
         WalkingSFX();
         FlashlightToggle();
+        Cursor.visible = true;
     }
 
     void FlashlightToggle()
