@@ -10,8 +10,7 @@ AnimatorState:
   m_Name: New State
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 1973786026279277074}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -38,45 +37,37 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3097003549349082631}
-    m_Position: {x: 580, y: 590, z: 0}
+    m_Position: {x: 1530, y: 1110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6301455037472201139}
-    m_Position: {x: 780, y: 750, z: 0}
+    m_Position: {x: 1310, y: 790, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7830094427171143859}
+    m_Position: {x: 1345, y: 855, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 730, y: 870, z: 0}
-  m_EntryPosition: {x: 520, y: 910, z: 0}
-  m_ExitPosition: {x: 1070, y: 870, z: 0}
+  m_AnyStatePosition: {x: 1380, y: 950, z: 0}
+  m_EntryPosition: {x: 1040, y: 940, z: 0}
+  m_ExitPosition: {x: 1590, y: 900, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6301455037472201139}
---- !u!1101 &-1764837452691932668
-AnimatorStateTransition:
+--- !u!1109 &-1597113393987798430
+AnimatorTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: isLookingAtCapsule1
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -6301455037472201139}
+  m_DstState: {fileID: 3097003549349082631}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  serializedVersion: 1
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -85,13 +76,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player night 3
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: isLookingAtCapsule1
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -105,8 +90,34 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &1973786026279277074
-AnimatorStateTransition:
+--- !u!1102 &3097003549349082631
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZoomIntoCapsule1
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 6af9e5d5d1aeaae4d9659fad44aa35ac, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1109 &7425453730109929059
+AnimatorTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,27 +132,18 @@ AnimatorStateTransition:
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1102 &3097003549349082631
+  serializedVersion: 1
+--- !u!1102 &7830094427171143859
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZoomIntoCapsule1
+  m_Name: ZoomOutOfCapsule1
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -1764837452691932668}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -151,7 +153,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6af9e5d5d1aeaae4d9659fad44aa35ac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 650b733d6ccb3b54da3186c75215e163, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

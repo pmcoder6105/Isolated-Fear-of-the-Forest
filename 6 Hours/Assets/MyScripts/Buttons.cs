@@ -5,6 +5,7 @@ public class Buttons : MonoBehaviour
 {
     Night1 n1;
     Night2 n2;
+    Night3 n3;
     AudioSource aS;
     [SerializeField] AudioClip buttonClickNight2;
     [SerializeField] AudioClip whirringSFXWhenCompletingTask;
@@ -25,6 +26,7 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject winFadeOut;
     [SerializeField] GameObject monsters;
     [SerializeField] GameObject fadeOutsDooms;
+    [SerializeField] GameObject capsule1;
     bool canFinishAnotherTask = true;
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class Buttons : MonoBehaviour
     {
         n2 = FindObjectOfType<Night2>();
         n1 = FindObjectOfType<Night1>();
+        n3 = FindObjectOfType<Night3>();
         aS = GetComponent<AudioSource>();
     }
 
@@ -51,6 +54,22 @@ public class Buttons : MonoBehaviour
     public void ClickLaptopButtonNight2()
     {
         aS.PlayOneShot(buttonClickNight2);
+    }
+
+    void DestroyCapsule1()
+    {
+        if (n3.isLookingAtCapsule1 == true)
+        {
+            CompleteButtonTask();
+            DestroyCapsule1AfterDing();
+        }
+    }
+
+    void DestroyCapsule1AfterDing()
+    {
+        Destroy(capsule1);
+        n3.player.GetComponent<Animator>().Play("ZoomOutOfCapsule1", 0);
+        n3.player.GetComponent<Animator>().enabled = false;
     }
 
     public void CompleteButtonTask()
