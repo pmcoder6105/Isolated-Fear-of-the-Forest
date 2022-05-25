@@ -36,7 +36,6 @@ public class Buttons : MonoBehaviour
         n1 = FindObjectOfType<Night1>();
         n3 = FindObjectOfType<Night3>();
         aS = GetComponent<AudioSource>();
-        Destroy(n3.capsule1Button);
     }
 
     // Update is called once per frame
@@ -57,19 +56,26 @@ public class Buttons : MonoBehaviour
         aS.PlayOneShot(buttonClickNight2);
     }
 
-    void DestroyCapsule1()
+    public void DestroyCapsule1()
     {
         if (n3.isLookingAtCapsule1 == true)
         {
             CompleteButtonTask();
-            DestroyCapsule1AfterDing();
+            Invoke(nameof(DestroyCapsule1AfterDing), 3f);
         }
     }
 
     void DestroyCapsule1AfterDing()
     {
         Destroy(capsule1);
+        Destroy(n3.capsule1Button);
         n3.player.GetComponent<Animator>().Play("ZoomOutOfCapsule1", 0);
+        Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
+        n3.player.GetComponent<Rigidbody>().isKinematic = false;
+        //n3.player.GetComponent<Animator>().enabled = false;
+    }
+    void TurnAnimatorOffOnceZoomedOut()
+    {
         n3.player.GetComponent<Animator>().enabled = false;
     }
 

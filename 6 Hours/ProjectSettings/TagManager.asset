@@ -26,6 +26,7 @@ TagManager:
   - JumpScare
   - Trail
   - House
+  - Capsule1Field
   layers:
   - Default
   - TransparentFX

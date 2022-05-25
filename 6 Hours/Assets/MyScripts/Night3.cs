@@ -6,10 +6,13 @@ public class Night3 : MonoBehaviour
     [SerializeField] NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject capsule1RangeField;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] GameObject cam;
     [SerializeField] public Transform player;
     public bool isLookingAtCapsule1 = false;
+    public bool canZoomIn = true;
+    bool inRangeCapsule1 = false;
 
     Animator aN;
 
@@ -27,13 +30,16 @@ public class Night3 : MonoBehaviour
         monsterAI.SetDestination(player.position);
         monsterAI.GetComponent<Animator>().Play("Walk", 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true)
+        {           
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Rigidbody>().isKinematic = true;
-            aN.Play("ZoomIntoCapsule1", 0);
-            canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0); 
+            GetComponent<Rigidbody>().isKinematic = true;            
+            if (canZoomIn == true)
+            {
+                aN.Play("ZoomIntoCapsule1", 0);
+            }
+            canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0);            
             isLookingAtCapsule1 = true;
             Invoke(nameof(TurnOnButton), 1f);
             //capsule1Button.SetActive(true);
@@ -49,12 +55,24 @@ public class Night3 : MonoBehaviour
         }
     }
 
-    //void TurnOnButton()
-    //{
-    //    Debug.Log("time to click button");
-    //    if (capsule1Button.active == false)
-    //    {
-    //        capsule1Button.SetActive(true);
-    //    }        
-    //}
+    void TurnOnButton()
+    {
+        Debug.Log("time to click button");
+        if (capsule1Button.active == false)
+        {
+            capsule1Button.SetActive(true);
+        }        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Capsule1Field")
+        {
+            inRangeCapsule1 = true;
+        }
+        else if (other.gameObject.tag != "Capsule1Field")
+        {
+            inRangeCapsule1 = false;
+        }
+    }
 }
