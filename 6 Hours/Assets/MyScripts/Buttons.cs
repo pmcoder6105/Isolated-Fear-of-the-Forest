@@ -27,6 +27,7 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject monsters;
     [SerializeField] GameObject fadeOutsDooms;
     [SerializeField] GameObject capsule1;
+    [SerializeField] GameObject capsule2;
     bool canFinishAnotherTask = true;
 
     // Start is called before the first frame update
@@ -65,11 +66,29 @@ public class Buttons : MonoBehaviour
         }
     }
 
+    public void DestroyCapsule2()
+    {
+        if (n3.isLookingAtCapsule2 == true)
+        {
+            CompleteButtonTask();
+            Invoke(nameof(DestroyCapsule2AfterDing), 3f);
+        }
+    }
+
     void DestroyCapsule1AfterDing()
     {
         Destroy(capsule1);
         Destroy(n3.capsule1Button);
         n3.player.GetComponent<Animator>().Play("ZoomOutOfCapsule1", 0);
+        Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
+        n3.player.GetComponent<Rigidbody>().isKinematic = false;
+        //n3.player.GetComponent<Animator>().enabled = false;
+    }
+    void DestroyCapsule2AfterDing()
+    {
+        Destroy(capsule2);
+        Destroy(n3.capsule2Button);
+        n3.player.GetComponent<Animator>().Play("ZoomOutOfCapsule2", 0);
         Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
