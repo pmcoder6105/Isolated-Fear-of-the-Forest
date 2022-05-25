@@ -28,6 +28,7 @@ TagManager:
   - House
   - Capsule1Field
   - Capsule2Field
+  - Capsule3Field
   layers:
   - Default
   - TransparentFX

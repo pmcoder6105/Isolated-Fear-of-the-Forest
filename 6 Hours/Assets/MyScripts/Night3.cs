@@ -8,13 +8,16 @@ public class Night3 : MonoBehaviour
     [SerializeField] GameObject canvas;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
+    [SerializeField] public GameObject capsule3Button;
     [SerializeField] GameObject cam;
     [SerializeField] public Transform player;
     public bool isLookingAtCapsule1 = false;
     public bool isLookingAtCapsule2 = false;
+    public bool isLookingAtCapsule3 = false;
     public bool canZoomIn = true;
     bool inRangeCapsule1 = false;
     bool inRangeCapsule2 = false;
+    bool inRangeCapsule3 = false;
 
     Animator aN;
 
@@ -61,6 +64,20 @@ public class Night3 : MonoBehaviour
             Invoke(nameof(TurnOnButton2), 1f);
             //capsule1Button.SetActive(true);
         }
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true)
+        {
+            aN.enabled = true;
+            cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            GetComponent<Rigidbody>().isKinematic = true;
+            if (canZoomIn == true)
+            {
+                aN.Play("ZoomIntoCapsule3", 0);
+            }
+            canvas.GetComponent<Animator>().Play("EnableCapsule3Button", 0);
+            isLookingAtCapsule3 = true;
+            Invoke(nameof(TurnOnButton3), 1f);
+            //capsule1Button.SetActive(true);
+        }
 
         if (Time.timeSinceLevelLoad >= 11)
         {
@@ -89,6 +106,15 @@ public class Night3 : MonoBehaviour
         }
     }
 
+    void TurnOnButton3()
+    {
+        Debug.Log("time to click button");
+        if (capsule3Button.active == false)
+        {
+            capsule3Button.SetActive(true);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Capsule1Field")
@@ -106,6 +132,14 @@ public class Night3 : MonoBehaviour
         else if (other.gameObject.tag != "Capsule2Field")
         {
             inRangeCapsule2 = false;
+        }
+        if (other.gameObject.tag == "Capsule3Field")
+        {
+            inRangeCapsule3 = true;
+        }
+        else if (other.gameObject.tag != "Capsule3Field")
+        {
+            inRangeCapsule3 = false;
         }
     }
 }
