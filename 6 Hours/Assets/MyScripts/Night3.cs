@@ -6,7 +6,8 @@ public class Night3 : MonoBehaviour
     [SerializeField] NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
     [SerializeField] GameObject canvas;
-    [SerializeField] GameObject capsule1Button;
+    [SerializeField] public GameObject capsule1Button;
+    [SerializeField] GameObject cam;
     [SerializeField] public Transform player;
     public bool isLookingAtCapsule1 = false;
 
@@ -17,6 +18,7 @@ public class Night3 : MonoBehaviour
     {
         aN = GetComponent<Animator>();
         Debug.Log(Time.timeSinceLevelLoad);
+        capsule1Button.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,10 +30,13 @@ public class Night3 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             aN.enabled = true;
+            cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
             GetComponent<Rigidbody>().isKinematic = true;
             aN.Play("ZoomIntoCapsule1", 0);
             canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0); 
             isLookingAtCapsule1 = true;
+            Invoke(nameof(TurnOnButton), 1f);
+            //capsule1Button.SetActive(true);
         }
 
         if (Time.timeSinceLevelLoad >= 11)
@@ -43,4 +48,13 @@ public class Night3 : MonoBehaviour
             aN.enabled = false;
         }
     }
+
+    //void TurnOnButton()
+    //{
+    //    Debug.Log("time to click button");
+    //    if (capsule1Button.active == false)
+    //    {
+    //        capsule1Button.SetActive(true);
+    //    }        
+    //}
 }

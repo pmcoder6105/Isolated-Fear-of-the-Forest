@@ -36,6 +36,7 @@ public class Buttons : MonoBehaviour
         n1 = FindObjectOfType<Night1>();
         n3 = FindObjectOfType<Night3>();
         aS = GetComponent<AudioSource>();
+        Destroy(n3.capsule1Button);
     }
 
     // Update is called once per frame
