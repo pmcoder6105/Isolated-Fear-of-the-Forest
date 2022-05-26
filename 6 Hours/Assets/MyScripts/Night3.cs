@@ -47,6 +47,7 @@ public class Night3 : MonoBehaviour
             canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0);            
             isLookingAtCapsule1 = true;
             Invoke(nameof(TurnOnButton1), 1f);
+            Cursor.lockState = CursorLockMode.None;
             //capsule1Button.SetActive(true);
         }
 
@@ -62,6 +63,7 @@ public class Night3 : MonoBehaviour
             canvas.GetComponent<Animator>().Play("EnableCapsule2Button", 0);
             isLookingAtCapsule2 = true;
             Invoke(nameof(TurnOnButton2), 1f);
+            Cursor.lockState = CursorLockMode.None;
             //capsule1Button.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true)
@@ -76,6 +78,7 @@ public class Night3 : MonoBehaviour
             canvas.GetComponent<Animator>().Play("EnableCapsule3Button", 0);
             isLookingAtCapsule3 = true;
             Invoke(nameof(TurnOnButton3), 1f);
+            Cursor.lockState = CursorLockMode.None;
             //capsule1Button.SetActive(true);
         }
 
