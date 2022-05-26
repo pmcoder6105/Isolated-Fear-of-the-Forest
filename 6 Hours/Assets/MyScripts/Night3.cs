@@ -5,7 +5,10 @@ public class Night3 : MonoBehaviour
 {
     [SerializeField] NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
+    [SerializeField] GameObject prefabedMonster;
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject doomSFXObject;
+    [SerializeField] GameObject fadeOutObject;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
@@ -18,13 +21,17 @@ public class Night3 : MonoBehaviour
     bool inRangeCapsule1 = false;
     bool inRangeCapsule2 = false;
     bool inRangeCapsule3 = false;
+    [SerializeField] AudioClip doomSFX;
+    Vector3 posOfPlayerWhenCompleting3Capsules;
 
     Animator aN;
+    Buttons bT;
 
     // Start is called before the first frame update
     void Start()
     {
         aN = GetComponent<Animator>();
+        bT = FindObjectOfType<Buttons>();
         Debug.Log(Time.timeSinceLevelLoad);
         capsule1Button.SetActive(false);
     }
@@ -90,6 +97,12 @@ public class Night3 : MonoBehaviour
         {
             aN.enabled = false;
         }
+
+        if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
+        {
+            //Enter code here
+            posOfPlayerWhenCompleting3Capsules = cam.transform.position;
+        }
     }
 
     void TurnOnButton1()
@@ -143,6 +156,18 @@ public class Night3 : MonoBehaviour
         else if (other.gameObject.tag != "Capsule3Field")
         {
             inRangeCapsule3 = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            prefabedMonster.SetActive(true);
+            doomSFXObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            fadeOutObject.SetActive(true);
+            Destroy(monsterAI);
+            Debug.Log("your dead");
         }
     }
 }

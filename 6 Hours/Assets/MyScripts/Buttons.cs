@@ -26,9 +26,9 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject winFadeOut;
     [SerializeField] GameObject monsters;
     [SerializeField] GameObject fadeOutsDooms;
-    [SerializeField] GameObject capsule1;
-    [SerializeField] GameObject capsule2;
-    [SerializeField] GameObject capsule3;
+    [SerializeField] public GameObject capsule1;
+    [SerializeField] public GameObject capsule2;
+    [SerializeField] public GameObject capsule3;
     bool canFinishAnotherTask = true;
 
     // Start is called before the first frame update

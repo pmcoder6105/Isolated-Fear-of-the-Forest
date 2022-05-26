@@ -29,6 +29,7 @@ TagManager:
   - Capsule1Field
   - Capsule2Field
   - Capsule3Field
+  - Monster
   layers:
   - Default
   - TransparentFX
