@@ -300,7 +300,7 @@ public class Night1 : MonoBehaviour
             Invoke(nameof(PlayGame), .1f);
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                night1Instructions.SetActive(false);
+                Destroy(night1Instructions);
             }
         }
     }

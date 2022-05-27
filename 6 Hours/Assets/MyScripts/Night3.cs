@@ -1,14 +1,18 @@
 using UnityEngine.AI;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Night3 : MonoBehaviour
 {
     [SerializeField] NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
     [SerializeField] GameObject prefabedMonster;
+    [SerializeField] GameObject carPortal;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject doomSFXObject;
     [SerializeField] GameObject fadeOutObject;
+    [SerializeField] GameObject car;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
@@ -23,9 +27,12 @@ public class Night3 : MonoBehaviour
     bool inRangeCapsule3 = false;
     [SerializeField] AudioClip doomSFX;
     Vector3 posOfPlayerWhenCompleting3Capsules;
+    Quaternion rotOfPlayerWhenCompleting3Capsules;
 
     Animator aN;
     Buttons bT;
+
+    Color c;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +41,7 @@ public class Night3 : MonoBehaviour
         bT = FindObjectOfType<Buttons>();
         Debug.Log(Time.timeSinceLevelLoad);
         capsule1Button.SetActive(false);
+        c.a = 0;
     }
 
     // Update is called once per frame
@@ -102,7 +110,25 @@ public class Night3 : MonoBehaviour
         {
             //Enter code here
             posOfPlayerWhenCompleting3Capsules = cam.transform.position;
+            rotOfPlayerWhenCompleting3Capsules = cam.transform.rotation;
+            Invoke(nameof(StartFadingIn), 5f);     
         }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        for (float f = 2f; f <= 1; f += 2f)
+        {
+            Color c = carPortal.GetComponent<SpriteRenderer>().material.color;
+            c.a = f;
+            GetComponent<SpriteRenderer>().material.color = c;
+            yield return new WaitForSeconds(2f);
+        }
+    }
+
+    void StartFadingIn()
+    {
+        StartCoroutine("FadeIn");
     }
 
     void TurnOnButton1()
@@ -112,6 +138,13 @@ public class Night3 : MonoBehaviour
         {
             capsule1Button.SetActive(true);
         }        
+    }
+
+    void TurnCameraPositionBack()
+    {
+        cam.transform.position = posOfPlayerWhenCompleting3Capsules;
+        cam.transform.rotation = rotOfPlayerWhenCompleting3Capsules;
+        car.SetActive(true);
     }
     void TurnOnButton2()
     {
@@ -166,6 +199,7 @@ public class Night3 : MonoBehaviour
             prefabedMonster.SetActive(true);
             doomSFXObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             fadeOutObject.SetActive(true);
+            monsterAI.gameObject.SetActive(false);
             Destroy(monsterAI);
             Debug.Log("your dead");
         }
