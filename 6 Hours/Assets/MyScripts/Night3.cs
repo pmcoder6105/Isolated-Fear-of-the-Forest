@@ -9,10 +9,10 @@ public class Night3 : MonoBehaviour
     [SerializeField] GameObject timeline;
     [SerializeField] GameObject prefabedMonster;
     [SerializeField] GameObject carPortal;
+    [SerializeField] GameObject carPortalTimeline;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject doomSFXObject;
     [SerializeField] GameObject fadeOutObject;
-    [SerializeField] GameObject car;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
@@ -32,7 +32,6 @@ public class Night3 : MonoBehaviour
     Animator aN;
     Buttons bT;
 
-    Color c;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +39,8 @@ public class Night3 : MonoBehaviour
         aN = GetComponent<Animator>();
         bT = FindObjectOfType<Buttons>();
         Debug.Log(Time.timeSinceLevelLoad);
-        capsule1Button.SetActive(false);
-        c.a = 0;
+        capsule1Button.SetActive(false);        
+        //colorOfCarPortal.a = 0;        
     }
 
     // Update is called once per frame
@@ -50,7 +49,19 @@ public class Night3 : MonoBehaviour
         monsterAI.SetDestination(player.position);
         monsterAI.GetComponent<Animator>().Play("Walk", 0);
 
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true)
+        if (bT.monsterSpeed == 1)
+        {
+            monsterAI.speed = 4;
+        }
+        if (bT.monsterSpeed == 2)
+        {
+            monsterAI.speed = 4.5f;
+        }
+        if (bT.monsterSpeed == 3)
+        {
+            monsterAI.speed = 5;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true && bT.capsule1 != null)
         {           
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -66,7 +77,7 @@ public class Night3 : MonoBehaviour
             //capsule1Button.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule2 == true)
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule2 == true && bT.capsule2 != null)
         {
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -81,7 +92,7 @@ public class Night3 : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             //capsule1Button.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true)
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true && bT.capsule3 != null)
         {
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -109,26 +120,12 @@ public class Night3 : MonoBehaviour
         if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
         {
             //Enter code here
-            posOfPlayerWhenCompleting3Capsules = cam.transform.position;
-            rotOfPlayerWhenCompleting3Capsules = cam.transform.rotation;
-            Invoke(nameof(StartFadingIn), 5f);     
+            //posOfPlayerWhenCompleting3Capsules = cam.transform.position;
+            //rotOfPlayerWhenCompleting3Capsules = cam.transform.rotation;
+            carPortal.SetActive(true);
+            carPortalTimeline.SetActive(true);
+            Invoke(nameof(TurnCameraPositionBack), 16f);
         }
-    }
-
-    private IEnumerator FadeIn()
-    {
-        for (float f = 2f; f <= 1; f += 2f)
-        {
-            Color c = carPortal.GetComponent<SpriteRenderer>().material.color;
-            c.a = f;
-            GetComponent<SpriteRenderer>().material.color = c;
-            yield return new WaitForSeconds(2f);
-        }
-    }
-
-    void StartFadingIn()
-    {
-        StartCoroutine("FadeIn");
     }
 
     void TurnOnButton1()
@@ -142,9 +139,8 @@ public class Night3 : MonoBehaviour
 
     void TurnCameraPositionBack()
     {
-        cam.transform.position = posOfPlayerWhenCompleting3Capsules;
-        cam.transform.rotation = rotOfPlayerWhenCompleting3Capsules;
-        car.SetActive(true);
+        cam.SetActive(true);
+        Destroy(carPortalTimeline);
     }
     void TurnOnButton2()
     {

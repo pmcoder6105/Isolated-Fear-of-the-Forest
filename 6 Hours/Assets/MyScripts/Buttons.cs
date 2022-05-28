@@ -30,6 +30,7 @@ public class Buttons : MonoBehaviour
     [SerializeField] public GameObject capsule2;
     [SerializeField] public GameObject capsule3;
     bool canFinishAnotherTask = true;
+    public int monsterSpeed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +93,7 @@ public class Buttons : MonoBehaviour
         Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
+        monsterSpeed = monsterSpeed + 1;
     }
     void DestroyCapsule2AfterDing()
     {
@@ -101,6 +103,7 @@ public class Buttons : MonoBehaviour
         Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
+        monsterSpeed = monsterSpeed + 1;
     }
     void DestroyCapsule3AfterDing()
     {
@@ -110,6 +113,7 @@ public class Buttons : MonoBehaviour
         Invoke(nameof(TurnAnimatorOffOnceZoomedOut), 1.1f);
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
+        monsterSpeed = monsterSpeed + 1;
     }
     void TurnAnimatorOffOnceZoomedOut()
     {
