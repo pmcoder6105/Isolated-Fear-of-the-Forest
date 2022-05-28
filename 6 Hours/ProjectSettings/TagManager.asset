@@ -30,6 +30,7 @@ TagManager:
   - Capsule2Field
   - Capsule3Field
   - Monster
+  - Car
   layers:
   - Default
   - TransparentFX

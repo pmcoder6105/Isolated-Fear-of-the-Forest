@@ -15,7 +15,6 @@ public class GameControl : MonoBehaviour
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] public GameObject walkingEmpty;
     [SerializeField] public GameObject flashlight;
-    bool isTransporting = false;
     bool isFlashlightOn = false;
     int doorSound;
 

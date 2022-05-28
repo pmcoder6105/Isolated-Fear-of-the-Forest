@@ -31,6 +31,9 @@ public class Buttons : MonoBehaviour
     [SerializeField] public GameObject capsule3;
     bool canFinishAnotherTask = true;
     public int monsterSpeed = 0;
+    public Material level1MonsterMat;
+    public Material level2MonsterMat;
+    public Material level3MonsterMat;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,33 @@ public class Buttons : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
         n1.shouldSkipIntro = true;
+    }
+    public void Night1NextLevel()
+    {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextScene);
+    }
+    public void Night2Replay()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+        n2.shouldSkipIntro = true;
+    }
+    public void Night2NextLevel()
+    {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextScene);
+    }
+    public void Night3Replay()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+        n3.shouldSkipIntro = true;
+    }
+    public void Night3NextLevel()
+    {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextScene);
     }
 
     public void ClickLaptopButtonNight2()
@@ -94,6 +124,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
+        n3.monsterAI.GetComponent<MeshRenderer>().material = level1MonsterMat;
+        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level1MonsterMat;
     }
     void DestroyCapsule2AfterDing()
     {
@@ -104,6 +136,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
+        n3.monsterAI.GetComponent<MeshRenderer>().material = level2MonsterMat;
+        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level2MonsterMat;
     }
     void DestroyCapsule3AfterDing()
     {
@@ -114,6 +148,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
+        n3.monsterAI.GetComponent<MeshRenderer>().material = level3MonsterMat;
+        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level3MonsterMat;
     }
     void TurnAnimatorOffOnceZoomedOut()
     {

@@ -5,14 +5,20 @@ using System.Collections.Generic;
 
 public class Night3 : MonoBehaviour
 {
-    [SerializeField] NavMeshAgent monsterAI;
+    [SerializeField] public NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
-    [SerializeField] GameObject prefabedMonster;
+    [SerializeField] public GameObject prefabedMonster;
     [SerializeField] GameObject carPortal;
     [SerializeField] GameObject carPortalTimeline;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject doomSFXObject;
+    [SerializeField] GameObject doomSFXOpeningObject;
+    [SerializeField] GameObject doomSFXWinObject;
     [SerializeField] GameObject fadeOutObject;
+    [SerializeField] GameObject fadeOutWinObject;
+    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject instructions;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
@@ -25,6 +31,7 @@ public class Night3 : MonoBehaviour
     bool inRangeCapsule1 = false;
     bool inRangeCapsule2 = false;
     bool inRangeCapsule3 = false;
+    public bool shouldSkipIntro = false;
     [SerializeField] AudioClip doomSFX;
     Vector3 posOfPlayerWhenCompleting3Capsules;
     Quaternion rotOfPlayerWhenCompleting3Capsules;
@@ -40,7 +47,6 @@ public class Night3 : MonoBehaviour
         bT = FindObjectOfType<Buttons>();
         Debug.Log(Time.timeSinceLevelLoad);
         capsule1Button.SetActive(false);        
-        //colorOfCarPortal.a = 0;        
     }
 
     // Update is called once per frame
@@ -59,7 +65,7 @@ public class Night3 : MonoBehaviour
         }
         if (bT.monsterSpeed == 3)
         {
-            monsterAI.speed = 5;
+            monsterAI.speed = 5.5f;
         }
         if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true && bT.capsule1 != null)
         {           
@@ -108,23 +114,41 @@ public class Night3 : MonoBehaviour
             //capsule1Button.SetActive(true);
         }
 
-        if (Time.timeSinceLevelLoad >= 11)
+        if (Time.timeSinceLevelLoad >= 11 && shouldSkipIntro == false && instructions != null)
         {
             timeline.SetActive(false);
+            instructions.SetActive(true);
         }
-        if (timeline.active == false && Time.timeSinceLevelLoad <= 12)
+        else if (shouldSkipIntro == true && instructions != null)
+        {
+            timeline.SetActive(false);
+            instructions.SetActive(true);
+        }
+        if (timeline.active == false && Time.timeSinceLevelLoad <= 12 && shouldSkipIntro == false)
+        {
+            aN.enabled = false;
+        }
+        if (shouldSkipIntro == true && Time.timeSinceLevelLoad >= 0.1f)
         {
             aN.enabled = false;
         }
 
         if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
         {
-            //Enter code here
-            //posOfPlayerWhenCompleting3Capsules = cam.transform.position;
-            //rotOfPlayerWhenCompleting3Capsules = cam.transform.rotation;
             carPortal.SetActive(true);
             carPortalTimeline.SetActive(true);
             Invoke(nameof(TurnCameraPositionBack), 16f);
+        }
+        if (instructions.active == true)
+        {
+            if (!doomSFXOpeningObject.GetComponent<AudioSource>().isPlaying)
+            {
+                doomSFXOpeningObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Destroy(instructions);
+            }
         }
     }
 
@@ -186,6 +210,19 @@ public class Night3 : MonoBehaviour
         {
             inRangeCapsule3 = false;
         }
+        if (other.gameObject.tag == "Car")
+        {
+            Debug.Log("won");
+            fadeOutWinObject.SetActive(true);
+            GetComponent<Rigidbody>().isKinematic = true;
+            doomSFXWinObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            GetComponent<CapsuleCollider>().enabled = false;            
+            Invoke(nameof(TurnOnWinScreen), 2f);
+        }
+    }
+    void TurnOnWinScreen()
+    {
+        winScreen.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -198,6 +235,11 @@ public class Night3 : MonoBehaviour
             monsterAI.gameObject.SetActive(false);
             Destroy(monsterAI);
             Debug.Log("your dead");
+            Invoke(nameof(TurnOnLoseScreen), 2f);
         }
+    }
+    void TurnOnLoseScreen()
+    {
+        loseScreen.SetActive(true);
     }
 }
