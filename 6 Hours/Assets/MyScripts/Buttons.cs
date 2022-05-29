@@ -50,6 +50,10 @@ public class Buttons : MonoBehaviour
 
     }
 
+    public void PlayLvl1()
+    {
+        SceneManager.LoadScene("Night 1");
+    }
     public void Night1Replay()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
