@@ -10,6 +10,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject night1Instructions;
     [SerializeField] public GameObject doomSFXEmpty;
     [SerializeField] public GameObject fadeOut;
+    [SerializeField] GameObject fadeOutDeathObject;
     [SerializeField] GameObject bloodOverlay;
     [SerializeField] GameObject radio;
     [SerializeField] GameObject canvas;
@@ -20,6 +21,7 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
+    [SerializeField] GameObject rustleEmpty;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
     Vector3 monsterPos;
@@ -90,7 +92,11 @@ public class Night1 : MonoBehaviour
         EnablePlayerMovementAfterCutscene();
         RustleTest();
         RunTime();
-        //Debug.Log(Time.timeSinceLevelLoad);
+        Debug.Log(makeSureHasAvoidedDoesntTurnFalse);
+        if (loseScreen.active || winScreen.active)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     private void RunTime()
@@ -207,19 +213,23 @@ public class Night1 : MonoBehaviour
     void TurnBoolTrueToPrepareForNextJumpscare()
     {
         hasAvoidedJumpscareRustle = true;
+        makeSureHasAvoidedDoesntTurnFalse = false;
     }
 
     void AvoidJumpscare()
     {
-        if (hasAvoidedJumpscareRustle == false)
+        if (makeSureHasAvoidedDoesntTurnFalse == false)
         {
-            if (!aS.isPlaying && hasAvoidedJumpscareRustle == false)
+            if (!aS.isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
             {
-                //aS.Stop();
-                aS.PlayOneShot(rustle);
+                //aS.Stop(); 
+                if (!rustleEmpty.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }                
             }
             Debug.Log("played rustle");
-            if (Input.GetKeyDown(KeyCode.Mouse1) && hasAvoidedJumpscareRustle == false)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && makeSureHasAvoidedDoesntTurnFalse == false)
             {
                 hasAvoidedJumpscareRustle = true;
                 makeSureHasAvoidedDoesntTurnFalse = true;
@@ -237,8 +247,25 @@ public class Night1 : MonoBehaviour
                 }
                 return;
             }
+            if (makeSureHasAvoidedDoesntTurnFalse == true)
+            {
+                Invoke(nameof(TurnOffAudioSourcesAfterAvoidingJumpscare), 4.1f);
+            }
+            Invoke(nameof(TurnOffRustleAfterPlayedOnce), 1.2f);
         }
-        Invoke(nameof(JumpscareAfterNotPlayingAudio), 2f);
+        Invoke(nameof(JumpscareAfterNotPlayingAudio), 4f);
+    }
+
+    void TurnOffAudioSourcesAfterAvoidingJumpscare()
+    {
+        rustleEmpty.GetComponent<AudioSource>().enabled = false;
+        radio.GetComponent<AudioSource>().enabled = false;
+        Invoke(nameof(TurnOnAudiosourcesAfterAvoidedJumpscare), 1f);
+    }
+    void TurnOnAudiosourcesAfterAvoidedJumpscare()
+    {
+        rustleEmpty.GetComponent<AudioSource>().enabled = true;
+        radio.GetComponent<AudioSource>().enabled = true;
     }
 
     void JumpscareAfterNotPlayingAudio()
@@ -259,6 +286,11 @@ public class Night1 : MonoBehaviour
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         }
+    }
+
+    void TurnOffRustleAfterPlayedOnce()
+    {
+        rustleEmpty.GetComponent<AudioSource>().enabled = false;
     }
 
     void EnablePlayerMovementAfterCutscene()
@@ -312,9 +344,12 @@ public class Night1 : MonoBehaviour
         shouldStartTimer = true;
     }
 
-    private void PlayDoomSFX()
+    void PlayDoomSFX()
     {
-        doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
+        {
+            doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        }        
     }
 
     void StopMusic()
@@ -404,11 +439,18 @@ public class Night1 : MonoBehaviour
         rustle6 = 500;
         rustle7 = 500;
         gC.flashlight.SetActive(false);
+        fadeOutDeathObject.SetActive(true);
+        Invoke(nameof(TurnOffFadeOutDeathAfterEnabling), 1f);
     }
 
     void JumpscareMonster()
     {
         monster.SetActive(true);
         //monster.gameObject.transform.position = monsterPos;
+    }
+    void TurnOffFadeOutDeathAfterEnabling()
+    {
+        Destroy(fadeOutDeathObject);
+        loseScreen.SetActive(true);
     }
 }

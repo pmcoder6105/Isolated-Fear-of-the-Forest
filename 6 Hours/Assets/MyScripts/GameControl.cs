@@ -42,8 +42,8 @@ public class GameControl : MonoBehaviour
                 isFlashlightOn = !isFlashlightOn;
                 if (!aS.isPlaying)
                 {
-                    aS.Stop();
-                    aS.PlayOneShot(flashlightSFX);
+                    flashlight.GetComponent<AudioSource>().Stop();
+                    flashlight.GetComponent<AudioSource>().PlayOneShot(flashlightSFX);                    
                     Invoke(nameof(StopPlayingAudio), 0.3f);
                 }
             }
@@ -60,7 +60,7 @@ public class GameControl : MonoBehaviour
 
     void StopPlayingAudio()
     {
-        aS.Stop();
+        flashlight.GetComponent<AudioSource>().Stop();
     }
 
     void WalkingSFX()
