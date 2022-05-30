@@ -90,6 +90,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject ventDarknessGameobject;
     [SerializeField] GameObject ventAvertedObject;
     [SerializeField] AudioClip crawlingInVent;
+    [SerializeField] AudioClip loseSFX;
     bool canCloseDoor = true;
     bool shouldInvokeJumpscare = false;
     bool shouldNotScarePlayerAfterClosingDoorBug = false;
@@ -153,6 +154,13 @@ public class Night2 : MonoBehaviour
     {
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
+        if (loseScreen.active)
+        {
+            if (!aS.isPlaying)
+            {
+                aS.PlayOneShot(loseSFX);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.B))
         {
             Destroy(Appliances);
@@ -630,25 +638,29 @@ public class Night2 : MonoBehaviour
     {        
         monster2.SetActive(true);
         fadeOut2.SetActive(true);
-        doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);                    
+        doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug3()
     {
         monster3.SetActive(true);
         fadeOut3.SetActive(true);
         doomSFXEmpty3.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug4()
     {
         monster4.SetActive(true);
         fadeOut4.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug5()
     {
         monster5.SetActive(true);
         fadeOut5.SetActive(true);
         doomSFXEmpty5.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     
     void StartJumpscareForAllJumpscaresWithBug6()
@@ -656,42 +668,49 @@ public class Night2 : MonoBehaviour
         monster6.SetActive(true);
         fadeOut6.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug7()
     {
         monster7.SetActive(true);
         fadeOut7.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug8()
     {
         monster8.SetActive(true);
         fadeOut8.SetActive(true);
         doomSFXEmpty8.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug9()
     {
         monster9.SetActive(true);
         fadeOut9.SetActive(true);
         doomSFXEmpty9.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug10()
     {
         monster10.SetActive(true);
         fadeOut10.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug11()
     {
         monster11.SetActive(true);
         fadeOut11.SetActive(true);
         doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug12()
     {
         monster12.SetActive(true);
         fadeOut12.SetActive(true);
         //doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
 
     }
     void StartJumpscareForAllJumpscaresWithBug13()
@@ -699,18 +718,21 @@ public class Night2 : MonoBehaviour
         monster12.SetActive(true);
         fadeOut12.SetActive(true);
         //doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug14()
     {
         monster14.SetActive(true);
         fadeOut14.SetActive(true);
         doomSFXEmpty14.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug15()
     {
         monster15.SetActive(true);
         fadeOut15.SetActive(true);
         doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StopRightEyeFromLooping()
     {
@@ -726,6 +748,11 @@ public class Night2 : MonoBehaviour
         {
             redEyeLeftGameobject.SetActive(false);
         }
+    }
+
+    void TurnOnLoseScreenAfterDying()
+    {
+        loseScreen.SetActive(true);
     }
 
     void AvoidJumpscareLeft()

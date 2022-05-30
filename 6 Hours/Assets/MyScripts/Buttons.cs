@@ -8,6 +8,7 @@ public class Buttons : MonoBehaviour
     Night3 n3;
     AudioSource aS;
     [SerializeField] AudioClip buttonClickNight2;
+    [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip whirringSFXWhenCompletingTask;
     [SerializeField] AudioClip ding;
     [SerializeField] GameObject winScreen;
@@ -349,6 +350,10 @@ public class Buttons : MonoBehaviour
     void TurnOnWinScreen()
     {
         winScreen.SetActive(true);
+        if (!aS.isPlaying)
+        {
+            aS.PlayOneShot(winSFX);
+        }
         winFadeOut.SetActive(false);
         Destroy(n2.MainScreen);
         Destroy(n2.Cleaning);

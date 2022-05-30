@@ -18,10 +18,16 @@ public class Night1 : MonoBehaviour
     [SerializeField] AudioClip radioSFX;
     [SerializeField] public AudioClip doomSFX;
     [SerializeField] AudioClip loseSFX;
-    [SerializeField] AudioClip winSFX;
+    [SerializeField] public AudioClip winSFX;
     [SerializeField] AudioClip alarmBeep;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject rustleEmpty;
+    [SerializeField] GameObject rustleEmpty2;
+    [SerializeField] GameObject rustleEmpty3;
+    [SerializeField] GameObject rustleEmpty4;
+    [SerializeField] GameObject rustleEmpty5;
+    [SerializeField] GameObject rustleEmpty6;
+    [SerializeField] GameObject rustleEmpty7;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
     Vector3 monsterPos;
@@ -93,9 +99,16 @@ public class Night1 : MonoBehaviour
         RustleTest();
         RunTime();
         Debug.Log(makeSureHasAvoidedDoesntTurnFalse);
-        if (loseScreen.active || winScreen.active)
+        if (loseScreen.active)
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+        if (winScreen.active)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Debug.Log("win screen should be active");
+            aN.enabled = true;
+            aN.Play("DeathAnimNight1", 0);
         }
     }
 
@@ -109,7 +122,7 @@ public class Night1 : MonoBehaviour
                 float timeNeeded = Time.time - 30;
                 timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
                 //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
-                if (Time.time > 150 && Time.time < 159)
+                if (Time.timeSinceLevelLoad > 150)
                 {
                     if (!aS.isPlaying)
                     {
@@ -117,7 +130,7 @@ public class Night1 : MonoBehaviour
                         aS.Stop();
                         aS.PlayOneShot(alarmBeep);
                         Invoke(nameof(StopAudioWithEpsilon), 3);
-                        Invoke(nameof(Jumpscare), 2f);
+                        Invoke(nameof(Jumpscare), 4f);
                     }
                     bloodOverlay.SetActive(true);
                     Invoke(nameof(TurnFadeOutBackOffLose), 1f);
@@ -129,7 +142,7 @@ public class Night1 : MonoBehaviour
             if (shouldSkipIntro == true)
             {
                 timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
-                if (Time.time > 120 && Time.time < 129)
+                if (Time.timeSinceLevelLoad > 120)
                 {
                     if (!aS.isPlaying)
                     {
@@ -165,6 +178,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle2 && time <= rustle2 + 4)
         {
@@ -172,6 +192,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty2.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty2.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty2.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle3 && time <= rustle3 + 4)
         {
@@ -179,6 +206,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty3.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty3.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty3.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle4 && time <= rustle4 + 4)
         {
@@ -186,6 +220,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty4.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty4.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty4.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle5 && time <= rustle5 + 4)
         {
@@ -193,6 +234,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty5.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty5.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty5.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle6 && time <= rustle6 + 4)
         {
@@ -200,6 +248,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty6.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty6.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty6.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
         if (time >= rustle7 && time <= rustle7 + 4)
         {
@@ -207,6 +262,13 @@ public class Night1 : MonoBehaviour
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
             aS.volume = 0.05f;
+            if (!rustleEmpty7.GetComponent<AudioSource>().isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
+            {
+                if (!rustleEmpty7.GetComponent<AudioSource>().isPlaying)
+                {
+                    rustleEmpty7.GetComponent<AudioSource>().PlayOneShot(rustle);
+                }
+            }
         }
     }
 
@@ -219,15 +281,7 @@ public class Night1 : MonoBehaviour
     void AvoidJumpscare()
     {
         if (makeSureHasAvoidedDoesntTurnFalse == false)
-        {
-            if (!aS.isPlaying && makeSureHasAvoidedDoesntTurnFalse == false)
-            {
-                //aS.Stop(); 
-                if (!rustleEmpty.GetComponent<AudioSource>().isPlaying)
-                {
-                    rustleEmpty.GetComponent<AudioSource>().PlayOneShot(rustle);
-                }                
-            }
+        {            
             Debug.Log("played rustle");
             if (Input.GetKeyDown(KeyCode.Mouse1) && makeSureHasAvoidedDoesntTurnFalse == false)
             {
@@ -258,13 +312,13 @@ public class Night1 : MonoBehaviour
 
     void TurnOffAudioSourcesAfterAvoidingJumpscare()
     {
-        rustleEmpty.GetComponent<AudioSource>().enabled = false;
+        //rustleEmpty.GetComponent<AudioSource>().enabled = false;
         radio.GetComponent<AudioSource>().enabled = false;
         Invoke(nameof(TurnOnAudiosourcesAfterAvoidedJumpscare), 1f);
     }
     void TurnOnAudiosourcesAfterAvoidedJumpscare()
     {
-        rustleEmpty.GetComponent<AudioSource>().enabled = true;
+        //rustleEmpty.GetComponent<AudioSource>().enabled = true;
         radio.GetComponent<AudioSource>().enabled = true;
     }
 
@@ -367,7 +421,7 @@ public class Night1 : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             this.gameObject.GetComponent<GameControl>().enabled = false;
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            monster = null;
+            Destroy(monster);
             gC.walkingEmpty.SetActive(false);
             fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
             rustle1 = 500;
@@ -441,6 +495,10 @@ public class Night1 : MonoBehaviour
         gC.flashlight.SetActive(false);
         fadeOutDeathObject.SetActive(true);
         Invoke(nameof(TurnOffFadeOutDeathAfterEnabling), 1f);
+        if (!aS.isPlaying)
+        {
+            aS.PlayOneShot(loseSFX);
+        }
     }
 
     void JumpscareMonster()
