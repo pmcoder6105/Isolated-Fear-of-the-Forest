@@ -90,15 +90,12 @@ public class Night1 : MonoBehaviour
         EnablePlayerMovementAfterCutscene();
         RustleTest();
         RunTime();
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            this.gameObject.transform.position = new Vector3(12.71f, -6.497f, -18.334f);
-        }
+        //Debug.Log(Time.timeSinceLevelLoad);
     }
 
     private void RunTime()
     {
-        if (shouldStartTimer == true)
+        if (shouldStartTimer == true && this.gameObject.GetComponent<CapsuleCollider>().enabled == true) 
         {
             timer.SetActive(true);
             if (shouldSkipIntro == false)
@@ -155,54 +152,55 @@ public class Night1 : MonoBehaviour
     void RustleTest()
     {
         time += Time.deltaTime;
-        if (time >= rustle1 && time <= rustle1 + 1.5)
+        if (time >= rustle1 && time <= rustle1 + 4)
         {
             hasAvoidedJumpscareRustle = false;
+            Debug.Log("should rustle now");
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle2 && time <= rustle2 + 1.5)
+        if (time >= rustle2 && time <= rustle2 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle3 && time <= rustle3 + 1.5)
+        if (time >= rustle3 && time <= rustle3 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle4 && time <= rustle4 + 1.5)
+        if (time >= rustle4 && time <= rustle4 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle5 && time <= rustle5 + 1.5)
+        if (time >= rustle5 && time <= rustle5 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle6 && time <= rustle6 + 1.5)
+        if (time >= rustle6 && time <= rustle6 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
-        if (time >= rustle7 && time <= rustle7 + 1.5)
+        if (time >= rustle7 && time <= rustle7 + 4)
         {
             hasAvoidedJumpscareRustle = false;
             AvoidJumpscare();
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 5f);
-            aS.volume = 0.01f;
+            aS.volume = 0.05f;
         }
     }
 
@@ -215,13 +213,13 @@ public class Night1 : MonoBehaviour
     {
         if (hasAvoidedJumpscareRustle == false)
         {
-            if (!aS.isPlaying)
+            if (!aS.isPlaying && hasAvoidedJumpscareRustle == false)
             {
-                aS.Stop();
+                //aS.Stop();
                 aS.PlayOneShot(rustle);
             }
             Debug.Log("played rustle");
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1) && hasAvoidedJumpscareRustle == false)
             {
                 hasAvoidedJumpscareRustle = true;
                 makeSureHasAvoidedDoesntTurnFalse = true;
@@ -268,23 +266,30 @@ public class Night1 : MonoBehaviour
         if (aNOn == false)
         {
             aN.enabled = false;
-            night1Instructions.SetActive(true);
+            if (night1Instructions != null)
+            {
+                night1Instructions.SetActive(true);
+            }            
         }
         else if (aNOn == true)
         {
             aN.enabled = true;
         }
-        if (night1Instructions.active == true)
+        if (night1Instructions != null)
         {
             Invoke(nameof(PlayerHasSeenInstructions), 5f);
             NightOneInstructionsOff();
             shouldStartTimer = true;
-            if (!aS.isPlaying)
+            if (!aS.isPlaying && night1Instructions.active == true)
             {
                 aS.Stop();
                 Invoke(nameof(PlayDoomSFX), 0.1f);
                 Invoke(nameof(StopMusic), 7);
-            }            
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1) && night1Instructions != null)
+            {
+                Destroy(night1Instructions);
+            }
         }
     }
 
@@ -298,10 +303,6 @@ public class Night1 : MonoBehaviour
         if (hasSeenNight1Instructions == true)
         {
             Invoke(nameof(PlayGame), .1f);
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                Destroy(night1Instructions);
-            }
         }
     }
 
