@@ -94,6 +94,11 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject ventDarknessGameobject5;
     [SerializeField] GameObject ventDarknessGameobject6;
     [SerializeField] GameObject ventAvertedObject;
+    [SerializeField] GameObject ventAvertedObject2;
+    [SerializeField] GameObject ventAvertedObject3;
+    [SerializeField] GameObject ventAvertedObject4;
+    [SerializeField] GameObject ventAvertedObject5;
+    [SerializeField] GameObject ventAvertedObject6;
     [SerializeField] AudioClip crawlingInVent;
     [SerializeField] AudioClip loseSFX;
     bool canCloseDoor = true;
@@ -266,6 +271,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster4);
                 Destroy(fadeOut4);
                 Destroy(doomSFXEmpty4);
+                ventAvertedObject.GetComponent<Animator>().enabled = true;
+                ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= redEye5Left && Time.time <= redEye5Left + 5.11f)
@@ -301,7 +314,7 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug6), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster6 != null)
+            if (!ventDarknessGameobject2.GetComponent<AudioSource>().isPlaying && monster6 != null)
             {
                 ventDarknessGameobject2.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject2.GetComponent<AudioSource>().volume = 1;
@@ -319,6 +332,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster6);
                 Destroy(fadeOut6);
                 Destroy(doomSFXEmpty6);
+                ventAvertedObject2.GetComponent<Animator>().enabled = true;
+                ventAvertedObject2.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject2.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject2.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject2.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject2.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= vent7 && Time.time <= vent7 + 5.11f)
@@ -326,7 +347,7 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug7), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster7 != null)
+            if (!ventDarknessGameobject3.GetComponent<AudioSource>().isPlaying && monster7 != null)
             {
                 ventDarknessGameobject3.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject3.GetComponent<AudioSource>().volume = 1;
@@ -344,6 +365,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster7);
                 Destroy(fadeOut7);
                 Destroy(doomSFXEmpty7);
+                ventAvertedObject3.GetComponent<Animator>().enabled = true;
+                ventAvertedObject3.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject3.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject3.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject3.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= redEye8Right && Time.time <= redEye8Right + 5.11f)
@@ -405,7 +434,7 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug10), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster10 != null)
+            if (!ventDarknessGameobject4.GetComponent<AudioSource>().isPlaying && monster10 != null)
             {
                 ventDarknessGameobject4.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject4.GetComponent<AudioSource>().volume = 1;
@@ -423,6 +452,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster10);
                 Destroy(fadeOut10);
                 Destroy(doomSFXEmpty10);
+                ventAvertedObject4.GetComponent<Animator>().enabled = true;
+                ventAvertedObject4.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject4.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject4.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject4.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject4.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= redEye11Left && Time.time <= redEye11Left + 5.11f)
@@ -457,7 +494,7 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug12), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster12 != null)
+            if (!ventDarknessGameobject5.GetComponent<AudioSource>().isPlaying && monster12 != null)
             {
                 ventDarknessGameobject5.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject5.GetComponent<AudioSource>().volume = 1;
@@ -475,6 +512,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster12);
                 Destroy(fadeOut12);
                 Destroy(doomSFXEmpty12);
+                ventAvertedObject5.GetComponent<Animator>().enabled = true;
+                ventAvertedObject5.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject5.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject5.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject5.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject5.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= vent13 && Time.time <= vent13 + 5.11f)
@@ -482,7 +527,7 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug13), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster13 != null)
+            if (!ventDarknessGameobject6.GetComponent<AudioSource>().isPlaying && monster13 != null)
             {
                 ventDarknessGameobject6.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject6.GetComponent<AudioSource>().volume = 1;
@@ -500,6 +545,14 @@ public class Night2 : MonoBehaviour
                 Destroy(monster13);
                 Destroy(fadeOut13);
                 Destroy(doomSFXEmpty13);
+                ventAvertedObject6.GetComponent<Animator>().enabled = true;
+                ventAvertedObject6.GetComponent<Animator>().Play("VentAverted", 0, 0f);
+                if (!ventAvertedObject6.GetComponent<AudioSource>().isPlaying)
+                {
+                    ventDarknessGameobject6.GetComponent<AudioSource>().Stop();
+                    ventAvertedObject6.GetComponent<AudioSource>().volume = 0.2f;
+                    ventAvertedObject6.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
+                }
             }
         }
         if (Time.time >= redEye14Right && Time.time <= redEye14Right + 5.11f)
@@ -846,15 +899,8 @@ public class Night2 : MonoBehaviour
                 makeSureHasAvoidedJumpscareDoesntTurnFalse = true;
                 shouldInvokeJumpscare = false;
                 //ventAvertedObject.SetActive(true);
-                ventAvertedObject.GetComponent<Animator>().enabled = true;
-                ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0, 0f);
-                if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
-                {
-                    ventDarknessGameobject.GetComponent<AudioSource>().Stop();
-                    ventAvertedObject.GetComponent<AudioSource>().volume = 0.2f;
-                    ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
-                }
-                Invoke(nameof(VentAvertedDoor), 4f);
+                
+                //Invoke(nameof(VentAvertedDoor), 4f);
             }
         }
         //Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
