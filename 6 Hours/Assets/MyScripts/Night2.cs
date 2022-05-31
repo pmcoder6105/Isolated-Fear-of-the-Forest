@@ -88,6 +88,11 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
     [SerializeField] GameObject rightEyeHallwayAvertedObject;
     [SerializeField] GameObject ventDarknessGameobject;
+    [SerializeField] GameObject ventDarknessGameobject2;
+    [SerializeField] GameObject ventDarknessGameobject3;
+    [SerializeField] GameObject ventDarknessGameobject4;
+    [SerializeField] GameObject ventDarknessGameobject5;
+    [SerializeField] GameObject ventDarknessGameobject6;
     [SerializeField] GameObject ventAvertedObject;
     [SerializeField] AudioClip crawlingInVent;
     [SerializeField] AudioClip loseSFX;
@@ -243,14 +248,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug4), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
+                ventDarknessGameobject.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject.GetComponent<AudioSource>().volume = 1;
                 ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }            
-            else if (hasAvoidedJumpscare == true)
+            if (monster4 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject);
             }
             hasAvoidedJumpscare = false;            
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -295,14 +301,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug6), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster6 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
-                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+                ventDarknessGameobject2.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject2.GetComponent<AudioSource>().volume = 1;
+                ventDarknessGameobject2.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }
-            else if (hasAvoidedJumpscare == true)
+            if (monster6 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject2);
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -319,14 +326,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug7), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster7 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
-                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+                ventDarknessGameobject3.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject3.GetComponent<AudioSource>().volume = 1;
+                ventDarknessGameobject3.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }
-            else if (hasAvoidedJumpscare == true)
+            if (monster7 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject3);
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -397,14 +405,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug10), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster10 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
-                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+                ventDarknessGameobject4.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject4.GetComponent<AudioSource>().volume = 1;
+                ventDarknessGameobject4.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }
-            else if (hasAvoidedJumpscare == true)
+            if (monster10 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject4);
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -448,14 +457,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug12), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster12 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
-                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+                ventDarknessGameobject5.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject5.GetComponent<AudioSource>().volume = 1;
+                ventDarknessGameobject5.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }
-            else if (hasAvoidedJumpscare == true)
+            if (monster12 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject5);
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -472,14 +482,15 @@ public class Night2 : MonoBehaviour
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug13), 5.1f);
-            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster4 == null)
+            if (!ventDarknessGameobject.GetComponent<AudioSource>().isPlaying && monster13 != null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().volume = 0.5f;
-                ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
+                ventDarknessGameobject6.GetComponent<AudioSource>().enabled = true;
+                ventDarknessGameobject6.GetComponent<AudioSource>().volume = 1;
+                ventDarknessGameobject6.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
             }
-            else if (hasAvoidedJumpscare == true)
+            if (monster13 == null)
             {
-                ventDarknessGameobject.GetComponent<AudioSource>().Stop();
+                Destroy(ventDarknessGameobject6);
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
@@ -753,6 +764,21 @@ public class Night2 : MonoBehaviour
     void TurnOnLoseScreenAfterDying()
     {
         loseScreen.SetActive(true);
+        Destroy(fadeOut15);
+        Destroy(fadeOut14);
+        Destroy(fadeOut13);
+        Destroy(fadeOut12);
+        Destroy(fadeOut11);
+        Destroy(fadeOut10);
+        Destroy(fadeOut9);
+        Destroy(fadeOut8);
+        Destroy(fadeOut7);
+        Destroy(fadeOut6);
+        Destroy(fadeOut5);
+        Destroy(fadeOut4);
+        Destroy(fadeOut3);
+        Destroy(fadeOut2);
+        Destroy(fadeOut);
     }
 
     void AvoidJumpscareLeft()
@@ -884,7 +910,7 @@ public class Night2 : MonoBehaviour
             fadeOut.SetActive(true);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             //once created lose screen, make sure to enable it here
-            
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
         }
     }
 
