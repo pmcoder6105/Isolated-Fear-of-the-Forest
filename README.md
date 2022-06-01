@@ -17,15 +17,15 @@ First of all, all of these packs are free to use, and are very high quality
 
 5. "Classic Interior Door Pack 1" for other doors around house Link: https://assetstore.unity.com/packages/3d/props/interior/classic-interior-door-pack-1-118744
 
-6. "Dream Forest Tree" for forest. Link: https://assetstore.unity.com/packages/3d/vegetation/trees/dream-forest-tree-105297
+6. "Dream Forest Tree" for forest trees. Link: https://assetstore.unity.com/packages/3d/vegetation/trees/dream-forest-tree-105297
 
-7. "Horror Assets" for creepy doll decor. Link: https://assetstore.unity.com/packages/3d/props/horror-assets-69717
+7. "Horror Assets" for creepy decor. Link: https://assetstore.unity.com/packages/3d/props/horror-assets-69717
 
-8. "Asset Unlock: Kitchen" for kitchen items. You won't be able to use this unless you finish a Unity Learn Mission. LINK: https://learn.unity.com/mission/programming-basics
 
-9. "Creature Horror Mutant" for main monster. Link: https://assetstore.unity.com/packages/3d/characters/creatures/creature-horror-mutant-113565
 
-10. "Cardboard Boxes Pack HD" for cardboard box. Link: https://assetstore.unity.com/packages/3d/props/industrial/cardboard-boxes-pack-hd-202666
+9. "Creature Horror Mutant" for monster. Link: https://assetstore.unity.com/packages/3d/characters/creatures/creature-horror-mutant-113565
+
+
 
 11. "Free PBR Lamps" for lighting in the house. Link: https://assetstore.unity.com/packages/3d/props/interior/free-pbr-lamps-70181
 
@@ -33,7 +33,7 @@ First of all, all of these packs are free to use, and are very high quality
 
 13. "Urban Night Sky" for skybox. Link: https://assetstore.unity.com/packages/2d/textures-materials/sky/urban-night-sky-134468
 
-14. "Modern Minimalist Sofa" for sofas. Link: https://assetstore.unity.com/packages/3d/props/furniture/modern-minimalist-sofa-136398
+
 
 15. "Standard Assets" for 1st person rigidbody movement. Link: https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2018-4-32351
 
@@ -43,13 +43,13 @@ First of all, all of these packs are free to use, and are very high quality
 
 18. "Concrete Plaster Textures - 4K" for concrete floor ouside house. Link: https://assetstore.unity.com/packages/2d/textures-materials/concrete-plaster-textures-4k-179120
 
-19. "TV Set" for tvs. Link: https://assetstore.unity.com/packages/3d/props/electronics/tv-set-26193
+
 
 20. "Tileable Bricks Wall" for wall texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530
 
 21. "Wooden Floor Materials" for floor texture. Link: https://assetstore.unity.com/packages/2d/textures-materials/wood/wooden-floor-materials-150564
 
-22. "Chain Gang" for chains in bedroom. Link: https://opengameart.org/content/chain-gang
+
 
 23. "Steps in wood floor" for walking sfx. Link: https://opengameart.org/content/steps-in-wood-floor
 
@@ -57,10 +57,10 @@ First of all, all of these packs are free to use, and are very high quality
 
 25. "Door Open 02" for 2nd door opening sfx. Link: https://opengameart.org/content/door-open-door-close-set
 
-26. "Metal sounds" for fence gate opening sfx. Link: https://opengameart.org/content/metal-sounds
 
-27. 
 
-28. "Ghost breath" for monster breathing. Link: https://opengameart.org/content/ghost-breath
+ 
+
+
 
 29. "Creepy Forest (F)" for main soundtrack. Link: https://opengameart.org/content/creepy-forest-f
