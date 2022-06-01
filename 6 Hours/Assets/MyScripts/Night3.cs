@@ -33,6 +33,8 @@ public class Night3 : MonoBehaviour
     bool inRangeCapsule3 = false;
     public bool shouldSkipIntro = false;
     [SerializeField] AudioClip doomSFX;
+    [SerializeField] AudioClip loseSFX;
+    [SerializeField] AudioClip winSFX;
     Vector3 posOfPlayerWhenCompleting3Capsules;
     Quaternion rotOfPlayerWhenCompleting3Capsules;
 
@@ -52,8 +54,11 @@ public class Night3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        monsterAI.SetDestination(player.position);
-        monsterAI.GetComponent<Animator>().Play("Walk", 0);
+        if (instructions == null)
+        {
+            monsterAI.SetDestination(player.position);
+            monsterAI.GetComponent<Animator>().Play("Walk", 0);
+        }        
 
         if (bT.monsterSpeed == 1)
         {
@@ -223,6 +228,14 @@ public class Night3 : MonoBehaviour
     void TurnOnWinScreen()
     {
         winScreen.SetActive(true);
+        Destroy(fadeOutWinObject);
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().PlayOneShot(winSFX);
+        }
+        Cursor.lockState = CursorLockMode.None;
+        aN.enabled = true;
+        aN.Play("PlayerWinN3", 0);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -235,11 +248,17 @@ public class Night3 : MonoBehaviour
             monsterAI.gameObject.SetActive(false);
             Destroy(monsterAI);
             Debug.Log("your dead");
-            Invoke(nameof(TurnOnLoseScreen), 2f);
+            Invoke(nameof(TurnOnLoseScreen), 1f);
         }
     }
     void TurnOnLoseScreen()
     {
         loseScreen.SetActive(true);
+        Destroy(fadeOutObject);
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().PlayOneShot(loseSFX);
+        }
+        Cursor.lockState = CursorLockMode.None;
     }
 }

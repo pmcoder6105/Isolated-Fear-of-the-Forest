@@ -361,5 +361,14 @@ public class Buttons : MonoBehaviour
         Destroy(n2.Appliances);
         Destroy(monsters);
         Destroy(fadeOutsDooms);
+        Destroy(n2.timer);
+        Destroy(n2.redEyeLeftGameobject);
+        Destroy(n2.redEyeRightGameobject);
+        Destroy(n2.ventDarknessGameobject);
+        Destroy(n2.ventDarknessGameobject2);
+        Destroy(n2.ventDarknessGameobject3);
+        Destroy(n2.ventDarknessGameobject4);
+        Destroy(n2.ventDarknessGameobject5);
+        Destroy(n2.ventDarknessGameobject6);
     }
 }

@@ -6,7 +6,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject laptop;
     [SerializeField] GameObject instructions;
     [SerializeField] GameObject loseScreen;
-    [SerializeField] GameObject timer;
+    [SerializeField] public GameObject timer;
     [SerializeField] public GameObject MainScreen;
     [SerializeField] public GameObject Appliances;
     [SerializeField] public GameObject HomeSupplies;
@@ -76,8 +76,8 @@ public class Night2 : MonoBehaviour
     int vent13;
     int redEye14Right;
     int redEye15Left;
-    [SerializeField] GameObject redEyeLeftGameobject;
-    [SerializeField] GameObject redEyeRightGameobject;
+    [SerializeField] public GameObject redEyeLeftGameobject;
+    [SerializeField] public GameObject redEyeRightGameobject;
     bool hasAvoidedJumpscare = true;
     bool makeSureHasAvoidedJumpscareDoesntTurnFalse = false;
     AudioSource aS;
@@ -87,12 +87,12 @@ public class Night2 : MonoBehaviour
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
     [SerializeField] GameObject rightEyeHallwayAvertedObject;
-    [SerializeField] GameObject ventDarknessGameobject;
-    [SerializeField] GameObject ventDarknessGameobject2;
-    [SerializeField] GameObject ventDarknessGameobject3;
-    [SerializeField] GameObject ventDarknessGameobject4;
-    [SerializeField] GameObject ventDarknessGameobject5;
-    [SerializeField] GameObject ventDarknessGameobject6;
+    [SerializeField] public GameObject ventDarknessGameobject;
+    [SerializeField] public GameObject ventDarknessGameobject2;
+    [SerializeField] public GameObject ventDarknessGameobject3;
+    [SerializeField] public GameObject ventDarknessGameobject4;
+    [SerializeField] public GameObject ventDarknessGameobject5;
+    [SerializeField] public GameObject ventDarknessGameobject6;
     [SerializeField] GameObject ventAvertedObject;
     [SerializeField] GameObject ventAvertedObject2;
     [SerializeField] GameObject ventAvertedObject3;
@@ -170,12 +170,6 @@ public class Night2 : MonoBehaviour
             {
                 aS.PlayOneShot(loseSFX);
             }
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Destroy(Appliances);
-            Destroy(Cleaning);
-            Destroy(HomeSupplies);
         }
         if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
         {
@@ -642,13 +636,13 @@ public class Night2 : MonoBehaviour
                 {
                     aS.PlayOneShot(alarmBeep);
                 }
-                monster15.SetActive(true);
-                if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+                monster.SetActive(true);
+                if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
                 {
-                    doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
                 }
-                fadeOut15.SetActive(true);
-                Invoke(nameof(TurnOnLoseScreen), 1f);
+                fadeOut.SetActive(true);
+                Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
             }
             instructions.SetActive(true);
             if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
@@ -666,13 +660,13 @@ public class Night2 : MonoBehaviour
                 {
                     aS.PlayOneShot(alarmBeep);
                 }
-                monster15.SetActive(true);
-                if (!doomSFXEmpty15.GetComponent<AudioSource>().isPlaying)
+                monster.SetActive(true);
+                if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
                 {
-                    doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
                 }
-                fadeOut15.SetActive(true);
-                Invoke(nameof(TurnOnLoseScreen), 1f);
+                fadeOut.SetActive(true);
+                Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
             }
         }
         if (shouldStartTimer == true)
@@ -680,11 +674,6 @@ public class Night2 : MonoBehaviour
             float timeNeeded = Time.time - 10;
             timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
-    }
-
-    void TurnOnLoseScreen()
-    {
-        loseScreen.SetActive(true);
     }
 
     void StartTimeAfterSkip()
