@@ -11,6 +11,7 @@ public class Night3 : MonoBehaviour
     [SerializeField] GameObject carPortal;
     [SerializeField] GameObject carPortalTimeline;
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject clickSpaceToInteract;
     [SerializeField] GameObject doomSFXObject;
     [SerializeField] GameObject doomSFXOpeningObject;
     [SerializeField] GameObject doomSFXWinObject;
@@ -194,26 +195,32 @@ public class Night3 : MonoBehaviour
         if (other.gameObject.tag == "Capsule1Field")
         {
             inRangeCapsule1 = true;
+            clickSpaceToInteract.SetActive(true);
         }
         else if (other.gameObject.tag != "Capsule1Field")
         {
             inRangeCapsule1 = false;
+            clickSpaceToInteract.SetActive(false);
         }
         if (other.gameObject.tag == "Capsule2Field")
         {
             inRangeCapsule2 = true;
+            clickSpaceToInteract.SetActive(true);
         }
         else if (other.gameObject.tag != "Capsule2Field")
         {
             inRangeCapsule2 = false;
+            clickSpaceToInteract.SetActive(false);
         }
         if (other.gameObject.tag == "Capsule3Field")
         {
             inRangeCapsule3 = true;
+            clickSpaceToInteract.SetActive(true);
         }
         else if (other.gameObject.tag != "Capsule3Field")
         {
             inRangeCapsule3 = false;
+            clickSpaceToInteract.SetActive(false);
         }
         if (other.gameObject.tag == "Car")
         {
