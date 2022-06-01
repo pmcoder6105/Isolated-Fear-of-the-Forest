@@ -11514,10 +11514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -16893,6 +16893,7 @@ GameObject:
   - component: {fileID: 615540419}
   - component: {fileID: 615540421}
   - component: {fileID: 615540420}
+  - component: {fileID: 615540422}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -17017,6 +17018,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615540418}
   m_CullTransparentMesh: 1
+--- !u!114 &615540422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615540418}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75f527dc73fec54f84f88d8f75c2eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &616842938
 GameObject:
   m_ObjectHideFlags: 0
@@ -48582,11 +48595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326ea8b863740b04b8f58087c90855cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LRLight: {fileID: 0}
   fadeOutEffect: {fileID: 0}
-  KRLight: {fileID: 0}
-  BRLight: {fileID: 0}
-  HWLight: {fileID: 0}
   doorOpening1: {fileID: 8300000, guid: 04682615f61964541b47169b7887c233, type: 3}
   doorOpening2: {fileID: 8300000, guid: c43b62c1c7407644ea522306381eee9a, type: 3}
   flashlightSFX: {fileID: 8300000, guid: f716593b77df55c478e7f1adc3d95e3d, type: 3}

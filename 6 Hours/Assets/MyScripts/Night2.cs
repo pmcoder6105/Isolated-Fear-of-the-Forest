@@ -624,12 +624,13 @@ public class Night2 : MonoBehaviour
     }
 
     void RunTime()
-    {        
-        if (shouldSkipIntro == true)
-        {
-            timer.SetActive(true);
-            timer.GetComponent<TMP_Text>().text = Time.time.ToString();  
-            if (Time.time >= 240 && Time.time <= 245)
+    {
+        timer.GetComponent<Timer>().enabled = true;
+        if (shouldSkipIntro)
+        {            
+            //timer.SetActive(true);
+            //timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+            if (Time.timeSinceLevelLoad >= 240 && Time.timeSinceLevelLoad <= 245)
             {
                 Debug.Log("add jumpscare material here");
                 if (!aS.isPlaying)
@@ -650,10 +651,10 @@ public class Night2 : MonoBehaviour
                 doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             }            
         }
-        if (shouldSkipIntro == false)
+        else 
         {
             Invoke(nameof(StartTimeAfterSkip), 10f);
-            if (Time.time >= 250 && Time.time <= 255)
+            if (Time.timeSinceLevelLoad >= 250 && Time.timeSinceLevelLoad <= 255)
             {
                 Debug.Log("add jumpscare material here");
                 if (!aS.isPlaying)
@@ -671,8 +672,8 @@ public class Night2 : MonoBehaviour
         }
         if (shouldStartTimer == true)
         {
-            float timeNeeded = Time.time - 10;
-            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+            //float timeNeeded = Time.time - 10;
+            //timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
         }
     }
 
