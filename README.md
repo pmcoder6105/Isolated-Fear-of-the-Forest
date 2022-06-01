@@ -1,9 +1,6 @@
 # 6 Hours
 This game is an original concept game. You get stuck in a cabin in the middle of the woods and you have to survive from this monster haunting it. You will have to perform several tasks thoughout the night in this game to survive. Get to the last night to escape. 
 
-# Where this game is at currently during production
-I am finished with night 1, working on night 2 right now
-
 # How to Build/Compile
 This is a Unity project. You will have to "clone this repo". Otherwise download the contents, and navigate to Assets>Levels then open any .unity file.
 
