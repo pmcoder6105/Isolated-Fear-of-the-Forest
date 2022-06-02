@@ -114,53 +114,25 @@ public class Night2 : MonoBehaviour
     {
         this.gameObject.GetComponent<Animator>().Play("PlayerEnteringRoomNight2", 0);
         bT = FindObjectOfType<Buttons>();
-        if (shouldSkipIntro == false)
-        {
-            redEye1Left = Random.Range(20 + 10, 26 + 10);
-            redEye2Right = Random.Range(34 + 10, 10 + 40);
-            redEye3Right = Random.Range(47 + 10, 10 + 53);
-            vent4 = Random.Range(60 + 10, 10 + 66);
-            redEye5Left = Random.Range(73 + 10, 10 + 78);
-            vent6 = Random.Range(85 + 10, 10 + 95);
-            vent7 = Random.Range(101 + 10, 10 + 111);
-            redEye8Right = Random.Range(120 + 10, 10 + 126);
-            redEye9Right = Random.Range(134 + 10, 10 + 140);
-            vent10 = Random.Range(148 + 10, 10 + 154);
-            redEye11Left = Random.Range(160 + 10, 10 + 166);
-            vent12 = Random.Range(175 + 10, 10 + 200);
-            vent13 = Random.Range(207 + 10, 10 + 215);
-            redEye14Right = Random.Range(222 + 10, 10 + 228);
-            redEye15Left = Random.Range(231 + 10, 10 + 240);
-        }
+        redEye1Left = Random.Range(20 + 10, 26 + 10);
+        redEye2Right = Random.Range(34 + 10, 10 + 40);
+        redEye3Right = Random.Range(47 + 10, 10 + 53);
+        vent4 = Random.Range(60 + 10, 10 + 66);
+        redEye5Left = Random.Range(73 + 10, 10 + 78);
+        vent6 = Random.Range(85 + 10, 10 + 95);
+        vent7 = Random.Range(101 + 10, 10 + 111);
+        redEye8Right = Random.Range(120 + 10, 10 + 126);
+        redEye9Right = Random.Range(134 + 10, 10 + 140);
+        vent10 = Random.Range(148 + 10, 10 + 154);
+        redEye11Left = Random.Range(160 + 10, 10 + 166);
+        vent12 = Random.Range(175 + 10, 10 + 200);
+        vent13 = Random.Range(207 + 10, 10 + 215);
+        redEye14Right = Random.Range(222 + 10, 10 + 228);
+        redEye15Left = Random.Range(231 + 10, 10 + 240);
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;        
         ventAvertedObject.GetComponent<Animator>().enabled = false;        
         Debug.Log(redEye1Left);
-    }
-
-    void SkipIntro()
-    {
-        if (shouldSkipIntro == true)
-        {
-            GetComponent<Animator>().ForceStateNormalizedTime(1);
-            redEye1Left = Random.Range(20, 26);
-            redEye2Right = Random.Range(34, 40);
-            redEye3Right = Random.Range(47, 53);
-            vent4 = Random.Range(60, 66);
-            redEye5Left = Random.Range(73, 78);
-            vent6 = Random.Range(85, 95);
-            vent7 = Random.Range(101, 111);
-            redEye8Right = Random.Range(120, 126);
-            redEye9Right = Random.Range(134, 140);
-            vent10 = Random.Range(148, 154);
-            redEye11Left = Random.Range(160, 166);
-            vent12 = Random.Range(175, 200);
-            vent13 = Random.Range(207, 215);
-            redEye14Right = Random.Range(222, 228);
-            redEye15Left = Random.Range(231, 240);
-            Destroy(instructions);
-            Destroy(audioTracking);
-        }
     }
 
     // Update is called once per frame
@@ -618,9 +590,8 @@ public class Night2 : MonoBehaviour
             laptop.SetActive(false);
         }
 
-        if (instructions.activeInHierarchy && instructions != null && shouldSkipIntro == false)
+        if (instructions.activeInHierarchy && instructions != null)
         {
-            Time.timeScale = 0;
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(instructions);
@@ -629,40 +600,45 @@ public class Night2 : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+        if (instructions.activeInHierarchy == false && instructions == null)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     void RunTime()
     {
-        timer.GetComponent<Timer>().enabled = true;
-        if (shouldSkipIntro)
-        {            
-            //timer.SetActive(true);
-            //timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
-            if (Time.timeSinceLevelLoad >= 240 && Time.timeSinceLevelLoad <= 245)
+        timer.GetComponent<Timer>().enabled = true;                    
+        //timer.SetActive(true);
+        //timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
+        if (Time.timeSinceLevelLoad >= 250 && Time.timeSinceLevelLoad <= 255)
+        {
+            Debug.Log("add jumpscare material here");
+            if (!aS.isPlaying)
             {
-                Debug.Log("add jumpscare material here");
-                if (!aS.isPlaying)
-                {
-                    aS.PlayOneShot(alarmBeep);
-                }
-                monster.SetActive(true);
-                if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
-                {
-                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-                }
-                fadeOut.SetActive(true);
-                Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+                aS.PlayOneShot(alarmBeep);
             }
-            instructions.SetActive(true);            
-            if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
+            monster.SetActive(true);
+            if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
             {
-                doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-            }  
-            if (instructions.activeInHierarchy && instructions != null)
-            {
-                Time.timeScale = 0;
+                doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
             }
-        }     
+            fadeOut.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        if (Time.timeSinceLevelLoad >= 10 && Time.timeSinceLevelLoad <= 10.1f)
+        {
+            instructions.SetActive(true);
+        }                  
+        if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
+        {
+            doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+        }  
+        if (instructions.activeInHierarchy && instructions != null)
+        {
+            Time.timeScale = 0;
+        }
+             
     }
 
     void StartJumpscareForAllJumpscaresWithBug2()
