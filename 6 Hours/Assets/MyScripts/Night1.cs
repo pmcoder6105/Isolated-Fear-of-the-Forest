@@ -114,12 +114,16 @@ public class Night1 : MonoBehaviour
 
     private void RunTime()
     {
+        if (night1Instructions.activeInHierarchy && night1Instructions != null)
+        {
+            Time.timeScale = 0;
+        }
         if (shouldStartTimer == true && this.gameObject.GetComponent<CapsuleCollider>().enabled == true) 
         {
             timer.SetActive(true);
             if (shouldSkipIntro == false)
             {
-                float timeNeeded = Time.time - 30;
+                float timeNeeded = Time.timeSinceLevelLoad - 30;
                 timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
                 //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
                 if (Time.timeSinceLevelLoad > 150)
@@ -170,7 +174,7 @@ public class Night1 : MonoBehaviour
 
     void RustleTest()
     {
-        time += Time.deltaTime;
+        time += Time.timeSinceLevelLoad;
         if (time >= rustle1 && time <= rustle1 + 4)
         {
             hasAvoidedJumpscareRustle = false;
@@ -375,6 +379,7 @@ public class Night1 : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1) && night1Instructions != null)
             {
                 Destroy(night1Instructions);
+                Time.timeScale = 1;
             }
         }
     }

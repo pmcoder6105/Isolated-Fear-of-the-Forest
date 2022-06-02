@@ -59,7 +59,11 @@ public class Night3 : MonoBehaviour
         {
             monsterAI.SetDestination(player.position);
             monsterAI.GetComponent<Animator>().Play("Walk", 0);
-        }        
+        }     
+        if (instructions.activeInHierarchy && instructions != null)
+        {
+            Time.timeScale = 0f;
+        }
 
         if (bT.monsterSpeed == 1)
         {
@@ -154,8 +158,9 @@ public class Night3 : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(instructions);
-            }
-        }
+                Time.timeScale = 1f;
+            }           
+        } 
     }
 
     void TurnOnButton1()

@@ -102,6 +102,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] AudioClip crawlingInVent;
     [SerializeField] AudioClip loseSFX;
     bool canCloseDoor = true;
+    bool freezeTime = true;
     bool shouldInvokeJumpscare = false;
     bool shouldNotScarePlayerAfterClosingDoorBug = false;
     public bool shouldSkipIntro;
@@ -164,6 +165,7 @@ public class Night2 : MonoBehaviour
     {
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
+        Debug.Log(Time.timeScale);
         if (loseScreen.active)
         {
             if (!aS.isPlaying)
@@ -171,7 +173,7 @@ public class Night2 : MonoBehaviour
                 aS.PlayOneShot(loseSFX);
             }
         }
-        if (Time.time >= redEye1Left && Time.time <= redEye1Left + 5)
+        if (Time.timeSinceLevelLoad >= redEye1Left && Time.timeSinceLevelLoad <= redEye1Left + 5)
         {
             if (!aS.isPlaying)
             {
@@ -183,10 +185,10 @@ public class Night2 : MonoBehaviour
             redEyeLeftGameobject.SetActive(true);
             redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
-            hasAvoidedJumpscare = false;            
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);            
-        }        
-        if (Time.time >= redEye2Right && Time.time <= redEye2Right + 5.11f)
+            hasAvoidedJumpscare = false;
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
+        }
+        if (Time.timeSinceLevelLoad >= redEye2Right && Time.timeSinceLevelLoad <= redEye2Right + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -195,7 +197,7 @@ public class Night2 : MonoBehaviour
                 Invoke(nameof(StopAudioAfterPlayed), 2.9f);
             }
             AvoidJumpscareRight();
-            Invoke(nameof(StartJumpscareForAllJumpscaresWithBug2), 5.1f);       
+            Invoke(nameof(StartJumpscareForAllJumpscaresWithBug2), 5.1f);
             redEyeRightGameobject.SetActive(true);
             if (redEyeRightGameobject.active == false)
             {
@@ -203,7 +205,7 @@ public class Night2 : MonoBehaviour
             }
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             Invoke(nameof(StopRightEyeFromLooping), 4);
-            hasAvoidedJumpscare = false;         
+            hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -214,7 +216,7 @@ public class Night2 : MonoBehaviour
             }
         }
 
-        if (Time.time >= redEye3Right && Time.time <= redEye3Right + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye3Right && Time.timeSinceLevelLoad <= redEye3Right + 5.11f)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -231,18 +233,18 @@ public class Night2 : MonoBehaviour
             }
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug3), 5.1f);
-            redEyeRightGameobject.SetActive(true);            
+            redEyeRightGameobject.SetActive(true);
             if (redEyeRightGameobject.active == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
             redEyeRightGameobject.GetComponent<Animator>().Play("RedEyesLightRight", 0);
             Invoke(nameof(StopRightEyeFromLooping), 4);
-            hasAvoidedJumpscare = false;            
-            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);            
+            hasAvoidedJumpscare = false;
+            Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
         }
 
-        if (Time.time >= vent4 && Time.time <= vent4 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent4 && Time.timeSinceLevelLoad <= vent4 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -252,12 +254,12 @@ public class Night2 : MonoBehaviour
                 ventDarknessGameobject.GetComponent<AudioSource>().enabled = true;
                 ventDarknessGameobject.GetComponent<AudioSource>().volume = 1;
                 ventDarknessGameobject.GetComponent<AudioSource>().PlayOneShot(crawlingInVent);
-            }            
+            }
             if (monster4 == null)
             {
                 Destroy(ventDarknessGameobject);
             }
-            hasAvoidedJumpscare = false;            
+            hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -275,7 +277,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= redEye5Left && Time.time <= redEye5Left + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye5Left && Time.timeSinceLevelLoad <= redEye5Left + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -303,7 +305,7 @@ public class Night2 : MonoBehaviour
             }
         }
 
-        if (Time.time >= vent6 && Time.time <= vent6 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent6 && Time.timeSinceLevelLoad <= vent6 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -336,7 +338,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= vent7 && Time.time <= vent7 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent7 && Time.timeSinceLevelLoad <= vent7 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -369,7 +371,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= redEye8Right && Time.time <= redEye8Right + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye8Right && Time.timeSinceLevelLoad <= redEye8Right + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -396,7 +398,7 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty8);
             }
         }
-        if (Time.time >= redEye9Right && Time.time <= redEye9Right + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye9Right && Time.timeSinceLevelLoad <= redEye9Right + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -423,7 +425,7 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty9);
             }
         }
-        if (Time.time >= vent10 && Time.time <= vent10 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent10 && Time.timeSinceLevelLoad <= vent10 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -456,7 +458,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= redEye11Left && Time.time <= redEye11Left + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye11Left && Time.timeSinceLevelLoad <= redEye11Left + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -483,7 +485,7 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty11);
             }
         }
-        if (Time.time >= vent12 && Time.time <= vent12 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent12 && Time.timeSinceLevelLoad <= vent12 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -516,7 +518,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= vent13 && Time.time <= vent13 + 5.11f)
+        if (Time.timeSinceLevelLoad >= vent13 && Time.timeSinceLevelLoad <= vent13 + 5.11f)
         {
             shouldInvokeJumpscare = true;
             AvoidJumpscareVent();
@@ -549,7 +551,7 @@ public class Night2 : MonoBehaviour
                 }
             }
         }
-        if (Time.time >= redEye14Right && Time.time <= redEye14Right + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye14Right && Time.timeSinceLevelLoad <= redEye14Right + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -576,7 +578,7 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty14);
             }
         }
-        if (Time.time >= redEye15Left && Time.time <= redEye15Left + 5.11f)
+        if (Time.timeSinceLevelLoad >= redEye15Left && Time.timeSinceLevelLoad <= redEye15Left + 5.11f)
         {
             shouldInvokeJumpscare = true;
             if (!aS.isPlaying)
@@ -603,7 +605,7 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty15);
             }
         }
-        if (monster.active || monster2.active || monster3.active || monster4.active || monster5.active || monster6.active || 
+        if (monster.active || monster2.active || monster3.active || monster4.active || monster5.active || monster6.active ||
             monster7.active || monster8.active || monster9.active || monster10.active || monster11.active || monster12.active || monster13.active || monster14.active || monster15.active)
         {
             MainScreen.SetActive(false);
@@ -619,6 +621,8 @@ public class Night2 : MonoBehaviour
             {
                 Destroy(instructions);
                 Destroy(doomSFXOpeningInstructions);
+                freezeTime = false;
+                Time.timeScale = 1;
             }
         }
     }
@@ -626,6 +630,10 @@ public class Night2 : MonoBehaviour
     void RunTime()
     {
         timer.GetComponent<Timer>().enabled = true;
+        if (instructions.activeInHierarchy && instructions != null)
+        {
+            Time.timeScale = 0;
+        }
         if (shouldSkipIntro)
         {            
             //timer.SetActive(true);
@@ -645,7 +653,7 @@ public class Night2 : MonoBehaviour
                 fadeOut.SetActive(true);
                 Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
             }
-            instructions.SetActive(true);
+            instructions.SetActive(true);            
             if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
             {
                 doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
