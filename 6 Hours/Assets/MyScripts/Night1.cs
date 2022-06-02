@@ -62,8 +62,7 @@ public class Night1 : MonoBehaviour
             rustle5 = Random.Range(96 + 30, 30 + 106);
             rustle6 = Random.Range(110 + 30, 30 + 115);
             rustle7 = Random.Range(116 + 30, 30 + 120);
-        }        
-        DebugKeys();
+        }                
         Debug.Log(rustle1);
         Debug.Log(rustle2);
         Debug.Log(rustle3);
@@ -114,6 +113,7 @@ public class Night1 : MonoBehaviour
 
     private void RunTime()
     {
+        timer.GetComponent<Timer>().enabled = true;
         if (night1Instructions.activeInHierarchy && night1Instructions != null)
         {
             Time.timeScale = 0;
@@ -143,26 +143,6 @@ public class Night1 : MonoBehaviour
                     this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 }
             }  
-            if (shouldSkipIntro == true)
-            {
-                timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
-                if (Time.timeSinceLevelLoad > 120)
-                {
-                    if (!aS.isPlaying)
-                    {
-                        timer.GetComponent<TMP_Text>().text = "2:00";
-                        aS.Stop();
-                        aS.PlayOneShot(alarmBeep);
-                        Invoke(nameof(StopAudioWithEpsilon), 3);
-                        Invoke(nameof(Jumpscare), 0.5f);
-                    }
-                    bloodOverlay.SetActive(true);
-                    Invoke(nameof(TurnFadeOutBackOffLose), 1f);
-                    Invoke(nameof(TurnOnLoseScreen), 1f);
-                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-                    this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-                }
-            }
         }
         
     }

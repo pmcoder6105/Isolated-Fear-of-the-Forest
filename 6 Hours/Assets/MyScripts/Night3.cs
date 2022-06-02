@@ -129,16 +129,7 @@ public class Night3 : MonoBehaviour
             timeline.SetActive(false);
             instructions.SetActive(true);
         }
-        else if (shouldSkipIntro == true && instructions != null)
-        {
-            timeline.SetActive(false);
-            instructions.SetActive(true);
-        }
         if (timeline.active == false && Time.timeSinceLevelLoad <= 12 && shouldSkipIntro == false)
-        {
-            aN.enabled = false;
-        }
-        if (shouldSkipIntro == true && Time.timeSinceLevelLoad >= 0.1f)
         {
             aN.enabled = false;
         }

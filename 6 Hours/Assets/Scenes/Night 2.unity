@@ -44666,7 +44666,7 @@ MonoBehaviour:
   ventAvertedObject6: {fileID: 459419356}
   crawlingInVent: {fileID: 8300000, guid: 34a7d6dbcfbd74d4fb80c6e8b3155564, type: 3}
   loseSFX: {fileID: 8300000, guid: 59a45e5dbc8bd094390fc93c414cad02, type: 3}
-  shouldSkipIntro: 0
+  shouldSkipIntro: 1
   shouldStartTimer: 0
 --- !u!114 &1853359540
 MonoBehaviour:

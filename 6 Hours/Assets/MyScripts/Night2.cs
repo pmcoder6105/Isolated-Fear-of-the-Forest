@@ -87,6 +87,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] AudioClip hallwayDoorClose;
     [SerializeField] GameObject leftEyeHallwayAvertedObject;
     [SerializeField] GameObject rightEyeHallwayAvertedObject;
+    [SerializeField] GameObject audioTracking;
     [SerializeField] public GameObject ventDarknessGameobject;
     [SerializeField] public GameObject ventDarknessGameobject2;
     [SerializeField] public GameObject ventDarknessGameobject3;
@@ -133,8 +134,8 @@ public class Night2 : MonoBehaviour
         }
         aS = GetComponent<AudioSource>();
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;        
-        ventAvertedObject.GetComponent<Animator>().enabled = false;
-        SkipIntro();
+        ventAvertedObject.GetComponent<Animator>().enabled = false;        
+        Debug.Log(redEye1Left);
     }
 
     void SkipIntro()
@@ -157,6 +158,8 @@ public class Night2 : MonoBehaviour
             vent13 = Random.Range(207, 215);
             redEye14Right = Random.Range(222, 228);
             redEye15Left = Random.Range(231, 240);
+            Destroy(instructions);
+            Destroy(audioTracking);
         }
     }
 
@@ -165,7 +168,7 @@ public class Night2 : MonoBehaviour
     {
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
-        Debug.Log(Time.timeScale);
+        Debug.Log(Time.timeSinceLevelLoad);
         if (loseScreen.active)
         {
             if (!aS.isPlaying)
@@ -615,8 +618,9 @@ public class Night2 : MonoBehaviour
             laptop.SetActive(false);
         }
 
-        if (instructions.active)
+        if (instructions.activeInHierarchy && instructions != null && shouldSkipIntro == false)
         {
+            Time.timeScale = 0;
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(instructions);
@@ -630,10 +634,6 @@ public class Night2 : MonoBehaviour
     void RunTime()
     {
         timer.GetComponent<Timer>().enabled = true;
-        if (instructions.activeInHierarchy && instructions != null)
-        {
-            Time.timeScale = 0;
-        }
         if (shouldSkipIntro)
         {            
             //timer.SetActive(true);
@@ -657,43 +657,12 @@ public class Night2 : MonoBehaviour
             if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
             {
                 doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-            }            
-        }
-        else 
-        {
-            Invoke(nameof(StartTimeAfterSkip), 10f);
-            if (Time.timeSinceLevelLoad >= 250 && Time.timeSinceLevelLoad <= 255)
+            }  
+            if (instructions.activeInHierarchy && instructions != null)
             {
-                Debug.Log("add jumpscare material here");
-                if (!aS.isPlaying)
-                {
-                    aS.PlayOneShot(alarmBeep);
-                }
-                monster.SetActive(true);
-                if (!doomSFXEmpty.GetComponent<AudioSource>().isPlaying)
-                {
-                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-                }
-                fadeOut.SetActive(true);
-                Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+                Time.timeScale = 0;
             }
-        }
-        if (shouldStartTimer == true)
-        {
-            //float timeNeeded = Time.time - 10;
-            //timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
-        }
-    }
-
-    void StartTimeAfterSkip()
-    {
-        timer.SetActive(true);
-        shouldStartTimer = true;
-        instructions.SetActive(true);
-        if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
-        {
-            doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        }
+        }     
     }
 
     void StartJumpscareForAllJumpscaresWithBug2()
@@ -968,7 +937,7 @@ public class Night2 : MonoBehaviour
     }
 
     private void ToggleBetweenLaptopAndExteriorView()
-    {
+    {        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isTransitioningToScreen == false)
