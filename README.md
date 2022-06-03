@@ -73,4 +73,32 @@ First of all, all of these packs are free to use, and are very high quality
 
 33. "Sci-fi cargo container" for energy generator in night 3. Link: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-cargo-container-45186#publisher
 
-34. "Horror Stinger Sound Effects: for win and lose sfx. Link: https://assetstore.unity.com/packages/audio/sound-fx/horror-stinger-sound-effects-197235
+34. "Horror Stinger Sound Effects: for win and lose sfxs. Link: https://assetstore.unity.com/packages/audio/sound-fx/horror-stinger-sound-effects-197235
+
+35. "Pure noise 2" for computer loading sfx in night 2. Link: https://mc2method.org/white-noise/
+
+36. "Crystal-bell 08" for computer finishing task sfx in night 2. Link: https://freesound.org/people/arseniiv/sounds/614832/
+
+37. "Time after time, by Cydni Lauper" for night 1 car radio.
+
+38. "DOOM SFX DDG USES" for doom sfxs used throughout the game. Link: https://www.youtube.com/watch?v=aIMo6aMObGw
+
+39. "Car engine loop" for car engine sfx in night 1. Link: https://opengameart.org/content/car-engine-loop-96khz-4s
+
+40. "Iron Door Movement 8" for hallway door sfxs in night 2. Link: https://www.epidemicsound.com/track/a5eeYXC25d/
+
+41. "Five nights at freddy's foxy jumpscare" for monster jumpscare.
+
+42. "Distant thunder explosion" for portal opening scene in night 3. Link: https://mixkit.co/free-sound-effects/thunder/
+
+43. "Glitch static" for radio static in car. Link: https://mixkit.co/free-sound-effects/glitch/
+
+44. "Morning alarm clock" for alarm deadline in nights 1 & 2. Link: https://mixkit.co/free-sound-effects/alarm/
+
+45. "Single classic click" for button clicking. Link: https://mixkit.co/free-sound-effects/click/
+
+46. "Radio waves glitch white noise" for red eyes down the hallway sound effect for night 2. Link: https://mixkit.co/free-sound-effects/glitch/
+
+47. "20 rustles dry leaves" (NOTE:I selected one of these in the package) for rustleing monster night 1. Link: https://opengameart.org/content/20-rustles-dry-leaves
+
+48. "Crawling in ventilation duct" for monster vent crawling. Link: https://elements.envato.com/crawling-in-ventilation-duct-Z8C69UX
