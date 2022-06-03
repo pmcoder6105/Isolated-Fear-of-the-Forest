@@ -55,6 +55,7 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject doomSFXEmpty12;
     [SerializeField] GameObject doomSFXEmpty13;
     [SerializeField] GameObject doomSFXEmpty14;
+    [SerializeField] GameObject timeline;
     [SerializeField] public GameObject doomSFXEmpty15;
     [SerializeField] GameObject doomSFXOpeningInstructions;
     bool isLookingAtScreen = false;
@@ -100,10 +101,11 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject ventAvertedObject4;
     [SerializeField] GameObject ventAvertedObject5;
     [SerializeField] GameObject ventAvertedObject6;
+    [SerializeField] GameObject leftHallwayGuidance, rightHallwayGuidance, ventGuidance;
     [SerializeField] AudioClip crawlingInVent;
     [SerializeField] AudioClip loseSFX;
     bool canCloseDoor = true;
-    bool freezeTime = true;
+    public bool freezeTime = false;
     bool shouldInvokeJumpscare = false;
     bool shouldNotScarePlayerAfterClosingDoorBug = false;
     public bool shouldSkipIntro;
@@ -162,6 +164,7 @@ public class Night2 : MonoBehaviour
             redEyeLeftGameobject.GetComponent<Animator>().Play("RedEyesLightLeft", 0);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
+            leftHallwayGuidance.SetActive(true);
         }
         if (Time.timeSinceLevelLoad >= redEye2Right && Time.timeSinceLevelLoad <= redEye2Right + 5.11f)
         {
@@ -189,6 +192,7 @@ public class Night2 : MonoBehaviour
                 Destroy(fadeOut2);
                 Destroy(doomSFXEmpty2);
             }
+            rightHallwayGuidance.SetActive(true);
         }
 
         if (Time.timeSinceLevelLoad >= redEye3Right && Time.timeSinceLevelLoad <= redEye3Right + 5.11f)
@@ -251,6 +255,7 @@ public class Night2 : MonoBehaviour
                     ventAvertedObject.GetComponent<AudioSource>().PlayOneShot(hallwayDoorClose);
                 }
             }
+            ventGuidance.SetActive(true);
         }
         if (Time.timeSinceLevelLoad >= redEye5Left && Time.timeSinceLevelLoad <= redEye5Left + 5.11f)
         {
@@ -595,21 +600,33 @@ public class Night2 : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(instructions);
-                Destroy(doomSFXOpeningInstructions);
+                doomSFXOpeningInstructions.SetActive(false);
                 freezeTime = false;
                 Time.timeScale = 1;
             }
         }
-        if (instructions.activeInHierarchy == false && instructions == null)
+        if (freezeTime == true)
+        {
+            Time.timeScale = 0;
+        }
+        if (freezeTime == false)
         {
             Time.timeScale = 1;
         }
+        //else
+        //{
+        //    Time.timeScale = 1;
+        //}
     }
 
     void RunTime()
-    {
-        timer.GetComponent<Timer>().enabled = true;                    
-        //timer.SetActive(true);
+    {        
+        if (Time.timeSinceLevelLoad >= 10)
+        {
+            timer.GetComponent<Timer>().enabled = true;
+            Destroy(timeline);
+            timer.SetActive(true);            
+        }
         //timer.GetComponent<TMP_Text>().text = Time.timeSinceLevelLoad.ToString();
         if (Time.timeSinceLevelLoad >= 250 && Time.timeSinceLevelLoad <= 255)
         {
@@ -625,20 +642,11 @@ public class Night2 : MonoBehaviour
             }
             fadeOut.SetActive(true);
             Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
-        }
-        if (Time.timeSinceLevelLoad >= 10 && Time.timeSinceLevelLoad <= 10.1f)
-        {
-            instructions.SetActive(true);
         }                  
-        if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying)
+        if (!doomSFXOpeningInstructions.GetComponent<AudioSource>().isPlaying && doomSFXOpeningInstructions != null)
         {
             doomSFXOpeningInstructions.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        }  
-        if (instructions.activeInHierarchy && instructions != null)
-        {
-            Time.timeScale = 0;
-        }
-             
+        }          
     }
 
     void StartJumpscareForAllJumpscaresWithBug2()
@@ -647,6 +655,7 @@ public class Night2 : MonoBehaviour
         fadeOut2.SetActive(true);
         doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        Destroy(rightHallwayGuidance);
     }
     void StartJumpscareForAllJumpscaresWithBug3()
     {
@@ -661,6 +670,7 @@ public class Night2 : MonoBehaviour
         fadeOut4.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        Destroy(ventGuidance);
     }
     void StartJumpscareForAllJumpscaresWithBug5()
     {
@@ -869,6 +879,10 @@ public class Night2 : MonoBehaviour
 
     void JumpscareAfterNotAvertingDanger()
     {
+        if (leftHallwayGuidance != null)
+        {
+            Destroy(leftHallwayGuidance);
+        }
         if (makeSureHasAvoidedJumpscareDoesntTurnFalse == true)
         {
             if (hasAvoidedJumpscare == false)

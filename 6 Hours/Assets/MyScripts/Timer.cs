@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -24,14 +25,17 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if (n2.shouldSkipIntro)
+        
+        
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            t = Time.time; // time since scene loaded
+            t = Time.timeSinceLevelLoad - 31;
         }
-        else
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-            t = Time.time - 10; // time since scene loaded
-        }
+            t = Time.timeSinceLevelLoad - 10; // time since scene loaded
+        }        
+        
 
         float milliseconds = (Mathf.Floor(t * 100) % 100); // calculate the milliseconds for the timer
 
