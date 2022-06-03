@@ -188,7 +188,7 @@ RectTransform:
   m_GameObject: {fileID: 462872212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 502705761}
@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 761323024}
   - component: {fileID: 761323023}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Isolated fear of the forest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,7 +952,7 @@ RectTransform:
   m_GameObject: {fileID: 761323021}
   m_LocalRotation: {x: 0, y: 0, z: 0.050331473, w: 0.9987326}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 755516891}
@@ -960,7 +960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.77}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -64.1}
+  m_AnchoredPosition: {x: 0, y: -95.8}
   m_SizeDelta: {x: 452.825, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &761323023
@@ -1155,7 +1155,7 @@ RectTransform:
   m_GameObject: {fileID: 922755091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1265498559}
@@ -1164,7 +1164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -103.34}
+  m_AnchoredPosition: {x: 0, y: -133.44}
   m_SizeDelta: {x: 205.8727, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &922755093
