@@ -102,3 +102,7 @@ First of all, all of these packs are free to use, and are very high quality
 47. "20 rustles dry leaves" (NOTE:I selected one of these in the package) for rustleing monster night 1. Link: https://opengameart.org/content/20-rustles-dry-leaves
 
 48. "Crawling in ventilation duct" for monster vent crawling. Link: https://elements.envato.com/crawling-in-ventilation-duct-Z8C69UX
+
+49. "Ear ringing sound effect" for credits opening sfx. Link: https://www.youtube.com/watch?v=rHTinEcgLn0
+
+50. "Impression Select" for mouse cursor throughout game. Link: http://www.rw-designer.com/cursor-detail/59129
