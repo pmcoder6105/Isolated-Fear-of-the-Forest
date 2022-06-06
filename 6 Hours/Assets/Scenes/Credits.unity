@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0050056325, g: 0.0058919215, b: 0.0071267085, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1532,7 +1532,15 @@ MonoBehaviour:
 
 
     "Crawling in ventilation duct" for monster vent crawling,
-    from Envato'
+    from Envato
+
+
+    "Ear Ringing Sound Effect" for credits opening sfx, from SFX
+    and GFX
+
+
+    "Impression Select" for mouse cursor used throughout the game,
+    from RW Designer  '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f12cb6c16a81cda4d81b755c613a6686, type: 2}
   m_sharedMaterial: {fileID: 1241467244162948074, guid: f12cb6c16a81cda4d81b755c613a6686, type: 2}
