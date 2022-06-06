@@ -48,7 +48,20 @@ public class Buttons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (capsule1 == null && capsule2 == null && capsule3 == null)
+        {
+            Debug.Log("done with 3 capsules");
+            n3.carPortal.SetActive(true);
+            Debug.Log("time to open car portal??");
+            n3.carPortalTimeline.SetActive(true);
+            Invoke(nameof(TurnCameraPositionBack), 16f);
+        }
+    }
 
+    void TurnCameraPositionBack()
+    {
+        n3.cam.SetActive(true);
+        Destroy(n3.carPortalTimeline);
     }
 
     public void PlayLvl1()
@@ -129,8 +142,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterAI.GetComponent<MeshRenderer>().material = level1MonsterMat;
-        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level1MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level1MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level1MonsterMat;
     }
     void DestroyCapsule2AfterDing()
     {
@@ -141,8 +154,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterAI.GetComponent<MeshRenderer>().material = level2MonsterMat;
-        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level2MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level2MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level2MonsterMat;
     }
     void DestroyCapsule3AfterDing()
     {
@@ -153,8 +166,8 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterAI.GetComponent<MeshRenderer>().material = level3MonsterMat;
-        n3.prefabedMonster.GetComponent<MeshRenderer>().material = level3MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level3MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level3MonsterMat;
     }
     void TurnAnimatorOffOnceZoomedOut()
     {

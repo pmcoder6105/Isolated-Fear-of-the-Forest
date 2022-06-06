@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Shininess: 0.29
+    - _Shininess: 0.5
     m_Colors:
-    - _Color: {r: 0.8679245, g: 0.5772517, b: 0.5772517, a: 1}
-    - _SpecColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
+    - _Color: {r: 0.6320754, g: 0.24150053, b: 0.24150053, a: 1}
+    - _SpecColor: {r: 0.5471698, g: 0.41037735, b: 0.41037735, a: 1}
   m_BuildTextureStacks: []

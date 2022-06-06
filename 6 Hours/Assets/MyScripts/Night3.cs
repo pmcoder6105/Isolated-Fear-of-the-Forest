@@ -8,8 +8,8 @@ public class Night3 : MonoBehaviour
     [SerializeField] public NavMeshAgent monsterAI;
     [SerializeField] GameObject timeline;
     [SerializeField] public GameObject prefabedMonster;
-    [SerializeField] GameObject carPortal;
-    [SerializeField] GameObject carPortalTimeline;
+    [SerializeField] public GameObject carPortal;
+    [SerializeField] public GameObject carPortalTimeline;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject clickSpaceToInteract;
     [SerializeField] GameObject doomSFXObject;
@@ -23,7 +23,7 @@ public class Night3 : MonoBehaviour
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
-    [SerializeField] GameObject cam;
+    [SerializeField] public GameObject cam;
     [SerializeField] public Transform player;
     public bool isLookingAtCapsule1 = false;
     public bool isLookingAtCapsule2 = false;
@@ -38,6 +38,8 @@ public class Night3 : MonoBehaviour
     [SerializeField] AudioClip winSFX;
     Vector3 posOfPlayerWhenCompleting3Capsules;
     Quaternion rotOfPlayerWhenCompleting3Capsules;
+    public GameObject monsterAIMesRenderer;
+    public GameObject monsterObjectMeshRenderer;
 
     Animator aN;
     Buttons bT;
@@ -55,6 +57,7 @@ public class Night3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(inRangeCapsule1);
         if (instructions == null)
         {
             monsterAI.SetDestination(player.position);
@@ -77,8 +80,8 @@ public class Night3 : MonoBehaviour
         {
             monsterAI.speed = 5.5f;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true && bT.capsule1 != null)
-        {           
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true)
+        {    
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
             GetComponent<Rigidbody>().isKinematic = true;            
@@ -93,7 +96,7 @@ public class Night3 : MonoBehaviour
             //capsule1Button.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule2 == true && bT.capsule2 != null)
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule2 == true)
         {
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -108,7 +111,7 @@ public class Night3 : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             //capsule1Button.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true && bT.capsule3 != null)
+        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true)
         {
             aN.enabled = true;
             cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -134,12 +137,13 @@ public class Night3 : MonoBehaviour
             aN.enabled = false;
         }
 
-        if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
-        {
-            carPortal.SetActive(true);
-            carPortalTimeline.SetActive(true);
-            Invoke(nameof(TurnCameraPositionBack), 16f);
-        }
+        //if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
+        //{
+        //    carPortal.SetActive(true);
+        //    Debug.Log("time to open car portal??");
+        //   carPortalTimeline.SetActive(true);
+        //    Invoke(nameof(TurnCameraPositionBack), 16f);
+        //}
         if (instructions.active == true)
         {
             if (!doomSFXOpeningObject.GetComponent<AudioSource>().isPlaying)
@@ -160,14 +164,15 @@ public class Night3 : MonoBehaviour
         if (capsule1Button.active == false)
         {
             capsule1Button.SetActive(true);
-        }        
+        }
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    void TurnCameraPositionBack()
-    {
-        cam.SetActive(true);
-        Destroy(carPortalTimeline);
-    }
+    //void TurnCameraPositionBack()
+    //{
+    //    cam.SetActive(true);
+    //    Destroy(carPortalTimeline);
+    //}
     void TurnOnButton2()
     {
         Debug.Log("time to click button");
@@ -175,6 +180,7 @@ public class Night3 : MonoBehaviour
         {
             capsule2Button.SetActive(true);
         }
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void TurnOnButton3()
@@ -184,40 +190,76 @@ public class Night3 : MonoBehaviour
         {
             capsule3Button.SetActive(true);
         }
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Capsule1Field")
         {
-            inRangeCapsule1 = true;
-            clickSpaceToInteract.SetActive(true);
+            //inRangeCapsule1 = true;
+            //clickSpaceToInteract.SetActive(true);
+            //Debug.Log("time to zoom into capsule1");
+            aN.enabled = true;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            GetComponent<Rigidbody>().isKinematic = true;
+            if (canZoomIn == true)
+            {
+                aN.Play("ZoomIntoCapsule1", 0);
+            }
+            canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0);
+            isLookingAtCapsule1 = true;
+            Invoke(nameof(TurnOnButton1), 1f);
+            Cursor.lockState = CursorLockMode.None;
         }
-        else if (other.gameObject.tag != "Capsule1Field")
-        {
-            inRangeCapsule1 = false;
-            clickSpaceToInteract.SetActive(false);
-        }
+        //else if (other.gameObject.tag != "Capsule1Field")
+        //{
+        //    inRangeCapsule1 = false;
+        //    clickSpaceToInteract.SetActive(false);
+        //    Debug.Log("time to zoom out of capsule1");
+        //}
         if (other.gameObject.tag == "Capsule2Field")
         {
-            inRangeCapsule2 = true;
-            clickSpaceToInteract.SetActive(true);
+            //inRangeCapsule2 = true;
+            //clickSpaceToInteract.SetActive(true);
+            aN.enabled = true;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            GetComponent<Rigidbody>().isKinematic = true;
+            if (canZoomIn == true)
+            {
+                aN.Play("ZoomIntoCapsule2", 0);
+            }
+            canvas.GetComponent<Animator>().Play("EnableCapsule2Button", 0);
+            isLookingAtCapsule2 = true;
+            Invoke(nameof(TurnOnButton2), 1f);
+            Cursor.lockState = CursorLockMode.None;
         }
-        else if (other.gameObject.tag != "Capsule2Field")
-        {
-            inRangeCapsule2 = false;
-            clickSpaceToInteract.SetActive(false);
-        }
+        //else if (other.gameObject.tag != "Capsule2Field")
+        //{
+        //    inRangeCapsule2 = false;
+        //    clickSpaceToInteract.SetActive(false);
+        //}
         if (other.gameObject.tag == "Capsule3Field")
         {
-            inRangeCapsule3 = true;
-            clickSpaceToInteract.SetActive(true);
+            //inRangeCapsule3 = true;
+            //clickSpaceToInteract.SetActive(true);
+            aN.enabled = true;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            GetComponent<Rigidbody>().isKinematic = true;
+            if (canZoomIn == true)
+            {
+                aN.Play("ZoomIntoCapsule3", 0);
+            }
+            canvas.GetComponent<Animator>().Play("EnableCapsule3Button", 0);
+            isLookingAtCapsule3 = true;
+            Invoke(nameof(TurnOnButton3), 1f);
+            Cursor.lockState = CursorLockMode.None;
         }
-        else if (other.gameObject.tag != "Capsule3Field")
-        {
-            inRangeCapsule3 = false;
-            clickSpaceToInteract.SetActive(false);
-        }
+        //else if (other.gameObject.tag != "Capsule3Field")
+        //{
+        //    inRangeCapsule3 = false;
+        //    clickSpaceToInteract.SetActive(false);
+        //}
         if (other.gameObject.tag == "Car")
         {
             Debug.Log("won");
