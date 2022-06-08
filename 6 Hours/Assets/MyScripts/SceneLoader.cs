@@ -8,10 +8,18 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider sliderBar;
+    //public GameObject canvas;
+
+    private void Start()
+    {
+        //canvas.GetComponent<Animator>().enabled = false;
+    }
 
     public void LoadScene(int levelIndex)
     {
         StartCoroutine(LoadSceneAsynchronously(levelIndex));
+        //canvas.GetComponent<Animator>().enabled = true;
+        //canvas.GetComponent<Animator>().Play("FadeOutStartingMusicInMainMenu", 0);
     }
 
     IEnumerator LoadSceneAsynchronously(int levelIndex)

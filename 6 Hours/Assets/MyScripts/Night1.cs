@@ -55,20 +55,13 @@ public class Night1 : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
         aN = GetComponent<Animator>();
-        rustle1 = Random.Range(10 + 30, 30 + 16);
-        rustle2 = Random.Range(22 + 30, 30 + 51);
-        rustle3 = Random.Range(60 + 30, 30 + 78);
-        rustle4 = Random.Range(85 + 30, 30 + 94);
-        rustle5 = Random.Range(96 + 30, 30 + 106);
-        rustle6 = Random.Range(110 + 30, 30 + 115);
-        rustle7 = Random.Range(116 + 30, 30 + 120);                        
-        Debug.Log(rustle1);
-        Debug.Log(rustle2);
-        Debug.Log(rustle3);
-        Debug.Log(rustle4);
-        Debug.Log(rustle5);
-        Debug.Log(rustle6);
-        Debug.Log(rustle7);
+        rustle1 = Random.Range(30 + 30, 30 + 45);
+        rustle2 = Random.Range(55 + 30, 30 + 70);
+        rustle3 = Random.Range(80 + 30, 30 + 95);
+        rustle4 = Random.Range(105 + 30, 30 + 120);
+        rustle5 = Random.Range(130 + 30, 30 + 145);
+        rustle6 = Random.Range(155 + 30, 30 + 170);
+        rustle7 = Random.Range(170 + 30, 30 + 180);                        
         gC = FindObjectOfType<GameControl>();
     }   
 
@@ -82,6 +75,7 @@ public class Night1 : MonoBehaviour
         if (loseScreen.active)
         {
             Cursor.lockState = CursorLockMode.None;
+            aS.volume = 0.5f;
         }
         if (winScreen.active)
         {
@@ -89,6 +83,7 @@ public class Night1 : MonoBehaviour
             Debug.Log("win screen should be active");
             aN.enabled = true;
             aN.Play("DeathAnimNight1", 0);
+            aS.volume = 0.5f;
         }
         if (freezeTime == true)
         {
@@ -114,30 +109,26 @@ public class Night1 : MonoBehaviour
         if (shouldStartTimer == true && this.gameObject.GetComponent<CapsuleCollider>().enabled == true) 
         {
             timer.SetActive(true);
-            if (shouldSkipIntro == false)
+            float timeNeeded = Time.timeSinceLevelLoad - 30;
+            timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
+            //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
+            if (Time.timeSinceLevelLoad > 180)
             {
-                float timeNeeded = Time.timeSinceLevelLoad - 30;
-                timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
-                //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
-                if (Time.timeSinceLevelLoad > 150)
+                if (!aS.isPlaying)
                 {
-                    if (!aS.isPlaying)
-                    {
-                        timer.GetComponent<TMP_Text>().text = "2:00";
-                        aS.Stop();
-                        aS.PlayOneShot(alarmBeep);
-                        Invoke(nameof(StopAudioWithEpsilon), 3);
-                        Invoke(nameof(Jumpscare), 4f);
-                    }
-                    bloodOverlay.SetActive(true);
-                    Invoke(nameof(TurnFadeOutBackOffLose), 1f);
-                    Invoke(nameof(TurnOnLoseScreen), 1f);
-                    doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-                    this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                    timer.GetComponent<TMP_Text>().text = "2:00";
+                    aS.Stop();
+                    aS.PlayOneShot(alarmBeep);
+                    Invoke(nameof(StopAudioWithEpsilon), 3);
+                    Invoke(nameof(Jumpscare), 4f);
                 }
-            }  
-        }
-        
+                bloodOverlay.SetActive(true);
+                Invoke(nameof(TurnFadeOutBackOffLose), 1f);
+                Invoke(nameof(TurnOnLoseScreen), 1f);
+                doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            } 
+        }        
     }
 
     void StopAudioWithEpsilon()

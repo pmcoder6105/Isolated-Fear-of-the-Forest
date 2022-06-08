@@ -111,7 +111,7 @@ public class Buttons : MonoBehaviour
     {
         if (n3.isLookingAtCapsule1 == true)
         {
-            CompleteButtonTask();
+            CapsuleButtonTask();
             Invoke(nameof(DestroyCapsule1AfterDing), 3f);
         }
     }
@@ -120,7 +120,7 @@ public class Buttons : MonoBehaviour
     {
         if (n3.isLookingAtCapsule2 == true)
         {
-            CompleteButtonTask();
+            CapsuleButtonTask();
             Invoke(nameof(DestroyCapsule2AfterDing), 3f);
         }
     }
@@ -128,7 +128,7 @@ public class Buttons : MonoBehaviour
     {
         if (n3.isLookingAtCapsule3 == true)
         {
-            CompleteButtonTask();
+            CapsuleButtonTask();
             Invoke(nameof(DestroyCapsule3AfterDing), 3f);
         }
     }
@@ -179,6 +179,15 @@ public class Buttons : MonoBehaviour
         if (canFinishAnotherTask == true)
         {
             aS.PlayOneShot(whirringSFXWhenCompletingTask);
+            Invoke(nameof(FinishTaskWithDingSFXOnceDoneUsingInvoke), 10f);
+            canFinishAnotherTask = false;
+        }
+    }
+    public void CapsuleButtonTask()
+    {
+        if (canFinishAnotherTask == true)
+        {
+            aS.PlayOneShot(whirringSFXWhenCompletingTask);
             Invoke(nameof(FinishTaskWithDingSFXOnceDoneUsingInvoke), 3f);
             canFinishAnotherTask = false;
         }
@@ -193,7 +202,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteScrewInBulb()
     { 
-        Invoke(nameof(DestroyScrewInLightBulb), 3f);
+        Invoke(nameof(DestroyScrewInLightBulb), 10f);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -205,7 +214,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteStove()
     {
-        Invoke(nameof(DestroyStove), 3f);
+        Invoke(nameof(DestroyStove), 10f);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -217,7 +226,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteHinges()
     {
-        Invoke(nameof(DestroyHinges), 3f);
+        Invoke(nameof(DestroyHinges), 10f);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -229,7 +238,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteConnectToInternet()
     {
-        Invoke(nameof(DestroyConnectToInternet), 3f);
+        Invoke(nameof(DestroyConnectToInternet), 10f);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -241,7 +250,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteMeat()
     {
-        Invoke(nameof(DestroyMeat), 3f);
+        Invoke(nameof(DestroyMeat), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -253,7 +262,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteDairy()
     {
-        Invoke(nameof(DestroyDairy), 3f);
+        Invoke(nameof(DestroyDairy), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -265,7 +274,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteVegetables()
     {
-        Invoke(nameof(DestroyVegetables), 3f);
+        Invoke(nameof(DestroyVegetables), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -277,7 +286,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteSprays()
     {
-        Invoke(nameof(DestroySprays), 3f);
+        Invoke(nameof(DestroySprays), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -289,7 +298,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteWipes()
     {
-        Invoke(nameof(DestroyWipes), 3f);
+        Invoke(nameof(DestroyWipes), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -300,7 +309,7 @@ public class Buttons : MonoBehaviour
     }
     public void DeleteSoap()
     {
-        Invoke(nameof(DestroySoap), 3f);
+        Invoke(nameof(DestroySoap), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -312,7 +321,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteVacuum()
     {
-        Invoke(nameof(DestroyVacuum), 3f);
+        Invoke(nameof(DestroyVacuum), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -324,7 +333,7 @@ public class Buttons : MonoBehaviour
 
     public void DeleteGrains()
     {
-        Invoke(nameof(DestroyGrains), 3f);
+        Invoke(nameof(DestroyGrains), 10);
         Cursor.lockState = CursorLockMode.Locked;
     }
 

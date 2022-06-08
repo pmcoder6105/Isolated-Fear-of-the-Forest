@@ -142,13 +142,27 @@ public class Night2 : MonoBehaviour
     {
         ToggleBetweenLaptopAndExteriorView();
         RunTime();
-        Debug.Log(Time.timeSinceLevelLoad);
         if (loseScreen.active)
         {
             if (!aS.isPlaying)
             {
                 aS.PlayOneShot(loseSFX);
             }
+            Destroy(monster);
+            Destroy(monster2);
+            Destroy(monster3);
+            Destroy(monster4);
+            Destroy(monster5);
+            Destroy(monster6);
+            Destroy(monster7);
+            Destroy(monster8);
+            Destroy(monster9);
+            Destroy(monster10);
+            Destroy(monster11);
+            Destroy(monster12);
+            Destroy(monster13);
+            Destroy(monster14);
+            Destroy(monster15);
         }
         if (Time.timeSinceLevelLoad >= redEye1Left && Time.timeSinceLevelLoad <= redEye1Left + 5)
         {
@@ -185,19 +199,20 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster2);
                 Destroy(fadeOut2);
                 Destroy(doomSFXEmpty2);
+                Destroy(rightHallwayGuidance);
             }
             rightHallwayGuidance.SetActive(true);
         }
 
         if (Time.timeSinceLevelLoad >= redEye3Right && Time.timeSinceLevelLoad <= redEye3Right + 5.11f)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster3);
@@ -240,12 +255,13 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster4);
                 Destroy(fadeOut4);
                 Destroy(doomSFXEmpty4);
+                Destroy(ventGuidance);
                 ventAvertedObject.GetComponent<Animator>().enabled = true;
                 ventAvertedObject.GetComponent<Animator>().Play("VentAverted", 0, 0f);
                 if (!ventAvertedObject.GetComponent<AudioSource>().isPlaying)
@@ -276,7 +292,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopLeftEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster5);
@@ -302,7 +318,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster6);
@@ -335,7 +351,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster7);
@@ -370,7 +386,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster8);
@@ -397,7 +413,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster9);
@@ -422,7 +438,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster10);
@@ -457,7 +473,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopLeftEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster11);
@@ -482,7 +498,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster12);
@@ -515,7 +531,7 @@ public class Night2 : MonoBehaviour
             }
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster13);
@@ -550,7 +566,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopRightEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster14);
@@ -577,7 +593,7 @@ public class Night2 : MonoBehaviour
             Invoke(nameof(StopLeftEyeFromLooping), 4);
             hasAvoidedJumpscare = false;
             Invoke(nameof(TurnBoolTrueToPrepareForNextJumpscare), 6);
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
                 Destroy(monster15);
@@ -588,11 +604,19 @@ public class Night2 : MonoBehaviour
         if (monster.active || monster2.active || monster3.active || monster4.active || monster5.active || monster6.active ||
             monster7.active || monster8.active || monster9.active || monster10.active || monster11.active || monster12.active || monster13.active || monster14.active || monster15.active)
         {
-            MainScreen.SetActive(false);
-            Appliances.SetActive(false);
-            HomeSupplies.SetActive(false);
-            Cleaning.SetActive(false);
-            laptop.SetActive(false);
+            Destroy(MainScreen);
+            Destroy(Appliances);
+            Destroy(Cleaning);
+            Destroy(HomeSupplies);
+            Destroy(laptop);
+            Destroy(timer);
+            Destroy(ventGuidance);
+            Destroy(leftHallwayGuidance);
+            Destroy(rightHallwayGuidance);
+            if (isLookingAtScreen == true)
+            {
+                GetComponent<Animator>().Play("ZoomOutOfComputerNight2");
+            }
         }
 
         if (instructions.activeInHierarchy && instructions != null)
@@ -652,10 +676,10 @@ public class Night2 : MonoBehaviour
     void StartJumpscareForAllJumpscaresWithBug2()
     {        
         monster2.SetActive(true);
+        Destroy(rightHallwayGuidance);
         fadeOut2.SetActive(true);
         doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
-        Destroy(rightHallwayGuidance);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);        
     }
     void StartJumpscareForAllJumpscaresWithBug3()
     {
@@ -667,10 +691,10 @@ public class Night2 : MonoBehaviour
     void StartJumpscareForAllJumpscaresWithBug4()
     {
         monster4.SetActive(true);
+        Destroy(ventGuidance);
         fadeOut4.SetActive(true);
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
-        Destroy(ventGuidance);
+        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);        
     }
     void StartJumpscareForAllJumpscaresWithBug5()
     {
@@ -790,9 +814,9 @@ public class Night2 : MonoBehaviour
     void AvoidJumpscareLeft()
     {
         if (hasAvoidedJumpscare == false)
-        {            
+        {
             //Debug.Log("need to avoid jumpscare now");
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && canCloseDoor == true)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && canCloseDoor == true && isLookingAtScreen == false)
             {
                 canCloseDoor = false;
                 //Debug.Log("Has avoided jumpscare?");
@@ -817,7 +841,7 @@ public class Night2 : MonoBehaviour
         if (hasAvoidedJumpscare == false)
         {
             //Debug.Log("need to avoid jumpscare now");            
-            if (Input.GetKeyDown(KeyCode.RightArrow) && canCloseDoor == true)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && canCloseDoor == true && isLookingAtScreen == false)
             {
                 canCloseDoor = false;                
                 //Debug.Log("Has avoided jumpscare?");
@@ -844,7 +868,7 @@ public class Night2 : MonoBehaviour
         if (hasAvoidedJumpscare == false)
         {
             //Debug.Log("need to avoid jumpscare now");
-            if (Input.GetKeyDown(KeyCode.UpArrow) && canCloseDoor == true)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && canCloseDoor == true && isLookingAtScreen == false)
             {
                 canCloseDoor = false;
                 //Debug.Log("Has avoided vent jumpscare?");
