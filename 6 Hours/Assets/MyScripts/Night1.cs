@@ -443,7 +443,7 @@ public class Night1 : MonoBehaviour
 
     private void TurnFadeOutBackOffWin()
     {
-        fadeOut.SetActive(false);
+        fadeOutDeathObject.SetActive(false);
         winScreen.SetActive(true);
         if (!aS.isPlaying)
         {
