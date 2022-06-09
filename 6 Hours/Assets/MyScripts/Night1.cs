@@ -420,12 +420,12 @@ public class Night1 : MonoBehaviour
         {
             Debug.Log("youve won");
             aS.Stop();
-            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             this.gameObject.GetComponent<GameControl>().enabled = false;
             this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
             Destroy(monster);
             gC.walkingEmpty.SetActive(false);
-            fadeOut.GetComponent<Animator>().Play("DeathFadeOut", 0);
+            fadeOutDeathObject.SetActive(true);
             rustle1 = 500;
             rustle2 = 500;
             rustle3 = 500;
