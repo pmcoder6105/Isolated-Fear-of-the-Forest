@@ -31,6 +31,8 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject guidanceText;
+    [SerializeField] GameObject guidanceAudioEmpty;
+    [SerializeField] AudioClip guidanceAudioClip;
     Vector3 monsterPos;
     int rustle1;
     int rustle2;
@@ -71,7 +73,13 @@ public class Night1 : MonoBehaviour
         EnablePlayerMovementAfterCutscene();
         Invoke(nameof(RustleTest), 31f);
         RunTime();
-        Debug.Log(Time.timeSinceLevelLoad);
+        if (night1Instructions == null)
+        {            
+            if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
+            {
+                guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
+            }
+        }
         if (loseScreen.active)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -112,7 +120,7 @@ public class Night1 : MonoBehaviour
             float timeNeeded = Time.timeSinceLevelLoad - 30;
             timer.GetComponent<TMP_Text>().text = timeNeeded.ToString();
             //CHECK HERE IF FUTURE ME SEES A BUG IN JUMPSCARE TIMER WHILE PLAYTESTING 
-            if (Time.timeSinceLevelLoad > 180)
+            if (Time.timeSinceLevelLoad > 180+30)
             {
                 if (!aS.isPlaying)
                 {

@@ -4,6 +4,7 @@ using TMPro;
 public class Night2 : MonoBehaviour
 {
     [SerializeField] GameObject laptop;
+    [SerializeField] GameObject laptopScreen;
     [SerializeField] GameObject instructions;
     [SerializeField] GameObject loseScreen;
     [SerializeField] public GameObject timer;
@@ -104,6 +105,8 @@ public class Night2 : MonoBehaviour
     [SerializeField] GameObject leftHallwayGuidance, rightHallwayGuidance, ventGuidance;
     [SerializeField] AudioClip crawlingInVent;
     [SerializeField] AudioClip loseSFX;
+    [SerializeField] GameObject guidanceAudioEmpty;
+    [SerializeField] AudioClip guidanceAudioClip;
     bool canCloseDoor = true;
     public bool freezeTime = false;
     bool shouldInvokeJumpscare = false;
@@ -141,7 +144,16 @@ public class Night2 : MonoBehaviour
     void Update()
     {
         ToggleBetweenLaptopAndExteriorView();
-        RunTime();
+        if (instructions == null)
+        {
+            laptopScreen.SetActive(true);
+            if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
+            {
+                guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
+            }
+            
+        }
+            RunTime();
         if (loseScreen.active)
         {
             if (!aS.isPlaying)

@@ -27,6 +27,18 @@ public class Buttons : MonoBehaviour
     [SerializeField] GameObject winFadeOut;
     [SerializeField] GameObject monsters;
     [SerializeField] GameObject fadeOutsDooms;
+    [SerializeField] GameObject screwInBulbLoading;
+    [SerializeField] GameObject stoveLoading;
+    [SerializeField] GameObject hingesLoading;
+    [SerializeField] GameObject connectToInternetLoading;
+    [SerializeField] GameObject grainsLoading;
+    [SerializeField] GameObject meatLoading;
+    [SerializeField] GameObject dairyLoading;
+    [SerializeField] GameObject vegetablesLoading;
+    [SerializeField] GameObject spraysLoading;
+    [SerializeField] GameObject wipesLoading;
+    [SerializeField] GameObject soapLoading;
+    [SerializeField] GameObject vacuumLoading;
     [SerializeField] public GameObject capsule1;
     [SerializeField] public GameObject capsule2;
     [SerializeField] public GameObject capsule3;
@@ -204,143 +216,179 @@ public class Buttons : MonoBehaviour
     { 
         Invoke(nameof(DestroyScrewInLightBulb), 10f);
         Cursor.lockState = CursorLockMode.Locked;
+        screwInBulbLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyScrewInLightBulb()
     {
         Destroy(screwInLightBulb);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(screwInBulbLoading);
     }
 
     public void DeleteStove()
     {
         Invoke(nameof(DestroyStove), 10f);
         Cursor.lockState = CursorLockMode.Locked;
+        stoveLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyStove()
     {
         Destroy(stove);        
         Cursor.lockState = CursorLockMode.None;
+        Destroy(stoveLoading);
     }
 
     public void DeleteHinges()
     {
         Invoke(nameof(DestroyHinges), 10f);
         Cursor.lockState = CursorLockMode.Locked;
+        hingesLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyHinges()
     {
         Destroy(hinges);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(hingesLoading);
     }
 
     public void DeleteConnectToInternet()
     {
         Invoke(nameof(DestroyConnectToInternet), 10f);
         Cursor.lockState = CursorLockMode.Locked;
+        connectToInternetLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyConnectToInternet()
     {
         Destroy(connectToInternet);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(connectToInternetLoading);
     }
 
     public void DeleteMeat()
     {
         Invoke(nameof(DestroyMeat), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        meatLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyMeat()
     {
         Destroy(meat);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(meatLoading);
     }
 
     public void DeleteDairy()
     {
         Invoke(nameof(DestroyDairy), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        dairyLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyDairy()
     {
         Destroy(dairy);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(dairyLoading);
     }
 
     public void DeleteVegetables()
     {
         Invoke(nameof(DestroyVegetables), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
+        vegetablesLoading.SetActive(true);
     }
 
     private void DestroyVegetables()
     {
         Destroy(vegetables);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(vegetablesLoading);
     }
 
     public void DeleteSprays()
     {
         Invoke(nameof(DestroySprays), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        spraysLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroySprays()
     {
         Destroy(sprays);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(spraysLoading);
     }
 
     public void DeleteWipes()
     {
         Invoke(nameof(DestroyWipes), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        wipesLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyWipes()
     {
         Destroy(wipes);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(wipesLoading);
     }
     public void DeleteSoap()
     {
         Invoke(nameof(DestroySoap), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        soapLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroySoap()
     {
         Destroy(soap);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(soapLoading);
     }
 
     public void DeleteVacuum()
     {
         Invoke(nameof(DestroyVacuum), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        vacuumLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyVacuum()
     {
         Destroy(vacuum);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(vacuumLoading);
     }
 
     public void DeleteGrains()
     {
         Invoke(nameof(DestroyGrains), 10);
         Cursor.lockState = CursorLockMode.Locked;
+        grainsLoading.SetActive(true);
+        GetComponent<Animator>().Play("LoadingCogsNight2", 0);
     }
 
     private void DestroyGrains()
     {
         Destroy(grains);
         Cursor.lockState = CursorLockMode.None;
+        Destroy(grainsLoading);
     }
     public void LogOut()
     {

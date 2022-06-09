@@ -20,6 +20,8 @@ public class Night3 : MonoBehaviour
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject instructions;
+    [SerializeField] GameObject guidanceAudioEmpty;
+    [SerializeField] AudioClip guidanceAudioClip;
     [SerializeField] public GameObject capsule1Button;
     [SerializeField] public GameObject capsule2Button;
     [SerializeField] public GameObject capsule3Button;
@@ -62,6 +64,10 @@ public class Night3 : MonoBehaviour
         {
             monsterAI.SetDestination(player.position);
             monsterAI.GetComponent<Animator>().Play("Walk", 0);
+            if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
+            {
+                guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
+            }
         }     
         if (instructions.activeInHierarchy && instructions != null)
         {
