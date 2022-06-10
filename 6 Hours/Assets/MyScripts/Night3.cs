@@ -68,6 +68,11 @@ public class Night3 : MonoBehaviour
             {
                 guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
             }
+            if (Time.timeSinceLevelLoad >= 24+11)
+            {
+                Debug.Log("Time to destroy guidance emtpy");
+                Destroy(guidanceAudioEmpty);
+            }
         }     
         if (instructions.activeInHierarchy && instructions != null)
         {

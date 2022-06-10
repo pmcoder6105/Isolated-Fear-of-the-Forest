@@ -152,7 +152,11 @@ public class Night2 : MonoBehaviour
             {
                 guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
             }
-            
+            if (Time.timeSinceLevelLoad >= 38+10)
+            {
+                Destroy(guidanceAudioEmpty);
+                Debug.Log("Time to destroy guidance empty");
+            }
         }
         RunTime();
         if (loseScreen.active)

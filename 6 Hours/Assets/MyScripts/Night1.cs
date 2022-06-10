@@ -32,6 +32,8 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject guidanceText;
     [SerializeField] GameObject guidanceAudioEmpty;
+    [SerializeField] GameObject winScreenCam;
+    [SerializeField] GameObject cam;
     [SerializeField] AudioClip guidanceAudioClip;
     Vector3 monsterPos;
     int rustle1;
@@ -79,19 +81,27 @@ public class Night1 : MonoBehaviour
             {
                 guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
             }
+            if (Time.timeSinceLevelLoad >= 29+31)
+            {
+                Debug.Log("Time to destroy guidance clip");
+                Destroy(guidanceAudioEmpty);
+            }
         }
-        if (loseScreen.active)
+        if (loseScreen.activeInHierarchy)
         {
             Cursor.lockState = CursorLockMode.None;
             aS.volume = 0.5f;
         }
-        if (winScreen.active)
+        if (winScreen.activeInHierarchy)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Debug.Log("win screen should be active");
             aN.enabled = true;
             aN.Play("DeathAnimNight1", 0);
             aS.volume = 0.5f;
+            Destroy(cam);
+            winScreen.SetActive(true);
         }
         if (freezeTime == true)
         {
@@ -443,8 +453,6 @@ public class Night1 : MonoBehaviour
             rustle7 = 500;
             Invoke(nameof(TurnFadeOutBackOffWin), 1f);
             timer.SetActive(false);
-            this.gameObject.GetComponent<Animator>().enabled = true;
-            aN.Play("TurnOffControlToEnableCursor", 0);
             doomSFXEmpty.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         }
     }
