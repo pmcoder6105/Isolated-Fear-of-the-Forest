@@ -84769,7 +84769,7 @@ MonoBehaviour:
   loseScreen: {fileID: 315931605}
   instructions: {fileID: 4638083}
   guidanceAudioEmpty: {fileID: 1704996547}
-  guidanceAudioClip: {fileID: 0}
+  guidanceAudioClip: {fileID: 8300000, guid: 4d39122029ed34848a9cde07272d30d0, type: 3}
   capsule1Button: {fileID: 1162228060}
   capsule2Button: {fileID: 119359765}
   capsule3Button: {fileID: 1428870141}
