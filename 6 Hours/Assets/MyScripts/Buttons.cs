@@ -60,7 +60,7 @@ public class Buttons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (capsule1 == null && capsule2 == null && capsule3 == null)
+        if (capsule1 == null && capsule2 == null && capsule3 == null && SceneManager.GetActiveScene().buildIndex == 3)
         {
             Debug.Log("done with 3 capsules");
             n3.carPortal.SetActive(true);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameControl : MonoBehaviour
         aS = GetComponent<AudioSource>();
         rB = GetComponent<Rigidbody>();
         //walkingEmpty.SetActive(false);
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 3)
         walkingEmpty.GetComponent<AudioSource>().volume = 0f;
     }
 

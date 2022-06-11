@@ -1277,7 +1277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2131}
+  m_AnchoredPosition: {x: 0, y: -2184}
   m_SizeDelta: {x: 460.3085, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923947571
@@ -1334,213 +1334,216 @@ MonoBehaviour:
 
 
 
-    8: "HD Low Poly Racing Car
-    No.1201" for car, from the Unity Asset Store
+    "HD Low Poly Racing Car No.1201"
+    for car, from the Unity Asset Store
 
 
 
-    "Creature Horror Mutant"
-    for monster, from the Unity Asset Store
-
-    10: "Flashlight" for flashlight,
+    "Creature Horror Mutant" for monster,
     from the Unity Asset Store
 
 
 
-    "Free PBR Lamps" for lighting in the house,
-    from the Unity Asset Store
-
-
-
-    "Raw Wooden Furniture Free" for bedroom furniture,
-    from the Unity Asset Store
-
-
-
-    "Urban Night Sky" for skybox, from the Unity
+    "Flashlight" for flashlight, from the Unity
     Asset Store
 
 
 
-    "Multi Purpouse Fade Effect for Unity" for fade out effects,
-    from GameDevTraum
-
-
-
-    "Standard Assets" for 1st person rigidbody movement,
-    from the Unity Asset Store
-
-
-
-    "Stylized Grass Texture" for grassy lawn ousite
-    house, from the Unity Asset Store
-
-
-
-    "Table" for tables, from the Unity Asset
-    Store
-
-
-
-    "Concrete Plaster Textures - 4K" for concrete floor ouside house,
-    from the Unity Asset Store
-
-
-
-    "Grenade Sound FX" for explosion sfxs, from
-    the Unity Asset Store
-
-
-
-    "Tileable Bricks Wall" for wall texture, from the
-    Unity Asset Store
-
-
-
-    "Wooden Floor Materials" for floor texture, from the
-    Unity Asset Store
-
-
-
-    22: "HQ Laptop Computer" for laptop in night 2, from
-    the Unity Asset Store
-
-
-
-    "Steps in wood floor" for walking sfx, from OpenGameArt
-
-
-
-    "Door
-    Open 01" for 1st door opening sfx, from OpenGameArt
-
-
-
-    "Door Open 02" for
-    2nd door opening sfx, from OpenGameArt
-
-
-
-    26: "Lowpoly Nature & Village Pack"
-    for trail stones
-
-
-
-    27: "Nature Sounds Pack - Free" for nature ambient sound
-    in nights 1 & 3, from the Unity Asset Store
-
-
-
-    28: "Old_Radio" for radio
-    in night 1, from the Unity Asset Store
-
-
-
-    "Creepy Forest (F)" for main soundtrack,
-    from OpenGameArt
-
-
-
-    "Park props pack" for props in forest, from the Unity
+    "Free PBR Lamps" for lighting in the house, from the Unity
     Asset Store
 
 
 
-    "Particle Dissolve Shader Package" for explosions, from the
+    "Raw Wooden Furniture Free" for bedroom furniture, from the
     Unity Asset Store
 
 
 
-    "Free PBR Lamps" for house lamps, from the Unity Asset
-    Store
+    "Urban Night Sky" for skybox, from the Unity Asset Store
 
 
 
-    "Sci-fi cargo container" for energy generator in night 3, from the
-    Unity Asset Store
+    "Multi
+    Purpouse Fade Effect for Unity" for fade out effects, from GameDevTraum
 
 
 
-    "Horror Stinger Sound Effects: for win and lose sfxs,
+    "Standard
+    Assets" for 1st person rigidbody movement, from the Unity Asset Store
+
+
+
+    "Stylized
+    Grass Texture" for grassy lawn ousite house, from the Unity Asset Store
+
+
+
+    "Table"
+    for tables, from the Unity Asset Store
+
+
+
+    "Concrete Plaster Textures - 4K"
+    for concrete floor ouside house, from the Unity Asset Store
+
+
+
+    "Grenade Sound
+    FX" for explosion sfxs, from the Unity Asset Store
+
+
+
+    "Tileable Bricks Wall"
+    for wall texture, from the Unity Asset Store
+
+
+
+    "Wooden Floor Materials"
+    for floor texture, from the Unity Asset Store
+
+
+
+    22: "HQ Laptop Computer"
+    for laptop in night 2, from the Unity Asset Store
+
+
+
+    "Steps in wood floor"
+    for walking sfx, from OpenGameArt
+
+
+
+    "Door Open 01" for 1st door opening
+    sfx, from OpenGameArt
+
+
+
+    "Door Open 02" for 2nd door opening sfx, from OpenGameArt
+
+
+
+    "Lowpoly
+    Nature & Village Pack" for trail stones
+
+
+
+    "Nature Sounds Pack - Free" for
+    nature ambient sound in nights 1 & 3, from the Unity Asset Store
+
+
+
+    "Old_Radio"
+    for radio in night 1, from the Unity Asset Store
+
+
+
+    "Creepy Forest (F)" for
+    main soundtrack, from OpenGameArt
+
+
+
+    "Park props pack" for props in forest,
     from the Unity Asset Store
 
 
 
-    "Pure noise 2" for computer loading sfx in
-    night 2, from MC2Method
+    "Particle Dissolve Shader Package" for explosions,
+    from the Unity Asset Store
 
 
 
-    "Crystal-bell 08" for computer finishing task
-    sfx in night 2, from Freesound
+    "Free PBR Lamps" for house lamps, from the
+    Unity Asset Store
 
 
 
-    "Time after time, by Cydni Lauper" for
-    night 1 car radio, from Cydni Lauper
+    "Sci-fi cargo container" for energy generator in night
+    3, from the Unity Asset Store
 
 
 
-    "DOOM SFX DDG USES" for doom sfxs
-    used throughout the game, from Yung Armaan
+    "Horror Stinger Sound Effects: for win and
+    lose sfxs, from the Unity Asset Store
 
 
 
-    "Car engine loop" for car engine
-    sfx in night 1, from OpenGameArt
+    "Pure noise 2" for computer loading
+    sfx in night 2, from MC2Method
 
 
 
-    "Iron Door Movement 8" for hallway door
-    sfxs in night 2, from Epidemic Sound
+    "Crystal-bell 08" for computer finishing
+    task sfx in night 2, from Freesound
 
 
 
-    "Five nights at freddy''s foxy jumpscare"
-    for monster jumpscare, from FNAF <3
+    "Time after time, by Cydni Lauper"
+    for night 1 car radio, from Cydni Lauper
 
 
 
-    "Distant thunder explosion" for portal
-    opening scene in night 3, from MixKit
+    "DOOM SFX DDG USES" for doom
+    sfxs used throughout the game, from Yung Armaan
 
 
 
-    "Glitch static" for radio static
-    in car, from Mixkit
+    "Car engine loop" for
+    car engine sfx in night 1, from OpenGameArt
 
 
 
-    "Morning alarm clock" for alarm deadline in nights
-    1 & 2, from Mixkit
+    "Iron Door Movement 8" for
+    hallway door sfxs in night 2, from Epidemic Sound
 
 
 
-    "Single classic click" for button clicking, from Mixkit
+    "Five nights at freddy''s
+    foxy jumpscare" for monster jumpscare, from FNAF <3
 
 
 
-    "Radio
-    waves glitch white noise" for red eyes down the hallway sound effect for night
-    2, from Mixkit
+    "Distant thunder explosion"
+    for portal opening scene in night 3, from MixKit
 
 
 
-    "20 rustles dry leaves" for rustleing monster night 1,
-    from OpenGameArt
+    "Glitch static" for radio
+    static in car, from Mixkit
 
 
 
-    "Crawling in ventilation duct" for monster vent crawling,
-    from Envato
+    "Morning alarm clock" for alarm deadline in
+    nights 1 & 2, from Mixkit
 
 
-    "Ear Ringing Sound Effect" for credits opening sfx, from SFX
-    and GFX
+
+    "Single classic click" for button clicking,
+    from Mixkit
 
 
-    "Impression Select" for mouse cursor used throughout the game,
-    from RW Designer  '
+
+    "Radio waves glitch white noise" for red eyes down the hallway
+    sound effect for night 2, from Mixkit
+
+
+
+    "20 rustles dry leaves" for rustleing
+    monster night 1, from OpenGameArt
+
+
+
+    "Crawling in ventilation duct" for monster
+    vent crawling, from Envato
+
+
+
+    "Ear Ringing Sound Effect" for credits opening
+    sfx, from SFX and GFX
+
+
+
+    "Impression Select" for mouse cursor used throughout
+    the game, from RW Designer  '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f12cb6c16a81cda4d81b755c613a6686, type: 2}
   m_sharedMaterial: {fileID: 1241467244162948074, guid: f12cb6c16a81cda4d81b755c613a6686, type: 2}
@@ -1863,7 +1866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1683123260
 RectTransform:
   m_ObjectHideFlags: 0

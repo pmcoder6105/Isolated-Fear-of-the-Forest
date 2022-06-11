@@ -139,19 +139,25 @@ public class Night2 : MonoBehaviour
         leftEyeHallwayAvertedObject.GetComponent<Animator>().enabled = false;        
         ventAvertedObject.GetComponent<Animator>().enabled = false;        
         Debug.Log(redEye1Left);
+        Debug.Log(redEye2Right);
+        Debug.Log(redEye3Right);
     }
 
     // Update is called once per frame
     void Update()
     {
         ToggleBetweenLaptopAndExteriorView();
-        if (instructions == null)
+        if (instructions == null && guidanceAudioEmpty != null)
         {
             laptopScreen.SetActive(true);
             if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
             {
                 guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
             }
+            //else if (guidanceAudioEmpty == null)
+            //{
+            //    return;                   
+            //}
             if (Time.timeSinceLevelLoad >= 38+10)
             {
                 Destroy(guidanceAudioEmpty);
@@ -159,7 +165,8 @@ public class Night2 : MonoBehaviour
             }
         }
         RunTime();
-        if (loseScreen.active)
+        Debug.Log(isLookingAtScreen);
+        if (loseScreen.activeInHierarchy)
         {
             if (!aS.isPlaying)
             {
@@ -212,7 +219,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug2), 5.1f);
             redEyeRightGameobject.SetActive(true);
-            if (redEyeRightGameobject.active == false)
+            if (redEyeRightGameobject.activeInHierarchy == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -227,16 +234,20 @@ public class Night2 : MonoBehaviour
                 Destroy(fadeOut2);
                 Destroy(doomSFXEmpty2);
                 Destroy(rightHallwayGuidance);
-            }
-            rightHallwayGuidance.SetActive(true);
+            }            
             if (isLookingAtScreen)
             {
                 spaceGuidance.SetActive(true);
+            }
+            else
+            {
+                spaceGuidance.SetActive(false);
             }
         }
 
         if (Time.timeSinceLevelLoad >= redEye3Right && Time.timeSinceLevelLoad <= redEye3Right + 5.11f)
         {
+            Debug.Log("juumpscare 3?");
             if (Input.GetKeyDown(KeyCode.RightArrow) && isLookingAtScreen == false)
             {
                 Debug.Log("Me gusta?");
@@ -253,7 +264,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug3), 5.1f);
             redEyeRightGameobject.SetActive(true);
-            if (redEyeRightGameobject.active == false)
+            if (redEyeRightGameobject.activeInHierarchy == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -313,7 +324,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareLeft();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug5), 5.1f);
             redEyeLeftGameobject.SetActive(true);
-            if (redEyeLeftGameobject.active == false)
+            if (redEyeLeftGameobject.activeInHierarchy == false)
             {
                 redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -407,7 +418,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug8), 5.1f);
             redEyeRightGameobject.SetActive(true);
-            if (redEyeRightGameobject.active == false)
+            if (redEyeRightGameobject.activeInHierarchy == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -434,7 +445,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug9), 5.1f);
             redEyeRightGameobject.SetActive(true);
-            if (redEyeRightGameobject.active == false)
+            if (redEyeRightGameobject.activeInHierarchy == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -494,7 +505,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareLeft();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug11), 5.1f);
             redEyeLeftGameobject.SetActive(true);
-            if (redEyeLeftGameobject.active == false)
+            if (redEyeLeftGameobject.activeInHierarchy == false)
             {
                 redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -587,7 +598,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareRight();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug14), 5.1f);
             redEyeRightGameobject.SetActive(true);
-            if (redEyeRightGameobject.active == false)
+            if (redEyeRightGameobject.activeInHierarchy == false)
             {
                 redEyeRightGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -614,7 +625,7 @@ public class Night2 : MonoBehaviour
             AvoidJumpscareLeft();
             Invoke(nameof(StartJumpscareForAllJumpscaresWithBug15), 5.1f);
             redEyeLeftGameobject.SetActive(true);
-            if (redEyeLeftGameobject.active == false)
+            if (redEyeLeftGameobject.activeInHierarchy == false)
             {
                 redEyeLeftGameobject.GetComponent<Animator>().enabled = true;
             }
@@ -630,8 +641,8 @@ public class Night2 : MonoBehaviour
                 Destroy(doomSFXEmpty15);
             }
         }
-        if (monster.active || monster2.active || monster3.active || monster4.active || monster5.active || monster6.active ||
-            monster7.active || monster8.active || monster9.active || monster10.active || monster11.active || monster12.active || monster13.active || monster14.active || monster15.active)
+        if (monster.activeInHierarchy || monster2.activeInHierarchy || monster3.activeInHierarchy || monster4.activeInHierarchy || monster5.activeInHierarchy || monster6.activeInHierarchy ||
+            monster7.activeInHierarchy || monster8.activeInHierarchy || monster9.activeInHierarchy || monster10.activeInHierarchy || monster11.activeInHierarchy || monster12.activeInHierarchy || monster13.activeInHierarchy || monster14.activeInHierarchy || monster15.activeInHierarchy)
         {
             Destroy(MainScreen);
             Destroy(Appliances);
@@ -647,8 +658,12 @@ public class Night2 : MonoBehaviour
                 GetComponent<Animator>().Play("ZoomOutOfComputerNight2");
             }
         }
+        //else
+        //{
+        //    return;
+        //}
 
-        if (instructions.activeInHierarchy && instructions != null)
+        if (instructions.activeInHierarchy)
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
@@ -658,6 +673,10 @@ public class Night2 : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+        //else
+        //{
+        //    Time.timeScale = 1;
+        //}
         if (freezeTime == true)
         {
             Time.timeScale = 0;
@@ -704,107 +723,170 @@ public class Night2 : MonoBehaviour
 
     void StartJumpscareForAllJumpscaresWithBug2()
     {        
-        monster2.SetActive(true);
+        if (monster2 != null && fadeOut2 != null && doomSFXEmpty2 != null)
+        {
+            fadeOut2.SetActive(true);
+            doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            monster2.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+            
+        }        
         Destroy(rightHallwayGuidance);
-        fadeOut2.SetActive(true);
-        doomSFXEmpty2.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
         spaceGuidance.SetActive(false);
     }
     void StartJumpscareForAllJumpscaresWithBug3()
     {
-        monster3.SetActive(true);
-        fadeOut3.SetActive(true);
-        doomSFXEmpty3.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster3 != null && fadeOut3 != null && doomSFXEmpty3 != null)
+        {
+            monster3.SetActive(true);
+            fadeOut3.SetActive(true);
+            doomSFXEmpty3.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }                
+       
     }
     void StartJumpscareForAllJumpscaresWithBug4()
     {
-        monster4.SetActive(true);
+        if (monster4 != null && fadeOut4 != null && doomSFXEmpty4 != null)
+        {
+            monster4.SetActive(true);
+            fadeOut4.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
         Destroy(ventGuidance);
-        fadeOut4.SetActive(true);
+        
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        
         Destroy(spaceGuidance);
     }
     void StartJumpscareForAllJumpscaresWithBug5()
     {
-        monster5.SetActive(true);
-        fadeOut5.SetActive(true);
-        doomSFXEmpty5.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster5 != null && fadeOut5 != null && doomSFXEmpty5 != null)
+        {
+            monster5.SetActive(true);
+            fadeOut5.SetActive(true);
+            doomSFXEmpty5.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }        
+       
     }
     
     void StartJumpscareForAllJumpscaresWithBug6()
     {
-        monster6.SetActive(true);
-        fadeOut6.SetActive(true);
+        if (monster6 != null && fadeOut6 != null && doomSFXEmpty6 != null)
+        {
+            monster6.SetActive(true);            
+            fadeOut6.SetActive(true);
+        }        
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
         Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
     }
     void StartJumpscareForAllJumpscaresWithBug7()
     {
-        monster7.SetActive(true);
-        fadeOut7.SetActive(true);
+        if (monster7 != null && fadeOut7 != null && doomSFXEmpty7 != null)
+        {
+            monster7.SetActive(true);
+            fadeOut7.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        
     }
     void StartJumpscareForAllJumpscaresWithBug8()
     {
-        monster8.SetActive(true);
-        fadeOut8.SetActive(true);
-        doomSFXEmpty8.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster8 != null && fadeOut8 != null && doomSFXEmpty8 != null)
+        {
+            monster8.SetActive(true);
+            fadeOut8.SetActive(true);
+            doomSFXEmpty8.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+
     }
     void StartJumpscareForAllJumpscaresWithBug9()
     {
-        monster9.SetActive(true);
-        fadeOut9.SetActive(true);
-        doomSFXEmpty9.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster9 != null && fadeOut9 != null && doomSFXEmpty9 != null)
+        {
+            monster9.SetActive(true);
+            fadeOut9.SetActive(true);
+            doomSFXEmpty9.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
+        
     }
     void StartJumpscareForAllJumpscaresWithBug10()
     {
-        monster10.SetActive(true);
-        fadeOut10.SetActive(true);
+        if (monster10 != null && fadeOut10 != null && doomSFXEmpty10 != null)
+        {
+            monster10.SetActive(true);
+            fadeOut10.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
         //doomSFXEmpty4.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+       
     }
     void StartJumpscareForAllJumpscaresWithBug11()
     {
-        monster11.SetActive(true);
-        fadeOut11.SetActive(true);
-        doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster11 != null && fadeOut11 != null && doomSFXEmpty11 != null)
+        {
+            monster11.SetActive(true);
+            fadeOut11.SetActive(true);
+            doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
+        
     }
     void StartJumpscareForAllJumpscaresWithBug12()
     {
-        monster12.SetActive(true);
-        fadeOut12.SetActive(true);
+        if (monster12 != null && fadeOut12 != null && doomSFXEmpty12 != null)
+        {
+            monster12.SetActive(true);         
+            fadeOut12.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
         //doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        
 
     }
     void StartJumpscareForAllJumpscaresWithBug13()
     {
-        monster12.SetActive(true);
-        fadeOut12.SetActive(true);
+        if (monster13 != null && fadeOut13 != null && doomSFXEmpty13 != null)
+        {
+            monster13.SetActive(true);
+            fadeOut12.SetActive(true);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
         //doomSFXEmpty11.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        
     }
     void StartJumpscareForAllJumpscaresWithBug14()
     {
-        monster14.SetActive(true);
-        fadeOut14.SetActive(true);
-        doomSFXEmpty14.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster14 != null && fadeOut14 != null && doomSFXEmpty14 != null)
+        {
+            monster14.SetActive(true);            
+            fadeOut14.SetActive(true);
+            doomSFXEmpty14.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
+        
     }
     void StartJumpscareForAllJumpscaresWithBug15()
     {
-        monster15.SetActive(true);
-        fadeOut15.SetActive(true);
-        doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
-        Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        if (monster15 != null && fadeOut15 != null && doomSFXEmpty15 != null)
+        {
+            monster15.SetActive(true);            
+            fadeOut15.SetActive(true);
+            doomSFXEmpty15.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+            Invoke(nameof(TurnOnLoseScreenAfterDying), 1f);
+        }
+        
+        
     }
     void StopRightEyeFromLooping()
     {
@@ -892,6 +974,10 @@ public class Night2 : MonoBehaviour
             }                        
         }
         //Invoke(nameof(JumpscareAfterNotAvertingDanger), 4);
+        if (rightHallwayGuidance != null)
+        {
+            rightHallwayGuidance.SetActive(true);
+        }
     }
 
     void AvoidJumpscareVent()

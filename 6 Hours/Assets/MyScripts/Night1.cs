@@ -33,7 +33,6 @@ public class Night1 : MonoBehaviour
     [SerializeField] GameObject guidanceText;
     [SerializeField] GameObject guidanceAudioEmpty;
     [SerializeField] GameObject winScreenCam;
-    [SerializeField] GameObject cam;
     [SerializeField] AudioClip guidanceAudioClip;
     Vector3 monsterPos;
     int rustle1;
@@ -100,8 +99,8 @@ public class Night1 : MonoBehaviour
             aN.enabled = true;
             aN.Play("DeathAnimNight1", 0);
             aS.volume = 0.5f;
-            Destroy(cam);
-            winScreen.SetActive(true);
+            //Destroy(this.gameObject);
+            //winScreenCam.SetActive(true);
         }
         if (freezeTime == true)
         {
