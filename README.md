@@ -1,4 +1,4 @@
-# 6 Hours
+# Fear of the Forest
 This game is an original concept game. You get stuck in a cabin in the middle of the woods and you have to survive from this monster haunting it. You will have to perform several tasks thoughout the night in this game to survive. Get to the last night to escape. 
 
 # How to Build/Compile
