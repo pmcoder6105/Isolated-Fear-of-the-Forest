@@ -1,7 +1,6 @@
 using UnityEngine.AI;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Night3 : MonoBehaviour
 {
@@ -56,10 +55,28 @@ public class Night3 : MonoBehaviour
         capsule1Button.SetActive(false);        
     }
 
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(4);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(inRangeCapsule1);
+        if (loseScreen.activeInHierarchy == false)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Destroy(this);
+        }
+        if (winScreen.activeInHierarchy)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Invoke(nameof(LoadNextScene), 5f);
+        }
         if (instructions == null)
         {
             monsterAI.SetDestination(player.position);

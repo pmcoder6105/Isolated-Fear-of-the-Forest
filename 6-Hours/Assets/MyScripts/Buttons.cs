@@ -68,6 +68,18 @@ public class Buttons : MonoBehaviour
             n3.carPortalTimeline.SetActive(true);
             Invoke(nameof(TurnCameraPositionBack), 16f);
         }
+        if (winScreen.activeInHierarchy && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Invoke(nameof(LoadNextScene), 5f);
+        }
+    }
+
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(3);
+        Destroy(winScreen);
     }
 
     void TurnCameraPositionBack()

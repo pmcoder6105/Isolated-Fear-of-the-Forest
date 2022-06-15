@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Night2 : MonoBehaviour
 {
@@ -187,7 +188,7 @@ public class Night2 : MonoBehaviour
             Destroy(monster13);
             Destroy(monster14);
             Destroy(monster15);
-        }
+        }        
         if (Time.timeSinceLevelLoad >= redEye1Left && Time.timeSinceLevelLoad <= redEye1Left + 5)
         {
             if (!aS.isPlaying)

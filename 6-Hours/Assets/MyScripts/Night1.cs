@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Night1 : MonoBehaviour
 {
@@ -74,6 +75,20 @@ public class Night1 : MonoBehaviour
         EnablePlayerMovementAfterCutscene();
         Invoke(nameof(RustleTest), 31f);
         RunTime();
+        if (loseScreen.activeInHierarchy == false)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Destroy(this);
+        }
+        if (winScreen.activeInHierarchy)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Invoke(nameof(LoadNextScene), 5f);
+        }
         if (night1Instructions == null)
         {            
             if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
@@ -114,6 +129,12 @@ public class Night1 : MonoBehaviour
         {
             freezeTime = true;
         } 
+    }
+
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(2);
+        Destroy(winScreen);
     }
 
     void RunTime()
