@@ -11,6 +11,8 @@ public class Buttons : MonoBehaviour
     [SerializeField] AudioClip winSFX;
     [SerializeField] AudioClip whirringSFXWhenCompletingTask;
     [SerializeField] AudioClip ding;
+    public GameObject player;
+    [SerializeField] Vector3 playerPosAfterCarTimeline;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject screwInLightBulb;
     [SerializeField] GameObject stove;
@@ -66,7 +68,7 @@ public class Buttons : MonoBehaviour
             n3.carPortal.SetActive(true);
             Debug.Log("time to open car portal??");
             n3.carPortalTimeline.SetActive(true);
-            Invoke(nameof(TurnCameraPositionBack), 16f);
+            Invoke(nameof(TurnCameraPositionBack), 16);
         }
         if (winScreen.activeInHierarchy && SceneManager.GetActiveScene().buildIndex == 2)
         {
@@ -86,6 +88,9 @@ public class Buttons : MonoBehaviour
     {
         n3.cam.SetActive(true);
         Destroy(n3.carPortalTimeline);
+
+        player.transform.position = playerPosAfterCarTimeline;
+        Destroy(this);
     }
 
     public void PlayLvl1()
@@ -166,8 +171,9 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level1MonsterMat;
-        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level1MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<SkinnedMeshRenderer>().material = level1MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<SkinnedMeshRenderer>().material = level1MonsterMat;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void DestroyCapsule2AfterDing()
     {
@@ -178,8 +184,9 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level2MonsterMat;
-        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level2MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<SkinnedMeshRenderer>().material = level2MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<SkinnedMeshRenderer>().material = level2MonsterMat;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void DestroyCapsule3AfterDing()
     {
@@ -190,8 +197,9 @@ public class Buttons : MonoBehaviour
         n3.player.GetComponent<Rigidbody>().isKinematic = false;
         //n3.player.GetComponent<Animator>().enabled = false;
         monsterSpeed = monsterSpeed + 1;
-        n3.monsterObjectMeshRenderer.GetComponent<MeshRenderer>().material = level3MonsterMat;
-        n3.monsterAIMesRenderer.GetComponent<MeshRenderer>().material = level3MonsterMat;
+        n3.monsterObjectMeshRenderer.GetComponent<SkinnedMeshRenderer>().material = level3MonsterMat;
+        n3.monsterAIMesRenderer.GetComponent<SkinnedMeshRenderer>().material = level3MonsterMat;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void TurnAnimatorOffOnceZoomedOut()
     {

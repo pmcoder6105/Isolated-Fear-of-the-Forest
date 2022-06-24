@@ -52,7 +52,8 @@ public class Night3 : MonoBehaviour
         aN = GetComponent<Animator>();
         bT = FindObjectOfType<Buttons>();
         Debug.Log(Time.timeSinceLevelLoad);
-        capsule1Button.SetActive(false);        
+        capsule1Button.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LoadNextScene()
@@ -63,14 +64,6 @@ public class Night3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (loseScreen.activeInHierarchy == false)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Destroy(this);
-        }
         if (winScreen.activeInHierarchy)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -81,21 +74,35 @@ public class Night3 : MonoBehaviour
         {
             monsterAI.SetDestination(player.position);
             monsterAI.GetComponent<Animator>().Play("Walk", 0);
-            if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
+            if (guidanceAudioEmpty != null)
             {
-                guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
+                if (!guidanceAudioEmpty.GetComponent<AudioSource>().isPlaying)
+                {
+                    guidanceAudioEmpty.GetComponent<AudioSource>().PlayOneShot(guidanceAudioClip);
+                }
+            }     
+            else
+            {
+                Debug.Log("guidance audio empty is null");
+
             }
             if (Time.timeSinceLevelLoad >= 24+11)
             {
                 Debug.Log("Time to destroy guidance emtpy");
                 Destroy(guidanceAudioEmpty);
             }
-        }     
-        if (instructions.activeInHierarchy && instructions != null)
-        {
-            Time.timeScale = 0f;
         }
-
+        if (instructions != null)
+        {
+            if (instructions.activeInHierarchy)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+        }        
         if (bT.monsterSpeed == 1)
         {
             monsterAI.speed = 4;
@@ -108,53 +115,6 @@ public class Night3 : MonoBehaviour
         {
             monsterAI.speed = 5.5f;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule1 == true)
-        {    
-            aN.enabled = true;
-            cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Rigidbody>().isKinematic = true;            
-            if (canZoomIn == true)
-            {
-                aN.Play("ZoomIntoCapsule1", 0);
-            }
-            canvas.GetComponent<Animator>().Play("EnableCapsule1Button", 0);            
-            isLookingAtCapsule1 = true;
-            Invoke(nameof(TurnOnButton1), 1f);
-            Cursor.lockState = CursorLockMode.None;
-            //capsule1Button.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule2 == true)
-        {
-            aN.enabled = true;
-            cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Rigidbody>().isKinematic = true;
-            if (canZoomIn == true)
-            {
-                aN.Play("ZoomIntoCapsule2", 0);
-            }
-            canvas.GetComponent<Animator>().Play("EnableCapsule2Button", 0);
-            isLookingAtCapsule2 = true;
-            Invoke(nameof(TurnOnButton2), 1f);
-            Cursor.lockState = CursorLockMode.None;
-            //capsule1Button.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && inRangeCapsule3 == true)
-        {
-            aN.enabled = true;
-            cam.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Rigidbody>().isKinematic = true;
-            if (canZoomIn == true)
-            {
-                aN.Play("ZoomIntoCapsule3", 0);
-            }
-            canvas.GetComponent<Animator>().Play("EnableCapsule3Button", 0);
-            isLookingAtCapsule3 = true;
-            Invoke(nameof(TurnOnButton3), 1f);
-            Cursor.lockState = CursorLockMode.None;
-            //capsule1Button.SetActive(true);
-        }
-
         if (Time.timeSinceLevelLoad >= 11 && shouldSkipIntro == false && instructions != null)
         {
             timeline.SetActive(false);
@@ -165,60 +125,50 @@ public class Night3 : MonoBehaviour
             aN.enabled = false;
         }
 
-        //if (bT.capsule1 == null && bT.capsule2 == null && bT.capsule3 == null)
-        //{
-        //    carPortal.SetActive(true);
-        //    Debug.Log("time to open car portal??");
-        //   carPortalTimeline.SetActive(true);
-        //    Invoke(nameof(TurnCameraPositionBack), 16f);
-        //}
-        if (instructions.active == true)
+        if (instructions != null)
         {
-            if (!doomSFXOpeningObject.GetComponent<AudioSource>().isPlaying)
+            if (instructions.activeInHierarchy == true)
             {
-                doomSFXOpeningObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                if (!doomSFXOpeningObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    doomSFXOpeningObject.GetComponent<AudioSource>().PlayOneShot(doomSFX);
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Destroy(instructions);
+                    Time.timeScale = 1f;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                Destroy(instructions);
-                Time.timeScale = 1f;
-            }           
-        } 
+        }
     }
 
     void TurnOnButton1()
     {
         Debug.Log("time to click button");
-        if (capsule1Button.active == false)
+        if (capsule1Button.activeInHierarchy == false)
         {
             capsule1Button.SetActive(true);
         }
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
     }
-
-    //void TurnCameraPositionBack()
-    //{
-    //    cam.SetActive(true);
-    //    Destroy(carPortalTimeline);
-    //}
     void TurnOnButton2()
     {
         Debug.Log("time to click button");
-        if (capsule2Button.active == false)
+        if (capsule2Button.activeInHierarchy == false)
         {
             capsule2Button.SetActive(true);
         }
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
     }
 
     void TurnOnButton3()
     {
         Debug.Log("time to click button");
-        if (capsule3Button.active == false)
+        if (capsule3Button.activeInHierarchy == false)
         {
             capsule3Button.SetActive(true);
         }
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -239,13 +189,8 @@ public class Night3 : MonoBehaviour
             isLookingAtCapsule1 = true;
             Invoke(nameof(TurnOnButton1), 1f);
             Cursor.lockState = CursorLockMode.None;
+            Debug.Log("time to click button through trigger method");
         }
-        //else if (other.gameObject.tag != "Capsule1Field")
-        //{
-        //    inRangeCapsule1 = false;
-        //    clickSpaceToInteract.SetActive(false);
-        //    Debug.Log("time to zoom out of capsule1");
-        //}
         if (other.gameObject.tag == "Capsule2Field")
         {
             //inRangeCapsule2 = true;
@@ -262,11 +207,6 @@ public class Night3 : MonoBehaviour
             Invoke(nameof(TurnOnButton2), 1f);
             Cursor.lockState = CursorLockMode.None;
         }
-        //else if (other.gameObject.tag != "Capsule2Field")
-        //{
-        //    inRangeCapsule2 = false;
-        //    clickSpaceToInteract.SetActive(false);
-        //}
         if (other.gameObject.tag == "Capsule3Field")
         {
             //inRangeCapsule3 = true;
@@ -283,11 +223,6 @@ public class Night3 : MonoBehaviour
             Invoke(nameof(TurnOnButton3), 1f);
             Cursor.lockState = CursorLockMode.None;
         }
-        //else if (other.gameObject.tag != "Capsule3Field")
-        //{
-        //    inRangeCapsule3 = false;
-        //    clickSpaceToInteract.SetActive(false);
-        //}
         if (other.gameObject.tag == "Car")
         {
             Debug.Log("won");

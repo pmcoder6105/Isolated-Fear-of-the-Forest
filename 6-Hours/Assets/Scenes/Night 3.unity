@@ -9821,11 +9821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.416151
+      value: -16.39
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.239
+      value: -7.14
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9905,7 +9905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.JumpForce
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: movementSettings.StrafeSpeed
@@ -19471,6 +19471,8 @@ MonoBehaviour:
   winSFX: {fileID: 0}
   whirringSFXWhenCompletingTask: {fileID: 8300000, guid: 88a37ac3c8520d94eb044ced0867dbb4, type: 3}
   ding: {fileID: 8300000, guid: 3ad9acdcfaa8e1a4491154703d4df0e3, type: 3}
+  player: {fileID: 1853359537}
+  playerPosAfterCarTimeline: {x: -16.39, y: -7.25, z: -19.12}
   winScreen: {fileID: 1623622088}
   screwInLightBulb: {fileID: 0}
   stove: {fileID: 0}
