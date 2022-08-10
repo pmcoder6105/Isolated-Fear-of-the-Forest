@@ -147,6 +147,8 @@ public class Night2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
         ToggleBetweenLaptopAndExteriorView();
         if (instructions == null && guidanceAudioEmpty != null)
         {

@@ -72,6 +72,9 @@ public class Night1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
         EnablePlayerMovementAfterCutscene();
         Invoke(nameof(RustleTest), 31f);
         RunTime();

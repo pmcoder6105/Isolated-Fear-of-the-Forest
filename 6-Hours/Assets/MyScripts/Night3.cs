@@ -64,6 +64,8 @@ public class Night3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
         if (winScreen.activeInHierarchy)
         {
             Cursor.lockState = CursorLockMode.None;
